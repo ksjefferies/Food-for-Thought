@@ -21,7 +21,6 @@ function App() {
           >
             Learn React
           </a>
-          {aboutCard}
         </header>
       </div>
     </ChakraProvider>
