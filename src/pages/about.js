@@ -1,10 +1,14 @@
-//import { Image } from '@chakra-ui/react'
-const imageVariable = "https://lh3.googleusercontent.com/vdSx14hgs4dFbI2tITbOSzC2qZ1Nkq0_a1_wZ___02S4H7xzpkoWD381x0EwMJ3_IHKaAmhhg9d0NGTQwrQE9LTiICVfnOVoMFvZolX9VhfzPGbXnVKYZCQDFCRkXOevwYRzFZg7lqB0J87JPp6KvLNDhsy7Ocb3iR_YVBlk5kskEo5NMTPPZBlwJoOZLRv_coumOzOM3RyKcgjGoUAtsqKxsYd1b560w2GnxLlIMiNULx-f9Mys9FrWtf6b90i7LiUlvOXOOIpAGEefUmWhzIPU7vdPUUoHFHnT4Psb5R2vzKoy_UHjtGH2GA-N8UrR3rzAk77TP9u-2o_s0jXqanoD-iIjIHSCDAyzccusgszHFUFg27D964Uejh1hZFO6p8QQspNaF21nAbkQBrgQTjOifkkMZTxnQMmrnS_2YRjo4NWDXsGx1BeRFCSdveWoUninJr1EYJWw9a9tXNO5ZMKxO-WBScrZhK9OPRsZf9bKqk8SbzkPM9F0Ktvjw8EEiWCJjjaXDjjZ8JMpkc5sMNY23JMtBBvDzD4-PGCflK11OdtqIW6XhhayM2Htqf29mOZxkTwwEo3TnLMd4JT4thl7qL7Jp1se2JV82xck27fDaJVRCO19NWt3-xmJYtXKQq7L6Dq4sn3EIKwlszjUXH7RZpRBIFQSAZdoU6iaWCvitryfKkG32AQIfXU8TSgrDRY6sjfJKc2TMSuh8gA9sBTuitDEcnrRno1aem3yPnFHLwiPzBMYvwivSZWa=w641-h854-no?authuser=0"
+import { Image } from '@chakra-ui/react'
 
 
 function aboutCard (){
     return (
-       <img src= {imageVariable} alt="Louie Kelly" ></img>
+        <Image
+        borderRadius='full'
+        boxSize='150px'
+        src="https://via.placeholder.com/150"
+        alt='placeholder'
+      />
     )
 }
 
