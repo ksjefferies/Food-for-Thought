@@ -6,9 +6,22 @@ const userSchema = new Schema({
     required: true,
   },
 
+  username: {
+    type: String,
+    required: true,
+  },
+
   password: {
     type: String,
     required: true,
+  },
+
+  skillLevel:{
+    type: String,
+  },
+
+  description:{
+    type: String,
   },
 
   salt: {
