@@ -1,3 +1,12 @@
-const APIKey = "8cade34ce35f01b92a9193b883c8e605";
-const APIId = "30fcf8b3";
+import PageContainer from "../pageContainer/PageContainer";
 
+// const APIKey = "cda9a2ddad77ff868cec50dc7286234c";
+// const APIId = "85effab9";
+
+export function Recipe() {
+    return (
+        <PageContainer>
+            
+        </PageContainer>
+    )
+}
