@@ -22,5 +22,5 @@ const commentSchema = new Schema({
 
 });
 
-const User = model('Comment', userSchema);
-module.exports = User;
+const Comment = model('Comment', commentSchema);
+module.exports = Comment;
