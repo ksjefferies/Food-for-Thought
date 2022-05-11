@@ -6,21 +6,22 @@ const commentSchema = new Schema({
     type: String,
   },
 
-  userID:[
-       {
-           type: Schema.Types.ObjectId,
-           ref: 'User'
-       }
-    ],
-
-   recipeID:[  
+  userID: [
     {
-    type: Schema.Types.ObjectId,
-    ref: 'Recipe'
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     }
-    ],
+  ],
+
+  recipeID: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Recipe'
+    }
+  ],
 
 });
 
 const Comment = model('Comment', commentSchema);
+
 module.exports = Comment;

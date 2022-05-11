@@ -18,14 +18,15 @@ const recipeSchema = new Schema({
     type: String,
   },
 
-  userID:[
+  userID: [
     {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     }
- ]
+  ]
 
 });
 
 const Recipe = model('Recipe', recipeSchema);
+
 module.exports = Recipe;

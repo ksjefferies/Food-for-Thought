@@ -1,7 +1,6 @@
 // createComment, getComments (find by Id), updateComment, deleteComment
 const { Comment } = require('../models/Comment');
 
-
 module.exports = {
 
     //create a comment
@@ -23,14 +22,13 @@ module.exports = {
         }
     },
 
-
     // get all comments
     async getComments(req, res) {
-        
+
         try {
             const allComments = await Resource.findAll()
-        
-            if(!allComments) {
+
+            if (!allComments) {
                 return res.status(400).json({ message: "Couldn't get Comments" });
             }
 
@@ -57,7 +55,6 @@ module.exports = {
         }
     },
 
-    
     //edit comment 
     async updateComment({ body, params }, res) {
         try {
@@ -76,7 +73,6 @@ module.exports = {
         }
     },
 
-
     //delete comment 
     async deleteComment({ params }, res) {
         try {
@@ -92,5 +88,4 @@ module.exports = {
             return res.status(500).json(err)
         }
     },
-
 };

@@ -4,14 +4,14 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config()
 
 module.exports = {
-  
+
   async createUser({ body }, res) {
 
     const salt = await bcrypt.genSalt(10)
     const password = await bcrypt.hash(body.password, salt)
 
     const userToInsert = {
-      email: body.email, 
+      email: body.email,
       password: password,
       salt: salt
     }
@@ -24,7 +24,6 @@ module.exports = {
 
     res.status(200).json({ _id: user._id, email: user.email });
   },
-
 
   async authUser({ body }, res) {
 
@@ -40,7 +39,7 @@ module.exports = {
     // We want to verify the password
     const isValid = await bcrypt.compare(body.password, user.password)
 
-    if( !isValid ){
+    if (!isValid) {
       return res.status(400).json({ message: 'Unable to authenticate user' });
     }
 
@@ -49,30 +48,29 @@ module.exports = {
       id: user._id
     }, process.env.JWT_SECRET)
 
-    res.header("auth-token", token).json({ error: null, data: { user, token }})
+    res.header("auth-token", token).json({ error: null, data: { user, token } })
   },
 
-
-  async verifyUser(req, res){
+  async verifyUser(req, res) {
     const token = req.headers["auth-token"]
 
-    if( !token ){
-      return res.status(401).json({msg: "authorized"})
+    if (!token) {
+      return res.status(401).json({ msg: "authorized" })
     }
 
     const isVerified = jwt.verify(token, process.env.JWT_SECRET)
 
-    if( !isVerified ){
-      return res.status(401).json({msg: "authorized"})
+    if (!isVerified) {
+      return res.status(401).json({ msg: "authorized" })
     }
 
     const user = await User.findById(isVerified.id)
 
-    if( !user ){
-      return res.status(401).json({msg: "authorized"})
+    if (!user) {
+      return res.status(401).json({ msg: "authorized" })
     }
 
-    return res.status(200).json({ _id: user._id, email: user.email})
+    return res.status(200).json({ _id: user._id, email: user.email })
   }
 
 };
