@@ -1,7 +1,7 @@
-
 import PageContainer from "../component/pageContainer/PageContainer";
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
+// import CommentSection from "../component/comments"
 
 export function RecipeIdv() {
     const { id } = useParams();

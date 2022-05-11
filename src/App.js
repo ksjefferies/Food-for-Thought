@@ -8,6 +8,7 @@ import { Landing } from './pages/Landing';
 import { Recipe } from './pages/Recipe';
 import { RecipeIdv } from './pages/RecipeIdv';
 import { MyPage } from './pages/MyPage';
+import { Contact } from "./pages/Contact";
 
 function App() {
   const queryClient = new QueryClient()
@@ -21,6 +22,7 @@ function App() {
             <Route path='/recipe/:id' element={<RecipeIdv />} />
             <Route path='/about' element={<About />} />
             <Route path='/mypage' element={<MyPage />} />
+            <Route path='/contact' element={<Contact />} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
