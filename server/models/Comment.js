@@ -6,6 +6,12 @@ const commentSchema = new Schema({
     type: String,
   },
 
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (createdAtVal) => moment(createdAtVal).format('MMMM D, YYYY [at] hh:mm a')
+  },
+
   userID:[
        {
            type: Schema.Types.ObjectId,

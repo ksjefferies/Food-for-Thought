@@ -23,6 +23,12 @@ const userSchema = new Schema({
   description:{
     type: String,
   },
+  
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (createdAtVal) => moment(createdAtVal).format('MMMM D, YYYY [at] hh:mm a')
+  },
 
   salt: {
     type: String
