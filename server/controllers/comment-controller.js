@@ -1,0 +1,1 @@
+// createComment, getComments (find by Id), updateComment, deleteComment
