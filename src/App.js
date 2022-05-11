@@ -3,11 +3,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClientProvider, QueryClient } from "react-query";
-import { About } from './component/pages/about';
-import { Landing } from './component/pages/landing';
-import { Recipe } from './component/pages/recipe';
-import { RecipeIdv } from './component/pages/recipeIdv';
-import { MyPage } from './component/pages/myPage';
+import { About } from './pages/About';
+import { Landing } from './pages/Landing';
+import { Recipe } from './pages/Recipe';
+import { RecipeIdv } from './pages/RecipeIdv';
+import { MyPage } from './pages/MyPage';
 
 function App() {
   const queryClient = new QueryClient()
