@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
     Textarea,
@@ -31,6 +32,7 @@ export default function CommentSection(props) {
                 1
             </Box>
 
+
             <Box h='40px' bg='tomato'>
                 2
             </Box>
@@ -48,3 +50,4 @@ export default function CommentSection(props) {
         </VStack>
     )
 }
+
