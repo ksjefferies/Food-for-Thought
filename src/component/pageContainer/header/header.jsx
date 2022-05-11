@@ -15,7 +15,7 @@ import {
     Stack,
     Input
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, AddIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { NavLink } from './NavLink';
 
 const Links = [
