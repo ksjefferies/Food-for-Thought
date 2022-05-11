@@ -2,8 +2,9 @@ import PageContainer from "../pageContainer/PageContainer";
 import { useQuery } from 'react-query'
 import { Box, Spinner } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
-
+import { commentSection } from "../comments/comments";
 export function Recipe() {
+
     let [searchParams] = useSearchParams();
     const query = searchParams.get("q")
 
