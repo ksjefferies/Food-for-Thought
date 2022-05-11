@@ -1,6 +1,5 @@
 import PageContainer from "../pageContainer/PageContainer";
 import { Image, Box } from '@chakra-ui/react'
-
 import background from "../../assets/images/Recipes-Banner.jpeg";
 
 export function Landing() {
