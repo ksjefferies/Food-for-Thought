@@ -16,11 +16,11 @@ const userSchema = new Schema({
     required: true,
   },
 
-  skillLevel:{
+  skillLevel: {
     type: String,
   },
 
-  description:{
+  description: {
     type: String,
   },
   
