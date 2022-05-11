@@ -3,8 +3,8 @@ import { RecipeCard } from "../recipeCard/recipeCard";
 import { useQuery } from 'react-query'
 import { Spinner } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
-
 export function Recipe() {
+
     let [searchParams] = useSearchParams();
     const query = searchParams.get("q")
 
