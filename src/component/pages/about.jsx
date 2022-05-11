@@ -68,7 +68,8 @@ export function About() {
                      maxH={'100%'} minH={'20%'}
                      boxShadow={'-10px 10px 0 5px #81716F'}
                      >
-                    Hey Alyssa I need some things for you to enter here! I'm just trying to fill the space to make sure everything looks right. Blah blah, great developer, blah blah, Alyssa is amazing at what she does. Hey look at her go!  
+                    I am an aspiring full stack developer who recently obtained a MERN certificate from SMU. While my experience in the Tech field is limited, I am eager to learn. I have worked in an office setting with my time at Asset Control, a background check company. Where I was given the opportunity to run an entire department.
+                    I hope that in my work you will not just see my abilities, but my passion and willingness to learn.
                 </Box>
                 </Container>
                 <Container >
@@ -85,7 +86,7 @@ export function About() {
                     <Text fontWeight={600}>Alyssa Rodriguez</Text>
                     <Container display={'flex'} justifyContent={'center'}>
                     <a href="https://github.com/AlyssaRodri"><IconButton bg={'#7FB5A4'} mr={1} icon={<FontAwesomeIcon icon={faGithub}/>} color={'black'}/></a>
-                    <a href="https://www.linkedin.com/in/kelly-jefferies-14483418/"><IconButton bg={'#7FB5A4'} icon={<FontAwesomeIcon icon={faLinkedin}/>} color={'black'}/></a>
+                    <a href="https://www.linkedin.com/in/alyssa-rodriguez-935433152/"><IconButton bg={'#7FB5A4'} icon={<FontAwesomeIcon icon={faLinkedin}/>} color={'black'}/></a>
                     </Container>
                 </Box>
                 </Container>
