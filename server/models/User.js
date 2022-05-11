@@ -23,7 +23,7 @@ const userSchema = new Schema({
   description: {
     type: String,
   },
-  
+
   createdAt: {
     type: Date,
     default: Date.now,
@@ -36,4 +36,5 @@ const userSchema = new Schema({
 });
 
 const User = model('User', userSchema);
+
 module.exports = User;

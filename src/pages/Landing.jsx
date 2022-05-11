@@ -70,7 +70,6 @@ export function Landing({
     )
 }
 
-
 Landing.propTypes = {
     title: PropTypes.string,
     subtitle: PropTypes.string,
@@ -78,10 +77,9 @@ Landing.propTypes = {
     ctaLink: PropTypes.string,
 }
 
-
 Landing.defaultProps = {
     title: "This is our recipe App",
-    subtitle:"This is the description of our website.",
+    subtitle: "This is the description of our website.",
     ctaText: "Create your account now",
     ctaLink: "/auth",
-  }
+}

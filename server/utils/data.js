@@ -18,7 +18,7 @@ const users = [
     email: 'Dan@gmail.com',
     username: 'DangerDan',
     password: 'password4'
-  }  
+  }
 ];
 
 const comments = [
@@ -33,7 +33,6 @@ const comments = [
     recipeID: ''
   }
 ];
-
 
 // Export the functions for use in seed.js
 module.exports = { users, comments };
