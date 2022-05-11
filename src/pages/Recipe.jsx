@@ -3,19 +3,18 @@ import { RecipeCard } from "../component/recipeCard/RecipeCard";
 import { useQuery } from 'react-query'
 import { Spinner } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
+import { recipeBySearch } from "../utils/recipeHelper";
+
 export function Recipe() {
 
     let [searchParams] = useSearchParams();
     const query = searchParams.get("q")
 
-    const apiParams = new URLSearchParams({
-        app_key: "cda9a2ddad77ff868cec50dc7286234c",
-        app_id: "85effab9",
-        type: "public",
-        q: query
+    const { isLoading, data } = useQuery({
+        queryKey: ["recipes", query],
+        queryFn: recipeBySearch,
+        ...{ enabled: !!query }
     })
-    const url = "https://api.edamam.com/api/recipes/v2?" + apiParams.toString()
-    const { isLoading, data } = useQuery(["recipes", query], async () => ((await fetch(url)).json()), { enabled: !!query })
 
     if (isLoading) return <Spinner />
     return (
