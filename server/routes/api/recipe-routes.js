@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { 
+const {
     getAllRecipes,
     getOneRecipe,
     getRecipeBySearch,

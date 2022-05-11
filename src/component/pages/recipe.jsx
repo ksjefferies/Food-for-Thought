@@ -1,6 +1,7 @@
 import PageContainer from "../pageContainer/PageContainer";
+import { RecipeCard } from "../recipeCard/recipeCard";
 import { useQuery } from 'react-query'
-import { Box, Spinner } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
 import { commentSection } from "../comments/comments";
 export function Recipe() {
@@ -15,12 +16,12 @@ export function Recipe() {
         q: query
     })
     const url = "https://api.edamam.com/api/recipes/v2?" + apiParams.toString()
-    const { isLoading, data } = useQuery(["recipes",query], async () => ((await fetch(url)).json()), { enabled: !!query })
+    const { isLoading, data } = useQuery(["recipes", query], async () => ((await fetch(url)).json()), { enabled: !!query })
 
     if (isLoading) return <Spinner />
     return (
         <PageContainer>
-            {data?.hits.map(hit => (<Box>{hit.recipe.label}</Box>))}
+            {data?.hits.map(hit => (<RecipeCard {...hit.recipe} />))}
         </PageContainer>
     )
 }
