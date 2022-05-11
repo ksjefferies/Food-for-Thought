@@ -3,7 +3,6 @@ import { RecipeCard } from "../recipeCard/recipeCard";
 import { useQuery } from 'react-query'
 import { Spinner } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
-import { commentSection } from "../comments/comments";
 export function Recipe() {
 
     let [searchParams] = useSearchParams();
