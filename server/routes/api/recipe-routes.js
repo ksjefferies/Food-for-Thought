@@ -4,5 +4,10 @@ const {
     getOneRecipe,
     getRecipeBySearch,
     getUserSavedRecipes
-} = require("../../controllers/recipe-controller")
+} = require("../../controllers/recipe-controller");
 
+// /api/recipes
+router.route("/").get(getManyRecipes).get(getOneRecipe).get(getRecipeBySearch);
+
+// /api/recipes/:user
+router.route("/:userId").get(getUserSavedRecipes);
