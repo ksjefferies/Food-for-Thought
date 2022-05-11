@@ -2,6 +2,7 @@ import {
     Box,
     Container,
     Link,
+    Flex,
     Stack,
     Text,
     useColorModeValue,
@@ -10,8 +11,9 @@ import {
 export default function Footer() {
     return (
         <Box
-            bg={useColorModeValue('gray.50', 'gray.900')}
+            bg={useColorModeValue('gray.100', 'gray.900')}
             color={useColorModeValue('gray.700', 'gray.200')}>
+                <Flex h={1} alignItems={'center'} justifyContent={'center'}></Flex>
             <Container
                 as={Stack}
                 maxW={'6xl'}
@@ -27,7 +29,7 @@ export default function Footer() {
                 </Stack>
             </Container>
 
-            <Box
+            {/* <Box
                 borderTopWidth={1}
                 borderStyle={'solid'}
                 borderColor={useColorModeValue('gray.200', 'gray.700')}>
@@ -41,7 +43,7 @@ export default function Footer() {
                     align={{ base: 'center', md: 'center' }}>
                     <Text>© 2022 Chakra Templates. All rights reserved</Text>
                 </Container>
-            </Box>
+            </Box> */}
         </Box>
     );
 }

@@ -41,7 +41,8 @@ export default function Header() {
     const [searchValue, setSearchValue] = useState("")
     let navigate = useNavigate()
     return (
-        <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+        <Box
+            bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
                 <IconButton
                     size={'md'}
@@ -67,13 +68,12 @@ export default function Header() {
                         flex={1}
                         minW="md">
 
-
                         <Input
                             flexGrow={0}
                             placeholder='Recipe Search'
                             value={searchValue}
                             onChange={(e => setSearchValue(e.target.value))}
-                            onKeyDown={(e) => e.key === 'Enter' && navigate(`/recipe?q=${encodeURIComponent(searchValue)}`) } 
+                            onKeyDown={(e) => e.key === 'Enter' && navigate(`/recipe?q=${encodeURIComponent(searchValue)}`)}
                         />
 
                         <Button

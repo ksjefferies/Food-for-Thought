@@ -1,3 +1,5 @@
+import React from 'react';
+import PageContainer from '../component/pageContainer/PageContainer';
 import {
     Box,
     Button,
@@ -11,12 +13,8 @@ import {
     useColorModeValue,
     VStack,
 } from '@chakra-ui/react';
-import React from 'react';
-import PageContainer from '../component/pageContainer/PageContainer';
-
 
 export function Contact() {
-
     return (
         <PageContainer>
 
@@ -48,9 +46,11 @@ export function Contact() {
                                 <VStack spacing={5}>
                                     <FormControl isRequired>
                                         <FormLabel>Name</FormLabel>
+
                                         <InputGroup>
                                             <Input type="text" name="name" placeholder="Your Name" />
                                         </InputGroup>
+
                                     </FormControl>
 
                                     <FormControl isRequired>
@@ -63,6 +63,7 @@ export function Contact() {
                                                 placeholder="Your Email"
                                             />
                                         </InputGroup>
+
                                     </FormControl>
 
                                     <FormControl isRequired>
