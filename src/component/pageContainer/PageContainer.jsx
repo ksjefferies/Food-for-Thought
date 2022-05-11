@@ -5,9 +5,9 @@ import Footer from "./footer/Footer"
 export default function PageContainer({ children }) {
     return (
         <Box>
-            <Header/>
+            <Header />
             {children}
-            <Footer/>
+            <Footer />
         </Box>
     )
 }

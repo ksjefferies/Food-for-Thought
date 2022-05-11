@@ -15,5 +15,4 @@ export async function recipeByID({ queryKey }) {
     let params = new URLSearchParams(apiParams)
     let res = await fetch(`${url}/${queryKey[1]}?${params.toString()}`)
     return res.json()
-
 }

@@ -1,9 +1,8 @@
 import PageContainer from "../component/pageContainer/PageContainer";
+// import CommentSection from "../component/comments"
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
-
 import { recipeByID } from "../utils/recipeHelper";
-
 import {
     Box,
     Container,
@@ -11,25 +10,17 @@ import {
     Text,
     Image,
     Flex,
-    VStack,
-    Button,
     Heading,
     SimpleGrid,
     StackDivider,
     useColorModeValue,
-    List,
     ListItem,
-    ListIcon,
-    OrderedList,
-    UnorderedList,
-    Spinner,
+    UnorderedList
 } from '@chakra-ui/react';
-
-// import CommentSection from "../component/comments"
 
 export function RecipeIdv() {
     const { id } = useParams();
-    const { isLoading, data } = useQuery({
+    const { data } = useQuery({
         queryKey: ["recipePage", id],
         queryFn: recipeByID,
         ...{ enabled: !!id }
