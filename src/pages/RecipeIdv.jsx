@@ -1,7 +1,7 @@
-
 import PageContainer from "../component/pageContainer/PageContainer";
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
+
 import { recipeByID } from "../utils/recipeHelper";
 
 import {
@@ -21,6 +21,9 @@ import {
     ListItem,
     Spinner,
 } from '@chakra-ui/react';
+
+// import CommentSection from "../component/comments"
+
 
 export function RecipeIdv() {
     const { id } = useParams();

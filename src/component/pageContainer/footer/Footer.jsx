@@ -20,10 +20,10 @@ export default function Footer() {
                 justify={'center'}
                 align={'center'}>
                 <Stack direction={'row'} spacing={6}>
-                    <Link href={'#'}>Home</Link>
-                    <Link href={'#'}>About</Link>
-                    <Link href={'#'}>My Page</Link>
-                    <Link href={'#'}>Contact</Link>
+                    <Link href={'/'}>Home</Link>
+                    <Link href={'/about'}>About</Link>
+                    <Link href={'/mypage'}>My Page</Link>
+                    <Link href={'/contact'} >Contact</Link>
                 </Stack>
             </Container>
 
