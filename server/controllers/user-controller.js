@@ -13,6 +13,7 @@ module.exports = {
     const userToInsert = {
       email: body.email,
       password: password,
+      username: body.username,
       salt: salt
     }
 

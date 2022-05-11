@@ -2,7 +2,10 @@ import {
     Textarea,
     Container,
     Button,
-    VStack
+    VStack,
+    Text,
+    Box,
+    StackDivider
 } from '@chakra-ui/react'
 
 /*
