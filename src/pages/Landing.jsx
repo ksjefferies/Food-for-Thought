@@ -1,22 +1,29 @@
-import PageContainer from "../component/pageContainer/PageContainer";
 import { Image, Box, Flex, Stack, Heading, Button } from '@chakra-ui/react'
 import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
+import PageContainer from "../component/pageContainer/PageContainer";
 import background from "../assets/images/alyssafamilyfoodyum.jpg";
 
-export function Landing({
-    title,
-    subtitle,
-    image,
-    ctaLink,
-    ctaText,
-    ...rest
-}) {
+export function Landing(
+    {
+        title,
+        subtitle,
+        image,
+        ctaLink,
+        ctaText,
+        ...rest
+    }) {
     return (
         <PageContainer>
             <Flex
                 align="center"
-                justify={{ base: "center", md: "space-around", xl: "space-between" }}
+                justify={
+                    {
+                        base: "center",
+                        md: "space-around",
+                        xl: "space-between"
+                    }
+                }
                 direction={{ base: "column-reverse", md: "row" }}
                 wrap="no-wrap"
                 minH="70vh"
@@ -38,6 +45,7 @@ export function Landing({
                     >
                         {title}
                     </Heading>
+
                     <Heading
                         as="h2"
                         size="md"
@@ -62,8 +70,16 @@ export function Landing({
                         </Button>
                     </Link>
                 </Stack>
-                <Box w={{ base: "80%", sm: "60%", md: "50%" }} mb={{ base: 12, md: 0 }}>
-                    <Image src={background} size="100%" rounded="1rem" shadow="2xl" />
+                <Box
+                    w={{ base: "80%", sm: "60%", md: "50%" }}
+                    mb={{ base: 12, md: 0 }}
+                >
+                    <Image
+                        src={background}
+                        size="100%"
+                        rounded="1rem"
+                        shadow="2xl"
+                    />
                 </Box>
             </Flex>
         </PageContainer>
@@ -81,5 +97,5 @@ Landing.defaultProps = {
     title: "This is our recipe App",
     subtitle: "This is the description of our website.",
     ctaText: "Create your account now",
-    ctaLink: "/login",
+    ctaLink: "/signup",
 }

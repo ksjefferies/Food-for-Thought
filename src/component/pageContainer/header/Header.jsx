@@ -71,7 +71,7 @@ export default function Header() {
 
                         <SearchBar />
 
-                        <Button
+                        <Button onClick={() => navigate('../login')}
                             variant={'solid'}
                             colorScheme={'teal'}
                             size={'sm'}
