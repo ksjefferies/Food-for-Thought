@@ -3,6 +3,10 @@ import PageContainer from "../component/pageContainer/PageContainer";
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { recipeByID } from "../utils/recipeHelper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faStar } from "@fortawesome/free-solid-svg-icons"
+import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
+import { useState } from "react";
 import {
     Box,
     Container,
@@ -15,7 +19,8 @@ import {
     StackDivider,
     useColorModeValue,
     ListItem,
-    UnorderedList
+    UnorderedList,
+    HStack
 } from '@chakra-ui/react';
 
 export function RecipeIdv() {
@@ -26,6 +31,7 @@ export function RecipeIdv() {
         ...{ enabled: !!id }
     })
 
+    const [isFavorite, setIsFavorite] = useState(false);
     return (
         <PageContainer>
 
@@ -46,14 +52,26 @@ export function RecipeIdv() {
                         />
                     </Flex>
                     <Stack spacing={{ base: 6, md: 10 }}>
-                        <Box as={'header'}>
+                        <HStack
+                            as={'header'}
+                            justify={'space-between'}>
                             <Heading
                                 lineHeight={1.1}
                                 fontWeight={600}
                                 fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
                                 {data?.recipe?.label}
                             </Heading>
-                        </Box>
+
+                            <FontAwesomeIcon
+                                icon={isFavorite ? faStar : regularStar}
+                                size="3x"
+                                color="#3275a8"
+                                onClick={() => {
+                                    setIsFavorite(!isFavorite)
+                                }}
+
+                            />
+                        </HStack>
 
                         <Stack
                             spacing={{ base: 4, sm: 6 }}
