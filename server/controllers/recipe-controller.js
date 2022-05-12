@@ -8,6 +8,6 @@ require("dotenv").config()
     getUserSavedRecipes
 */
 
-const getAllRecipes = async (req, res) => {
-    const recipeData = await Recipe.findAll()
-}
+// const getAllRecipes = async (req, res) => {
+//     const recipeData = await Recipe.findAll()
+// }

@@ -10,6 +10,8 @@ import { RecipeIdv } from './pages/RecipeIdv';
 import { MyPage } from './pages/MyPage';
 import { Contact } from "./pages/Contact";
 import UserProvider from "./utils/UserContext";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 
 function App() {
   const queryClient = new QueryClient()
@@ -21,6 +23,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Landing />} />
             <Route path='/recipe' element={<Recipe />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signup' element={<SignupPage />} />
             <Route path='/recipe/:id' element={<RecipeIdv />} />
             <Route path='/about' element={<About />} />
             <Route path='/mypage' element={<MyPage />} />
