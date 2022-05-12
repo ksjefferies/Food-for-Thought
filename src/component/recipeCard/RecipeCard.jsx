@@ -1,3 +1,4 @@
+import { SimpleGrid } from '@chakra-ui/react';
 import {
     Box,
     Center,
@@ -14,8 +15,10 @@ export const RecipeCard = ({ label, image, dietLabels, uri }) => {
     return (
         <Center py={6}>
             <Box
+                flex={1}
+                flexDirection={1}
                 maxW={'445px'}
-                w={'full'}
+                w={'half'}
                 bg={useColorModeValue('white', 'gray.900')}
                 boxShadow={'2xl'}
                 rounded={'md'}
