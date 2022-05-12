@@ -113,7 +113,7 @@ export function RecipeIdv() {
 				align='stretch'
 			>
 				<div>
-					{this.comments?.map(item => {
+					{/* {this.Comment?.map(item => {
 						return (
 							<Box h='40px' margin="1rem" bg='yellow.200' key={item.commentId}>
 								<p>{item.commentBody}</p>
@@ -121,7 +121,7 @@ export function RecipeIdv() {
 							</Box>
 
 						)
-					})}
+					})} */}
 				</div>
 				<Container alignContent="center">
 					
