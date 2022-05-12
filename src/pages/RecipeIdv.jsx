@@ -1,8 +1,8 @@
 import PageContainer from "../component/pageContainer/PageContainer";
-// import CommentSection from "../component/comments/Comments";
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { recipeByID } from "../utils/recipeHelper";
+import { useState } from 'react'
 import {
 	Box,
 	Container,
@@ -15,7 +15,10 @@ import {
 	StackDivider,
 	useColorModeValue,
 	ListItem,
-	UnorderedList
+	UnorderedList,
+	VStack,
+	Textarea,
+	Button,
 } from '@chakra-ui/react';
 
 export function RecipeIdv() {
@@ -25,6 +28,23 @@ export function RecipeIdv() {
 		queryFn: recipeByID,
 		...{ enabled: !!id }
 	})
+
+	// Code for comments
+	const [ commentData, setCommentData] = useState({
+		commentBody: ''
+	})
+	
+	const targetComment = (e) => {
+		const {value} = e.target;
+		setCommentData({...value})
+	}
+
+	async function handleSubmit(e) {
+        e.preventDefault();
+        console.log("Comment Submitted")
+		console.log("Comment added!")
+		setCommentData({ ...commentData, "comment": ''})
+    }
 
 	return (
 		<PageContainer>
@@ -86,6 +106,31 @@ export function RecipeIdv() {
 					</Stack>
 				</SimpleGrid>
 			</Container>
+			{/* Comments Structure*/}
+			<VStack
+				divider={<StackDivider borderColor='gray.200' />}
+				spacing={4}
+				align='stretch'
+			>
+				<div>
+					{this.comments?.map(item => {
+						return (
+							<Box h='40px' margin="1rem" bg='yellow.200' key={item.commentId}>
+								<p>{item.commentBody}</p>
+								<p>{item.createdAt}</p>
+							</Box>
+
+						)
+					})}
+				</div>
+				<Container alignContent="center">
+					
+					<Textarea placeholder='Write Your Comment Here' onChange={targetComment}/>
+					<Button type='submit' size="sm" onClick={handleSubmit} >Submit</Button>
+
+				</Container>
+			</VStack>
+
 		</PageContainer>
 	)
 }
