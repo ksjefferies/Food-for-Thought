@@ -2,23 +2,24 @@ import PageContainer from "../component/pageContainer/PageContainer";
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { recipeByID } from "../utils/recipeHelper";
-import { useState } from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faStar } from "@fortawesome/free-solid-svg-icons"
+import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
+import { useState } from "react";
 import {
-	Box,
-	Container,
-	Stack,
-	Text,
-	Image,
-	Flex,
-	Heading,
-	SimpleGrid,
-	StackDivider,
-	useColorModeValue,
-	ListItem,
-	UnorderedList,
-	VStack,
-	Textarea,
-	Button,
+    Box,
+    Container,
+    Stack,
+    Text,
+    Image,
+    Flex,
+    Heading,
+    SimpleGrid,
+    StackDivider,
+    useColorModeValue,
+    ListItem,
+    UnorderedList,
+    HStack
 } from '@chakra-ui/react';
 
 export function RecipeIdv() {
@@ -45,6 +46,47 @@ export function RecipeIdv() {
 		console.log("Comment added!")
 		setCommentData({ ...commentData, "comment": ''})
     }
+    const [isFavorite, setIsFavorite] = useState(false);
+    return (
+        <PageContainer>
+
+            <Container maxW={'7xl'}>
+                <SimpleGrid
+                    columns={{ base: 1, lg: 2 }}
+                    spacing={{ base: 8, md: 10 }}
+                    py={{ base: 18, md: 24 }}>
+                    <Flex>
+                        <Image
+                            rounded={'md'}
+                            alt={'product image'}
+                            src={data?.recipe?.image}
+                            fit={'cover'}
+                            align={'center'}
+                            w={'100%'}
+                            h={{ base: '100%', sm: '400px', lg: '500px' }}
+                        />
+                    </Flex>
+                    <Stack spacing={{ base: 6, md: 10 }}>
+                        <HStack
+                            as={'header'}
+                            justify={'space-between'}>
+                            <Heading
+                                lineHeight={1.1}
+                                fontWeight={600}
+                                fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
+                                {data?.recipe?.label}
+                            </Heading>
+
+                            <FontAwesomeIcon
+                                icon={isFavorite ? faStar : regularStar}
+                                size="3x"
+                                color="#3275a8"
+                                onClick={() => {
+                                    setIsFavorite(!isFavorite)
+                                }}
+
+                            />
+                        </HStack>
 
 	return (
 		<PageContainer>

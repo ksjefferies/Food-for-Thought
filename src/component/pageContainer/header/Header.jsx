@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { useNavigate } from 'react-router';
 import { NavLink } from './NavLink';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import {
@@ -16,9 +14,9 @@ import {
     MenuDivider,
     useDisclosure,
     useColorModeValue,
-    Stack,
-    Input
+    Stack
 } from '@chakra-ui/react';
+import SearchBar from "./SearchBar";
 
 const Links = [
     {
@@ -37,8 +35,6 @@ const Links = [
 
 export default function Header() {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [searchValue, setSearchValue] = useState("")
-    let navigate = useNavigate()
 
     return (
         <Box
@@ -68,13 +64,7 @@ export default function Header() {
                         flex={1}
                         minW="md">
 
-                        <Input
-                            flexGrow={0}
-                            placeholder='Recipe Search'
-                            value={searchValue}
-                            onChange={(e => setSearchValue(e.target.value))}
-                            onKeyDown={(e) => e.key === 'Enter' && navigate(`/recipe?q=${encodeURIComponent(searchValue)}`)}
-                        />
+                        <SearchBar />
 
                         <Button
                             variant={'solid'}
