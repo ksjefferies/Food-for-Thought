@@ -54,7 +54,6 @@ export const RecipeCard = ({ label, image, dietLabels, uri }) => {
                         {dietLabels.map(label => (
                             <Badge px={2}
                                 py={1}
-                                // bg={useColorModeValue('gray.50', 'gray.800')}
                                 fontWeight={'400'}
                             >
                                 {label}
@@ -63,16 +62,6 @@ export const RecipeCard = ({ label, image, dietLabels, uri }) => {
                         ))}
                     </Stack>
                 }
-                {/* <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
-                    <Avatar
-                        src={'https://avatars0.githubusercontent.com/u/1164541?v=4'}
-                        alt={'Author'}
-                    />
-                    <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                        <Text fontWeight={600}>Achim Rolle</Text>
-                        <Text color={'gray.500'}>Feb 08, 2021 · 6min read</Text>
-                    </Stack>
-                </Stack> */}
             </Box>
         </Center>
     );
