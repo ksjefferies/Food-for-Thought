@@ -1,7 +1,7 @@
 import React from "react";
 import PageContainer from "../component/pageContainer/PageContainer";
 import { Stack, Text, useColorModeValue } from '@chakra-ui/react';
-import CommentSection from "../component/comments/Comments";
+// import CommentSection from "../component/comments/Comments";
 
 export function MyPage(props) {
     return (
@@ -19,7 +19,7 @@ export function MyPage(props) {
                     maxW={'3xl'}>
                     THIS PAGE IS FOR A USER PROFILE PAGE
                 </Text>
-                <CommentSection test="some string"></CommentSection>
+                {/* <CommentSection test="some string"></CommentSection> */}
             </Stack>
         </PageContainer>
     )
