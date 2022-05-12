@@ -81,5 +81,5 @@ Landing.defaultProps = {
     title: "This is our recipe App",
     subtitle: "This is the description of our website.",
     ctaText: "Create your account now",
-    ctaLink: "/auth",
+    ctaLink: "/login",
 }

@@ -9,11 +9,13 @@ import { Recipe } from './pages/Recipe';
 import { RecipeIdv } from './pages/RecipeIdv';
 import { MyPage } from './pages/MyPage';
 import { Contact } from "./pages/Contact";
+import UserProvider from "./utils/UserContext";
 
 function App() {
   const queryClient = new QueryClient()
   return (
     <ChakraProvider >
+      <UserProvider>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
@@ -26,6 +28,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
+      </UserProvider>
     </ChakraProvider>
   );
 }

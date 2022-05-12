@@ -1,5 +1,5 @@
 import PageContainer from "../component/pageContainer/PageContainer";
-import { Avatar, Box, Stack, Text, useColorModeValue, Container, IconButton } from '@chakra-ui/react';
+import { Avatar, Box, Stack, Text, Container, IconButton } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
