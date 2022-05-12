@@ -7,155 +7,149 @@ import { faStar } from "@fortawesome/free-solid-svg-icons"
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
 import { useState } from "react";
 import {
-    Box,
-    Container,
-    Stack,
-    Text,
-    Image,
-    Flex,
-    Heading,
-    SimpleGrid,
-    StackDivider,
-    useColorModeValue,
-    ListItem,
-    UnorderedList,
-    HStack
+  Box,
+  Container,
+  Stack,
+  Text,
+  Image,
+  Flex,
+  Heading,
+  SimpleGrid,
+  StackDivider,
+  useColorModeValue,
+  ListItem,
+  UnorderedList,
+  HStack,
+  VStack,
+  Button,
+  Textarea
 } from '@chakra-ui/react';
 
 export function RecipeIdv() {
-	const { id } = useParams();
-	const { data } = useQuery({
-		queryKey: ["recipePage", id],
-		queryFn: recipeByID,
-		...{ enabled: !!id }
-	})
+  const { id } = useParams();
+  const { data } = useQuery({
+    queryKey: ["recipePage", id],
+    queryFn: recipeByID,
+    ...{ enabled: !!id }
+  })
 
-	// Code for comments
-	const [ commentData, setCommentData] = useState({
-		commentBody: ''
-	})
-	
-	const targetComment = (e) => {
-		const {value} = e.target;
-		setCommentData({...value})
-	}
+  // Code for comments
+  const [commentData, setCommentData] = useState({
+    commentBody: ''
+  })
 
-	async function handleSubmit(e) {
-        e.preventDefault();
-        console.log("Comment Submitted")
-		console.log("Comment added!")
-		setCommentData({ ...commentData, "comment": ''})
+  function fetchComments (){
+    const {status, data, error } =useQuery('comments', commentList)
+    
+    if (status === 'loading'){
+      return <span> Loading ... </span>
     }
-    const [isFavorite, setIsFavorite] = useState(false);
+    if (status === 'error'){
+      return <span>Error: {error.message}</span>
+    }
     return (
-        <PageContainer>
+      <ul>
+        {data.map( Comment => (
+          <p key={Comment.id}>{Comment.commentBody}</p>
+        ))}
+      </ul>
+    )
+  }
 
-            <Container maxW={'7xl'}>
-                <SimpleGrid
-                    columns={{ base: 1, lg: 2 }}
-                    spacing={{ base: 8, md: 10 }}
-                    py={{ base: 18, md: 24 }}>
-                    <Flex>
-                        <Image
-                            rounded={'md'}
-                            alt={'product image'}
-                            src={data?.recipe?.image}
-                            fit={'cover'}
-                            align={'center'}
-                            w={'100%'}
-                            h={{ base: '100%', sm: '400px', lg: '500px' }}
-                        />
-                    </Flex>
-                    <Stack spacing={{ base: 6, md: 10 }}>
-                        <HStack
-                            as={'header'}
-                            justify={'space-between'}>
-                            <Heading
-                                lineHeight={1.1}
-                                fontWeight={600}
-                                fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-                                {data?.recipe?.label}
-                            </Heading>
+  const targetComment = (e) => {
+    const { value } = e.target;
+    setCommentData({ ...value })
+  }
 
-                            <FontAwesomeIcon
-                                icon={isFavorite ? faStar : regularStar}
-                                size="3x"
-                                color="#3275a8"
-                                onClick={() => {
-                                    setIsFavorite(!isFavorite)
-                                }}
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log("Comment Submitted")
+    console.log("Comment added!")
+    setCommentData({ ...commentData, "comment": '' })
+  }
 
-                            />
-                        </HStack>
+  const [isFavorite, setIsFavorite] = useState(false);
+  return (
+    <PageContainer>
 
-	return (
-		<PageContainer>
+      <Container maxW={'7xl'}>
+        <SimpleGrid
+          columns={{ base: 1, lg: 2 }}
+          spacing={{ base: 8, md: 10 }}
+          py={{ base: 18, md: 24 }}>
+          <Flex>
+            <Image
+              rounded={'md'}
+              alt={'product image'}
+              src={data?.recipe?.image}
+              fit={'cover'}
+              align={'center'}
+              w={'100%'}
+              h={{ base: '100%', sm: '400px', lg: '500px' }}
+            />
+          </Flex>
+          <Stack spacing={{ base: 6, md: 10 }}>
+            <HStack
+              as={'header'}
+              justify={'space-between'}>
+              <Heading
+                lineHeight={1.1}
+                fontWeight={600}
+                fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
+                {data?.recipe?.label}
+              </Heading>
 
-			<Container maxW={'7xl'}>
-				<SimpleGrid
-					columns={{ base: 1, lg: 2 }}
-					spacing={{ base: 8, md: 10 }}
-					py={{ base: 18, md: 24 }}>
-					<Flex>
-						<Image
-							rounded={'md'}
-							alt={'product image'}
-							src={data?.recipe?.image}
-							fit={'cover'}
-							align={'center'}
-							w={'100%'}
-							h={{ base: '100%', sm: '400px', lg: '500px' }}
-						/>
-					</Flex>
-					<Stack spacing={{ base: 6, md: 10 }}>
-						<Box as={'header'}>
-							<Heading
-								lineHeight={1.1}
-								fontWeight={600}
-								fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-								{data?.recipe?.label}
-							</Heading>
-						</Box>
+              <FontAwesomeIcon
+                icon={isFavorite ? faStar : regularStar}
+                size="3x"
+                color="#3275a8"
+                onClick={() => {
+                  setIsFavorite(!isFavorite)
+                }}
 
-						<Stack
-							spacing={{ base: 4, sm: 6 }}
-							direction={'column'}
-							divider={
-								<StackDivider
-									borderColor={useColorModeValue('gray.200', 'gray.600')}
-								/>
-							}>
+              />
+            </HStack>
 
-							<Box>
-								<Text
-									fontSize={{ base: '16px', lg: '18px' }}
-									color={useColorModeValue('yellow.500', 'yellow.300')}
-									fontWeight={'500'}
-									textTransform={'uppercase'}
-									mb={'4'}>
-									Ingredients
-								</Text>
 
-								<SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
-									<UnorderedList w={'100%'}>
-										{data?.recipe?.ingredientLines.map(item => (
-											<ListItem>{item}</ListItem>
-										))}
-									</UnorderedList>
-								</SimpleGrid>
-							</Box>
-						</Stack>
-					</Stack>
-				</SimpleGrid>
-			</Container>
-			{/* Comments Structure*/}
-			<VStack
-				divider={<StackDivider borderColor='gray.200' />}
-				spacing={4}
-				align='stretch'
-			>
-				<div>
-					{/* {this.Comment?.map(item => {
+            <Stack
+              spacing={{ base: 4, sm: 6 }}
+              direction={'column'}
+              divider={
+                <StackDivider
+                  borderColor={useColorModeValue('gray.200', 'gray.600')}
+                />
+              }>
+
+              <Box>
+                <Text
+                  fontSize={{ base: '16px', lg: '18px' }}
+                  color={useColorModeValue('yellow.500', 'yellow.300')}
+                  fontWeight={'500'}
+                  textTransform={'uppercase'}
+                  mb={'4'}>
+                  Ingredients
+                </Text>
+
+                <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
+                  <UnorderedList w={'100%'}>
+                    {data?.recipe?.ingredientLines.map(item => (
+                      <ListItem>{item}</ListItem>
+                    ))}
+                  </UnorderedList>
+                </SimpleGrid>
+              </Box>
+            </Stack>
+          </Stack>
+        </SimpleGrid>
+      </Container>
+      {/* Comments Structure*/}
+      <VStack
+        divider={<StackDivider borderColor='gray.200' />}
+        spacing={4}
+        align='stretch'
+      >
+        <div onLoad={fetchComments}>
+          {/* {this.comment?.map(item => {
 						return (
 							<Box h='40px' margin="1rem" bg='yellow.200' key={item.commentId}>
 								<p>{item.commentBody}</p>
@@ -164,15 +158,15 @@ export function RecipeIdv() {
 
 						)
 					})} */}
-				</div>
-				<Container alignContent="center">
-					
-					<Textarea placeholder='Write Your Comment Here' onChange={targetComment}/>
-					<Button type='submit' size="sm" onClick={handleSubmit} >Submit</Button>
+        </div>
+        <Container alignContent="center">
 
-				</Container>
-			</VStack>
+          <Textarea placeholder='Write Your Comment Here' onChange={targetComment} />
+          <Button type='submit' size="sm" onClick={handleSubmit} >Submit</Button>
 
-		</PageContainer>
-	)
+        </Container>
+      </VStack>
+
+    </PageContainer>
+  )
 }
