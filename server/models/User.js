@@ -24,6 +24,10 @@ const userSchema = new Schema({
     type: String,
   },
 
+  favorites: {
+    type: Array
+  }
+
   createdAt: {
     type: Date,
     default: Date.now,
