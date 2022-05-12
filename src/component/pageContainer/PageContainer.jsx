@@ -1,13 +1,21 @@
-import { Box } from "@chakra-ui/react"
+import { Box, Flex } from "@chakra-ui/react"
 import Header from "./header/Header"
 import Footer from "./footer/Footer"
 
 export default function PageContainer({ children }) {
     return (
-        <Box>
+        <Flex
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+            width={"full"}>
             <Header />
-            {children}
+            <Box
+                flex={1}
+                flexGrow={1}
+            >
+                {children}
+            </Box>
             <Footer />
-        </Box>
+        </Flex>
     )
 }
