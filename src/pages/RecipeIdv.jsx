@@ -30,6 +30,14 @@ export function RecipeIdv() {
         queryFn: recipeByID,
         ...{ enabled: !!id }
     })
+    const handleFav = () => {
+        setIsFavorite(!isFavorite)
+        if (isFavorite == true) {
+            //save it to DB
+        } else {
+            //or delete it from DB
+        }
+    }
 
     const [isFavorite, setIsFavorite] = useState(false);
     return (
@@ -42,9 +50,8 @@ export function RecipeIdv() {
                     py={'7'}
                     my={{ base: 15, md: 20 }}>
 
-
                     <Flex>
-                        <Image
+                        {data?.image && <Image
                             rounded={'md'}
                             alt={'product image'}
                             src={data?.image}
@@ -52,7 +59,8 @@ export function RecipeIdv() {
                             align={'center'}
                             w={'100%'}
                             h={{ base: '100%', sm: '400px', lg: '500px' }}
-                        />
+                        />}
+
                     </Flex>
                     <Stack spacing={{ base: 6, md: 2 }}>
                         <HStack
@@ -68,9 +76,7 @@ export function RecipeIdv() {
                                 icon={isFavorite ? faStar : regularStar}
                                 size="3x"
                                 color="#3275a8"
-                                onClick={() => {
-                                    setIsFavorite(!isFavorite)
-                                }}
+                                onClick={handleFav}
                             />
                         </HStack>
 
@@ -143,7 +149,6 @@ export function RecipeIdv() {
                                 {line}
                             </Text>
                         ))}
-
                     </Box>
                 </Stack>
             </Container>

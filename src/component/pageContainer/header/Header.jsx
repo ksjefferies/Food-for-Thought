@@ -73,7 +73,7 @@ export default function Header() {
 
                         <Button onClick={() => navigate('../login')}
                             variant={'solid'}
-                            colorScheme={'teal'}
+                            colorScheme={'blue'}
                             size={'sm'}
                             mr={4}>
                             Sign in

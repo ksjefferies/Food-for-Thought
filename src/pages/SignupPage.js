@@ -130,7 +130,7 @@ export default function SignupPage() {
                 <Button
                   loadingText="Submitting"
                   size="lg"
-                  bg={'blue.400'}
+                  bg={'#3B38B9'}
                   color={'white'}
                   _hover={{
                     bg: 'blue.500',
