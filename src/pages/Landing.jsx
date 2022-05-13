@@ -3,16 +3,19 @@ import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
 import PageContainer from "../component/pageContainer/PageContainer";
 import background from "../assets/images/alyssafamilyfoodyum.jpg";
+import { useUser } from '../utils/UserContext';
+import RenderComments from '../component/commentComponents/Comment';
 
-export function Landing(
-    {
-        title,
+export function Landing({ title,
         subtitle,
         image,
         ctaLink,
         ctaText,
         ...rest
     }) {
+    
+    const authUser = useUser()
+
     return (
         <PageContainer>
             <Flex
@@ -56,6 +59,7 @@ export function Landing(
                         textAlign={["center", "center", "left", "left"]}
                     >
                         {subtitle}
+                        {authUser.user !== null && (<p>Does this work</p>)}
                     </Heading>
                     <Link to={ctaLink}>
                         <Button
@@ -81,6 +85,7 @@ export function Landing(
                         shadow="2xl"
                     />
                 </Box>
+                <RenderComments/>
             </Flex>
         </PageContainer>
     )

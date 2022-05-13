@@ -2,6 +2,7 @@ import { NavLink } from './NavLink';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router';
 import SearchBar from "./SearchBar";
+import { useUser } from '../../../utils/UserContext'
 import {
     Box,
     Flex,
@@ -37,7 +38,7 @@ const Links = [
 export default function Header() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const navigate = useNavigate();
-
+    const authUser = useUser()
     return (
         <Box
             bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -73,13 +74,12 @@ export default function Header() {
 
                         <Button onClick={() => navigate('../login')}
                             variant={'solid'}
-                            colorScheme={'teal'}
+                            colorScheme={'blue'}
                             size={'sm'}
                             mr={4}>
                             Sign in
                         </Button>
-
-                        <Menu>
+                        {authUser.user !== null && (<Menu>
                             <MenuButton
                                 as={Button}
                                 rounded={'full'}
@@ -100,7 +100,8 @@ export default function Header() {
                                 <MenuDivider />
                                 <MenuItem onClick={() => navigate('../')}>Logout</MenuItem>
                             </MenuList>
-                        </Menu>
+                        </Menu>)}
+                        
                     </HStack>
                 </Flex>
             </Flex>

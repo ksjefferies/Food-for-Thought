@@ -16,6 +16,7 @@ import { RecipeCard } from "../component/recipeCard/RecipeCard";
 export function MyPage(props) {
     return (
         <PageContainer>
+
             <Stack minH={'35vh'} direction={{ base: 'column-reverse', md: 'row' }}>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack spacing={6} w={'full'} maxW={'lg'}>

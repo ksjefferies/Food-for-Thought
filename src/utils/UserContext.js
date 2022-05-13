@@ -10,6 +10,9 @@ export default function UserProvider({ children }) {
 
   const verifyUser = async() => {
     const authCookie = cookie.get("auth-token")
+
+    //console.log("cookie", authCookie)
+
     if( authCookie ){
       const query = await fetch("/api/user/verify", {
         method: "post",
@@ -20,7 +23,7 @@ export default function UserProvider({ children }) {
         }
       })
       const result = await query.json()
-
+      //console.log("authUser query:", result)
       if( result && result._id ){
         setUser(result)
       }
@@ -28,6 +31,7 @@ export default function UserProvider({ children }) {
   }
 
   useEffect(() => {
+    //console.log("init user context")
     verifyUser()
   },[])
 
