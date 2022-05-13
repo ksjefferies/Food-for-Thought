@@ -2,6 +2,7 @@ import PageContainer from "../component/pageContainer/PageContainer";
 import cookie from "js-cookie"
 import React from "react"
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router";
 import {
   Flex,
   Box,
@@ -25,6 +26,7 @@ const LoginPage = (props) => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
@@ -71,11 +73,7 @@ const LoginPage = (props) => {
             <Text
               fontSize={'lg'}
               color={'gray.600'}>
-              to enjoy all of our cool 
-              <Link
-                color={'blue.400'}>
-                 {" features"}
-              </Link> ✌️
+              and start eating the way you want ✌️
             </Text>
           </Stack>
 
@@ -87,7 +85,7 @@ const LoginPage = (props) => {
               p={8}>
 
               <Stack spacing={4}>
-                <FormControl id="email">
+                <FormControl id="email" isRequired>
                   <FormLabel>
                     Email address
                   </FormLabel>
@@ -99,7 +97,7 @@ const LoginPage = (props) => {
                   />
                 </FormControl>
 
-                <FormControl id="password">
+                <FormControl id="password" isRequired>
                   <FormLabel>
                     Password
                   </FormLabel>
@@ -117,7 +115,12 @@ const LoginPage = (props) => {
                       Remember me
                     </Checkbox>
 
-                    <Link color={'blue.400'}>Forgot password?</Link>
+                    <Link
+                      onClick={() => navigate('../Contact')}
+                      color={'blue.400'}>Forgot password? Contact us here!
+                    </Link>
+
+
                   </Stack>
 
                   <Button
@@ -131,6 +134,14 @@ const LoginPage = (props) => {
                       }}>
                     Sign in
                   </Button>
+
+
+                  <Stack pt={0}>
+                    <Text align={'center'}>
+                      Need to make an account? <Link onClick={() => navigate('../signup')} color={'blue.400'}>Click here!</Link>
+                    </Text>
+                  </Stack>
+
                 </Stack>
               </Stack>
             </Box>
