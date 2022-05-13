@@ -1,6 +1,6 @@
 import React from "react";
  
-const Popup = props => {
+export const Popup = props => {
   return (
     <div className="popup-box">
       <div className="box">
@@ -10,3 +10,4 @@ const Popup = props => {
     </div>
   );
 };
+
