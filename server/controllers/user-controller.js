@@ -93,9 +93,27 @@ module.exports = {
 
     return res.status(200).json({ _id: user._id, email: user.email })
   },
+// add favorite to favorite list
+  async addFavorite({params}, res){
+    const user = await User.findByIdAndUpdate(
+      {_id: params._id,},
+      { $addToSet: { favorite: favorite }})
+      if( !user ){
+        return res.status(400).json({ message: 'No users found' });
+      }   
+      res.status(200).json(user);
+    },
 
-  async createFavorite({params}, res){
-    const user = await User.findById(params._id);
-  }
-
-};
+  
+    // delete favorite to favorite list
+    async deleteFavorite({params}, res) {
+      const user = User.findOneAndDelete(
+        { _id: params._id },
+        { $pull: { favorites: {id: id } }},
+      )
+      if( !user ){
+        return res.status(400).json({ message: 'No favorite found' });
+      }   
+      res.status(200).json(user);
+    },
+  };

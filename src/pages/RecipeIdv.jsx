@@ -32,14 +32,16 @@ export function RecipeIdv() {
     queryFn: recipeByID,
     ...{ enabled: !!id }
   })
+  console.log(id)
   const authUser = useUser()
   const handleFav = async () => {
     setIsFavorite(!isFavorite)
-
+  
     if (isFavorite === true) {
       //save it to DB
       const userID = authUser.user._id
-      const fav = await fetch('/api/user')
+      const fav = id
+      
 
     } else {
       //or delete it from DB
