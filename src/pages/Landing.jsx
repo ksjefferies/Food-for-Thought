@@ -5,18 +5,16 @@ import PageContainer from "../component/pageContainer/PageContainer";
 import background from "../assets/images/alyssafamilyfoodyum.jpg";
 import { useUser } from '../utils/UserContext';
 
-export function Landing(
-    
-    {
-        title,
+export function Landing({ title,
         subtitle,
         image,
         ctaLink,
         ctaText,
         ...rest
     }) {
-    const authUser = useUser()  
-    console.log(authUser) 
+    
+    const authUser = useUser()
+
     return (
         <PageContainer>
             <Flex
