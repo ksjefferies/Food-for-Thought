@@ -10,9 +10,9 @@ const {
 router.route("/").get(getComments);
 
 // /api/comments/:userID
-router.route("/:userId").put(createComment);
+router.route("/:_id").post(createComment);
 
 // /api/comments/commentID
-router.route("/:commentId").post(updateComment).delete(deleteComment)
+router.route("/:_id").put(updateComment).delete(deleteComment)
 
 module.exports = router;

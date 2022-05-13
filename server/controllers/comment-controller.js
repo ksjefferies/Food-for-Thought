@@ -1,13 +1,16 @@
 // createComment, getComments (find by Id), updateComment, deleteComment
-const { Comment } = require('../models/Comment');
+const Comment = require('../models/Comment');
 
 module.exports = {
 
     //create a comment
-    async createComment({ body }, res) {
+    async createComment({ body, params }, res) {
 
         try {
-            const newComment = await Comment.create(body)
+            const newComment = await Comment.create({
+                commentBody: body.commentBody,
+                userID: params._id
+            });
             console.log(body)
 
             if (!newComment) {
@@ -26,7 +29,7 @@ module.exports = {
     async getComments(req, res) {
 
         try {
-            const allComments = await Resource.findAll()
+            const allComments = await Comment.find({})
 
             if (!allComments) {
                 return res.status(400).json({ message: "Couldn't get Comments" });
@@ -76,7 +79,7 @@ module.exports = {
     //delete comment 
     async deleteComment({ params }, res) {
         try {
-            const deletedComment = await Comment.findOneAndDelete({ _id: params.CommentId })
+            const deletedComment = await Comment.findOneAndDelete({ _id: params._id })
 
             if (!deletedComment) {
                 return res.status(400).json({ message: "Can't find a comment with that ID!" });
