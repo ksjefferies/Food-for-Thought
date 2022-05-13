@@ -78,6 +78,7 @@ const SignupPage = (props) => {
             </Text>
           </Stack>
 
+
           <form onSubmit={handleFormSubmit}>
             <Box
               rounded={'lg'}
@@ -161,6 +162,7 @@ const SignupPage = (props) => {
                     Already a user? <Link onClick={() => navigate('../login')} color={'blue.400'}>Login</Link>
                   </Text>
                 </Stack>
+
               </Stack>
             </Box>
           </form>

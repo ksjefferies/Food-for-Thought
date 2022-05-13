@@ -123,7 +123,7 @@ const LoginPage = (props) => {
                   <Button
                     type='submit'
                     onClick={handleFormSubmit}
-                    bg={'blue.400'}
+                    bg={'#3B38B9'}
                     color={'white'}
                     _hover={
                       {
