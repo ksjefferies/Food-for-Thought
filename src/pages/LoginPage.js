@@ -44,6 +44,7 @@ const LoginPage = (props) => {
     if (result && !result.err && result.data && result.data.token) {
       cookie.set("auth-token", result.data.token, { expires: 3 })
     }
+    window.location.replace('/')
   }
 
   return (
