@@ -1,4 +1,5 @@
 import PageContainer from "../component/pageContainer/PageContainer";
+import cookie from "js-cookie"
 import { useNavigate } from "react-router";
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
@@ -19,31 +20,33 @@ import {
   Link,
 } from '@chakra-ui/react';
 
+const SignupPage = (props) => {
 
-export default function SignupPage() {
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const defForm = { email: "", password: "" }
-  const [formData, setFormData] = useState(defForm)
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-
-    const query = await fetch("/api/user",
+    const query = await fetch("/api/user/auth",
       {
         method: "post",
-        body: JSON.stringify(formData),
+        body: JSON.stringify(
+          {
+            username: username,
+            email: email,
+            password: password,
+          }),
         headers: { "Content-Type": "application/json" }
       })
-    console.log(query)
 
     const result = await query.json()
-    console.log(result)
+
+    if (result && !result.err && result.data && result.data.token) {
+      cookie.set("auth-token", result.data.token, { expires: 3 })
+    }
   }
 
   return (
@@ -75,79 +78,97 @@ export default function SignupPage() {
             </Text>
           </Stack>
 
-          <Box
-            rounded={'lg'}
-            bg={useColorModeValue('white', 'gray.700')}
-            boxShadow={'lg'}
-            p={8}>
+          <form onSubmit={handleFormSubmit}>
+            <Box
+              rounded={'lg'}
+              bg={useColorModeValue('white', 'gray.700')}
+              boxShadow={'lg'}
+              p={8}>
 
-            <Stack spacing={4}>
-              <HStack>
-                <Box>
-                  <FormControl id="firstName" isRequired>
-                    <FormLabel>First Name</FormLabel>
-                    <Input type="text" />
-                  </FormControl>
-                </Box>
+              <Stack spacing={4}>
+                <HStack>
+                  <Box>
+                    <FormControl id="firstName">
+                      <FormLabel>First Name</FormLabel>
+                      <Input type="text" />
+                    </FormControl>
+                  </Box>
 
-                <Box>
-                  <FormControl id="lastName" isRequired>
-                    <FormLabel>Last Name</FormLabel>
-                    <Input type="text" />
-                  </FormControl>
-                </Box>
-              </HStack>
+                  <Box>
+                    <FormControl id="lastName">
+                      <FormLabel>Last Name</FormLabel>
+                      <Input type="text" />
+                    </FormControl>
+                  </Box>
+                </HStack>
 
-              <FormControl id="username" isRequired>
-                <FormLabel>Username</FormLabel>
-                <Input type="text" />
-              </FormControl>
+                <FormControl id="username" isRequired>
+                  <FormLabel>Username</FormLabel>
+                  <Input
+                    value={username}
+                    onChange={e => setUsername(e.target.value)}
+                    type="username"
+                  />
+                </FormControl>
 
-              <FormControl id="email" isRequired>
-                <FormLabel>Email address</FormLabel>
-                <Input type="email" />
-              </FormControl>
+                <FormControl id="email" isRequired>
+                  <FormLabel>Email address</FormLabel>
+                  <Input
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    type="email"
+                  />
+                </FormControl>
 
-              <FormControl id="password" isRequired>
-                <FormLabel>Password</FormLabel>
-                <InputGroup>
-                  <Input type={showPassword ? 'text' : 'password'} />
-                  <InputRightElement h={'full'}>
+                <FormControl id="password" isRequired>
+                  <FormLabel>Password</FormLabel>
+                  <InputGroup>
+                    <Input 
+                      value={password} 
+                      onChange={e => setPassword(e.target.value)} 
+                      type={showPassword ? 'text' : 'password'} 
+                      />
+                    <InputRightElement h={'full'}>
 
-                    <Button
-                      variant={'ghost'}
-                      onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }>
-                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                    </Button>
+                      <Button
+                        variant={'ghost'}
+                        onClick={() =>
+                          setShowPassword((showPassword) => !showPassword)
+                        }>
+                        {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                      </Button>
 
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
+                    </InputRightElement>
+                  </InputGroup>
+                </FormControl>
 
-              <Stack spacing={10} pt={2}>
-                <Button
-                  loadingText="Submitting"
-                  size="lg"
-                  bg={'blue.400'}
-                  color={'white'}
-                  _hover={{
-                    bg: 'blue.500',
-                  }}>
-                  Sign up
-                </Button>
+                <Stack spacing={10} pt={2}>
+                  <Button
+                    loadingText="Submitting"
+                    onClick={handleFormSubmit}
+                    size="lg"
+                    bg={'blue.400'}
+                    color={'white'}
+                    _hover={{
+                      bg: 'blue.500',
+                    }}>
+                    Sign up
+                  </Button>
+                </Stack>
+
+                <Stack pt={6}>
+                  <Text align={'center'}>
+                    Already a user? <Link onClick={() => navigate('../login')} color={'blue.400'}>Login</Link>
+                  </Text>
+                </Stack>
               </Stack>
+            </Box>
+          </form>
 
-              <Stack pt={6}>
-                <Text align={'center'}>
-                  Already a user? <Link onClick={() => navigate('../login')} color={'blue.400'}>Login</Link>
-                </Text>
-              </Stack>
-            </Stack>
-          </Box>
         </Stack>
       </Flex>
     </PageContainer>
   );
 }
+
+export default SignupPage
