@@ -18,23 +18,23 @@ function RenderComments(props) {
         username: ''
     })
 
-    const isLoggedIn = Auth.loggedIn()
+    // const isLoggedIn = Auth.loggedIn()
 
     // const { commentPop } = () => useQuery(["comment"], fetchAllComments)
 
-    useEffect(() => {
-        const getUsername = async () => {
-            if (!isLoggedIn) {
-                return false;
-            }
-            const result = await Auth.verifyUser();
-            if (!result) {
-                throw new Error('Oh no! Something went wrong.');
-            }
-        }
-        getUsername()
-    }, []
-    )
+    // useEffect(() => {
+    //     const getUsername = async () => {
+    //         if (!isLoggedIn) {
+    //             return false;
+    //         }
+    //         const result = await Auth.verifyUser();
+    //         if (!result) {
+    //             throw new Error('Oh no! Something went wrong.');
+    //         }
+    //     }
+    //     getUsername()
+    // }, []
+    // )
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -44,7 +44,7 @@ function RenderComments(props) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const newComment = await createComment(commentData, id)
+        const newComment = await createComment(commentData)
 
         if (!newComment) {
             throw new Error("Oh no! Something went wrong")
@@ -53,37 +53,41 @@ function RenderComments(props) {
 
         setCommentData({ ...commentData, 'comment': '' })
 
+
     }
+
+    // console.log(props.comments)
 
     return (
         <VStack
             divider={<StackDivider borderColor='gray.200' />}
             spacing={4}
             align='stretch'
-            onLoad={renderComments}
+            onLoad={RenderComments}
         >           
             <h3>Comments</h3>
+            {/* console.log(item.comment) */}
            
-            {props.comments?.map(item => {
+            {/* {props.comments?.map(item => {
                 <Box bg='blue' w='75%' p={4} color='black'>
+                    
                     <p>{item.comment}</p>
                     <p>{item.username}</p>
                     <p>{item.createdAt}</p>
-                </Box>
-            
-            })}
+                </Box> */}
+            {/* })} */}
 
 
-            {isLoggedIn ? (
+            {/* {isLoggedIn ? ( */}
                 <>
                     <Container alignContent='center'>
                         <Input name="comment" type="text" placeholder='Add your comment here!' value={commentData.comment} onChange={handleInputChange} />
                         <Button type='submit' size='sm' onClick={handleSubmit}>Submit</Button>
                     </Container>
                 </>
-            ) : (
+            {/* ) : (
                 <p><a href='/login'>Login</a> to add a comment!</p>
-            )}
+            )} */}
 
 
         </VStack>
