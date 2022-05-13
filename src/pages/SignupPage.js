@@ -30,7 +30,7 @@ const SignupPage = (props) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    const query = await fetch("/api/user/auth",
+    const query = await fetch("/api/user",
       {
         method: "post",
         body: JSON.stringify(

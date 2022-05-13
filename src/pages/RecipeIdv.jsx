@@ -1,5 +1,5 @@
 import PageContainer from "../component/pageContainer/PageContainer";
-import RenderComments from "../component/commentComponents/Comment";
+import RenderComments from "../component/comments/Comment"
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { recipeByID } from "../utils/recipeHelper";
@@ -75,12 +75,13 @@ export function RecipeIdv() {
                 >
                   {data?.title}
                 </Heading>
+                {authUser.user !== null && (
                 <FontAwesomeIcon
                   icon={isFavorite ? faStar : regularStar}
                   size="3x"
                   color="#3275a8"
                   onClick={handleFav}
-                />
+                />)}
               </HStack>
               <Text
                 fontSize={{ base: '13px', lg: '15px' }}
