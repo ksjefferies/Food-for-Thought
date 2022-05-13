@@ -6,6 +6,7 @@ export function MyPage(props) {
     return (
         <PageContainer>
             <Stack
+            minH={'100%'}
                 bg={useColorModeValue('gray.50', 'gray.800')}
                 py={16}
                 px={8}

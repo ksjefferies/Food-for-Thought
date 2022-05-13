@@ -42,11 +42,121 @@ export function RecipeIdv() {
     useQuery('Comments', Comment)
     
     return (
-      <ul>
-        {data.map( Comment => (
-          <p key={Comment.id}>{Comment.commentBody}</p>
-        ))}
-      </ul>
+        <PageContainer>
+
+            <Container maxW={'7xl'} bg={'#E2F0FF'}>
+                <SimpleGrid
+                    columns={{ base: 1, lg: 2 }}
+                    spacing={{ base: 8, md: 10 }}
+                    py={'7'}
+                    my={{ base: 15, md: 20 }}>
+
+
+                    <Flex>
+                        <Image
+                            rounded={'md'}
+                            alt={'product image'}
+                            src={data?.image}
+                            fit={'cover'}
+                            align={'center'}
+                            w={'100%'}
+                            h={{ base: '100%', sm: '400px', lg: '500px' }}
+                        />
+                    </Flex>
+                    <Stack spacing={{ base: 6, md: 2 }}>
+                        <HStack
+                            as={'header'}
+                            justify={'space-between'}>
+                            <Heading
+                                lineHeight={1.1}
+                                fontWeight={600}
+                                fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
+                                {data?.title}
+                            </Heading>
+                            <FontAwesomeIcon
+                                icon={isFavorite ? faStar : regularStar}
+                                size="3x"
+                                color="#3275a8"
+                                onClick={() => {
+                                    setIsFavorite(!isFavorite)
+                                }}
+                            />
+                        </HStack>
+
+                        <Text
+                            fontSize={{ base: '13px', lg: '15px' }}
+                            fontWeight={'500'}
+                            textTransform={'uppercase'}>
+
+                            {`Yield: ${data?.yields}`}
+                        </Text>
+
+                        <Stack
+                            spacing={{ base: 4, sm: 6 }}
+                            direction={'column'}
+                            divider={
+                                <StackDivider
+                                    borderColor={useColorModeValue('gray.200', 'gray.600')}
+                                />
+                            }>
+
+                            <Box>
+                                <Text
+                                    fontSize={{ base: '16px', lg: '18px' }}
+                                    color={useColorModeValue('yellow.500', 'yellow.300')}
+                                    fontWeight={'500'}
+                                    textTransform={'uppercase'}
+                                    mb={'4'}>
+                                    Ingredients
+                                </Text>
+
+                                <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
+                                    <UnorderedList w={'100%'}>
+                                        {data?.ingredients.map(item => (
+                                            <ListItem>{item}</ListItem>
+                                        ))}
+                                    </UnorderedList>
+                                </SimpleGrid>
+                            </Box>
+                        </Stack>
+                    </Stack>
+
+                </SimpleGrid>
+                <Stack
+                    spacing={{ base: 1, sm: 6 }}
+                    mb={'20'}
+                    direction={'row'}
+                    divider={
+                        <StackDivider
+                            borderColor={useColorModeValue('gray.200', 'gray.600')}
+                        />
+                    }>
+                    <Box>
+                        <Text
+                            fontSize={{ base: '16px', lg: '25px' }}
+                            color={useColorModeValue('yellow.500', 'yellow.300')}
+                            fontWeight={'500'}
+                            textDecoration={'underline'}
+                            textTransform={'uppercase'}
+                            mb={'3'}
+                            pt={{ base: 15, md: 1 }}>
+                            Directions
+                        </Text>
+
+                        {data?.instructions.split("\n").map(line => (
+
+                            <Text fontSize={{ base: 'xl', md: '2xl' }}
+                                textAlign={'left'}
+                                maxW={'6xl'}
+                                mb={'5'}>
+                                {line}
+                            </Text>
+                        ))}
+
+                    </Box>
+                </Stack>
+            </Container>
+        </PageContainer>
     )
   }
 
