@@ -6,13 +6,13 @@ import background from "../assets/images/alyssafamilyfoodyum.jpg";
 import { useUser } from '../utils/UserContext';
 
 export function Landing({ title,
-        subtitle,
-        image,
-        ctaLink,
-        ctaText,
-        ...rest
-    }) {
-    
+    subtitle,
+    image,
+    ctaLink,
+    ctaText,
+    ...rest
+}) {
+
     const authUser = useUser()
 
     return (
