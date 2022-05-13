@@ -1,8 +1,8 @@
-import { Image, Box, Flex, Stack, Heading, Button } from '@chakra-ui/react'
-import { Link } from "react-router-dom"
-import PropTypes from "prop-types"
-import PageContainer from "../component/pageContainer/PageContainer";
-import background from "../assets/images/alyssafamilyfoodyum.jpg";
+import PageContainer from '../component/pageContainer/PageContainer';
+import background from '../assets/images/alyssafamilyfoodyum.jpg';
+import PropTypes from 'prop-types';
+import { Image, Box, Flex, Stack, Heading, Button } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import { useUser } from '../utils/UserContext';
 
 export function Landing({ title,
@@ -12,76 +12,79 @@ export function Landing({ title,
     ctaText,
     ...rest
 }) {
-
     const authUser = useUser()
 
     return (
         <PageContainer>
             <Flex
-                align="center"
+                align='center'
                 justify={
                     {
-                        base: "center",
-                        md: "space-around",
-                        xl: "space-between"
+                        base: 'center',
+                        md: 'space-around',
+                        xl: 'space-between'
                     }
                 }
-                direction={{ base: "column-reverse", md: "row" }}
-                wrap="no-wrap"
-                minH="70vh"
+                direction={{ base: 'column-reverse', md: 'row' }}
+                wrap='no-wrap'
+                minH='70vh'
                 px={8}
                 mb={16}
-                {...rest}
-            >
+                {...rest}>
+
                 <Stack
                     spacing={4}
-                    w={{ base: "80%", md: "40%" }}
-                    align={["center", "center", "flex-start", "flex-start"]}
-                >
+                    w={{ base: '80%', md: '40%' }}
+                    align={['center', 'center', 'flex-start', 'flex-start']}>
+
                     <Heading
-                        as="h1"
-                        size="xl"
-                        fontWeight="bold"
-                        color="primary.800"
-                        textAlign={["center", "center", "left", "left"]}
-                    >
+                        as='h1'
+                        size='xl'
+                        fontWeight='bold'
+                        color='primary.800'
+                        textAlign={['center', 'center', 'left', 'left']}>
+
                         {title}
+
                     </Heading>
 
                     <Heading
-                        as="h2"
-                        size="md"
-                        color="primary.800"
-                        opacity="0.8"
-                        fontWeight="normal"
+                        as='h2'
+                        size='md'
+                        color='primary.800'
+                        opacity='0.8'
+                        fontWeight='normal'
                         lineHeight={1.5}
-                        textAlign={["center", "center", "left", "left"]}
-                    >
+                        textAlign={['center', 'center', 'left', 'left']}>
+
                         {subtitle}
+
                         {authUser.user !== null && (<p>Does this work</p>)}
                     </Heading>
+
                     <Link to={ctaLink}>
                         <Button
-                            colorScheme="teal"
-                            borderRadius="8px"
-                            py="4"
-                            px="4"
-                            lineHeight="1"
-                            size="md"
-                        >
+                            colorScheme='teal'
+                            borderRadius='8px'
+                            py='4'
+                            px='4'
+                            lineHeight='1'
+                            size='md'>
+
                             {ctaText}
+
                         </Button>
                     </Link>
                 </Stack>
                 <Box
-                    w={{ base: "80%", sm: "60%", md: "50%" }}
-                    mb={{ base: 12, md: 0 }}
-                >
+                    w={{ base: '80%', sm: '60%', md: '50%' }}
+                    mb={{ base: 12, md: 0 }}>
+
                     <Image
                         src={background}
-                        size="100%"
-                        rounded="1rem"
-                        shadow="2xl"
+                        size='100%'
+                        rounded='1rem'
+                        shadow='2xl'
                     />
                 </Box>
             </Flex>
@@ -97,8 +100,8 @@ Landing.propTypes = {
 }
 
 Landing.defaultProps = {
-    title: "This is our recipe App",
-    subtitle: "This is the description of our website.",
-    ctaText: "Create your account now",
-    ctaLink: "/signup",
+    title: 'This is our recipe App',
+    subtitle: 'This is the description of our website.',
+    ctaText: 'Create your account now',
+    ctaLink: '/signup',
 }

@@ -1,13 +1,13 @@
-import PageContainer from "../component/pageContainer/PageContainer";
-import RenderComments from "../component/comments/Comment"
-import { useParams } from "react-router";
-import { useQuery } from "react-query";
-import { recipeByID } from "../utils/recipeHelper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faStar } from "@fortawesome/free-solid-svg-icons"
-import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
-import { useUser } from '../utils/UserContext'
-import { useState } from "react";
+import PageContainer from '../component/pageContainer/PageContainer';
+import { useState } from 'react';
+import { useParams } from 'react-router';
+import { useQuery } from 'react-query';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
+import { useUser } from '../utils/UserContext';
+import { recipeByID } from '../utils/recipeHelper';
+// import RenderComments from '../component/comments/Comment';
 import {
   Box,
   Container,
@@ -24,15 +24,18 @@ import {
   HStack
 } from '@chakra-ui/react';
 
-
 export function RecipeIdv() {
   const { id } = useParams();
+
   const { data } = useQuery({
-    queryKey: ["recipePage", id],
+    queryKey: ['recipePage', id],
     queryFn: recipeByID,
     ...{ enabled: !!id }
   })
+
   const authUser = useUser()
+
+  // Create/Delete favorite from database
   const handleFav = async () => {
     setIsFavorite(!isFavorite)
 
@@ -46,12 +49,20 @@ export function RecipeIdv() {
     }
   }
 
+  // useState for setting favorite status
   const [isFavorite, setIsFavorite] = useState(false);
+
   return (
     <PageContainer>
-      <Container>
-        <SimpleGrid>
+      <Container maxW={'7xl'} bg={'#E2F0FF'}>
+        <SimpleGrid
+          columns={{ base: 1, lg: 2 }}
+          spacing={{ base: 8, md: 10 }}
+          py={'7'}
+          my={{ base: 15, md: 20 }}>
+
           <Flex>
+            {/* Display image of selected recipe */}
             {data?.image &&
               <Image
                 rounded={'md'}
@@ -74,22 +85,29 @@ export function RecipeIdv() {
                 fontWeight={600}
                 fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}
               >
+                {/* Display recipe title on Indiv recipe card */}
                 {data?.title}
+
               </Heading>
+
               {authUser.user !== null && (
-              <FontAwesomeIcon
-                icon={isFavorite ? faStar : regularStar}
-                size="3x"
-                color="#3275a8"
-                onClick={handleFav}
-              />)}
+                <FontAwesomeIcon
+                  icon={isFavorite ? faStar : regularStar}
+                  size='3x'
+                  color='#3275a8'
+                  onClick={handleFav}
+                />)
+              }
             </HStack>
             <Text
               fontSize={{ base: '13px', lg: '15px' }}
               fontWeight={'500'}
               textTransform={'uppercase'}
             >
+
+              {/* Display yield on Indiv recipe card */}
               {`Yield: ${data?.yields}`}
+
             </Text>
 
             <Stack
@@ -109,16 +127,17 @@ export function RecipeIdv() {
                   textTransform={'uppercase'}
                   mb={'4'}
                 >
-
                   Ingredients
                 </Text>
 
-
                 <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
                   <UnorderedList w={'100%'}>
+
+                    {/* Display all list of all ingredient amounts on Indiv recipe card */}
                     {data?.ingredients.map(item => (
                       <ListItem>{item}</ListItem>
-                    ))}
+                    ))
+                    }
                   </UnorderedList>
                 </SimpleGrid>
               </Box>
@@ -129,11 +148,7 @@ export function RecipeIdv() {
           spacing={{ base: 1, sm: 6 }}
           mb={'20'}
           direction={'row'}
-          divider={
-            <StackDivider
-              borderColor={useColorModeValue('gray.200', 'gray.600')}
-            />
-          }
+          divider={<StackDivider borderColor={useColorModeValue('gray.200', 'gray.600')} />}
         >
           <Box>
             <Text
@@ -148,14 +163,18 @@ export function RecipeIdv() {
               Directions
             </Text>
 
-            {data?.instructions.split("\n").map(line => (
+            {/* Display recipe directions on Indiv recipe card */}
+            {/* Split instructions from API into new line char, to display formatted text */}
+            {data?.instructions.split('\n').map(line => (
               <Text
                 fontSize={{ base: 'xl', md: '2xl' }}
                 textAlign={'left'}
                 maxW={'6xl'}
                 mb={'5'}
               >
+
                 {line}
+
               </Text>
             ))}
           </Box>

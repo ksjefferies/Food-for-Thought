@@ -1,7 +1,7 @@
-import { NavLink } from './NavLink';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import SearchBar from './SearchBar';
 import { useNavigate } from 'react-router';
-import SearchBar from "./SearchBar";
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { NavLink } from './NavLink';
 import { useUser } from '../../../utils/UserContext'
 import {
     Box,
@@ -27,7 +27,7 @@ const Links = [
     },
     {
         text: 'About',
-        href: "/about"
+        href: '/about'
     },
     {
         text: 'My Favorites',
@@ -42,7 +42,10 @@ export default function Header() {
     return (
         <Box
             bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-            <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+            <Flex
+                h={16}
+                alignItems={'center'}
+                justifyContent={'space-between'}>
 
                 <IconButton
                     size={'md'}
@@ -59,16 +62,22 @@ export default function Header() {
                         spacing={4}
                         display={{ base: 'none', md: 'flex' }}>
                         {Links.map((link) => (
-                            <NavLink href={link.href} key={link.text}>{link.text}</NavLink>
+                            <NavLink
+                                href={link.href}
+                                key={link.text}>
+
+                                {link.text}
+
+                            </NavLink>
                         ))}
                     </HStack>
-
                 </HStack>
+
                 <Flex alignItems={'center'}>
                     <HStack
                         spacing={4}
                         flex={1}
-                        minW="md">
+                        minW='md'>
 
                         <SearchBar />
 
@@ -79,7 +88,9 @@ export default function Header() {
                             mr={4}>
                             Sign in
                         </Button>
+
                         {authUser.user !== null && (<Menu>
+
                             <MenuButton
                                 as={Button}
                                 rounded={'full'}
@@ -88,7 +99,8 @@ export default function Header() {
                                 minW={0}>
                                 <Avatar
                                     size={'sm'}
-                                    src={
+                                    src=
+                                    {
                                         'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
                                     }
                                 />
@@ -96,12 +108,14 @@ export default function Header() {
 
                             <MenuList>
                                 <MenuItem>Account Settings</MenuItem>
+
                                 <MenuItem onClick={() => navigate('../mypage')}>Favorites</MenuItem>
+
                                 <MenuDivider />
+                                
                                 <MenuItem onClick={() => navigate('../')}>Logout</MenuItem>
                             </MenuList>
                         </Menu>)}
-                        
                     </HStack>
                 </Flex>
             </Flex>

@@ -1,9 +1,12 @@
-export default function createComment (data,id)  {
-    return fetch(`/api/resources/${id}`, {
+export default function createComment(data, id) {
+  return fetch(`/api/resources/${id}`,
+    {
       method: 'POST',
-      headers: {
+      headers:
+      {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    });
-  };
+    }
+  );
+};

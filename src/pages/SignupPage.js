@@ -1,6 +1,6 @@
-import PageContainer from "../component/pageContainer/PageContainer";
-import cookie from "js-cookie"
-import { useNavigate } from "react-router";
+import PageContainer from '../component/pageContainer/PageContainer';
+import cookie from 'js-cookie';
+import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {
@@ -22,30 +22,30 @@ import {
 
 const SignupPage = (props) => {
 
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    const query = await fetch("/api/user",
+    const query = await fetch('/api/user',
       {
-        method: "post",
+        method: 'post',
         body: JSON.stringify(
           {
             username: username,
             email: email,
             password: password,
           }),
-        headers: { "Content-Type": "application/json" }
+        headers: { 'Content-Type': 'application/json' }
       })
 
     const result = await query.json()
 
     if (result && !result.err && result.data && result.data.token) {
-      cookie.set("auth-token", result.data.token, { expires: 3 })
+      cookie.set('auth-token', result.data.token, { expires: 3 })
     }
   }
 
@@ -78,7 +78,6 @@ const SignupPage = (props) => {
             </Text>
           </Stack>
 
-
           <form onSubmit={handleFormSubmit}>
             <Box
               rounded={'lg'}
@@ -89,46 +88,46 @@ const SignupPage = (props) => {
               <Stack spacing={4}>
                 <HStack>
                   <Box>
-                    <FormControl id="firstName">
+                    <FormControl id='firstName'>
                       <FormLabel>First Name</FormLabel>
-                      <Input type="text" />
+                      <Input type='text' />
                     </FormControl>
                   </Box>
 
                   <Box>
-                    <FormControl id="lastName">
+                    <FormControl id='lastName'>
                       <FormLabel>Last Name</FormLabel>
-                      <Input type="text" />
+                      <Input type='text' />
                     </FormControl>
                   </Box>
                 </HStack>
 
-                <FormControl id="username" isRequired>
+                <FormControl id='username' isRequired>
                   <FormLabel>Username</FormLabel>
                   <Input
                     value={username}
                     onChange={e => setUsername(e.target.value)}
-                    type="username"
+                    type='username'
                   />
                 </FormControl>
 
-                <FormControl id="email" isRequired>
+                <FormControl id='email' isRequired>
                   <FormLabel>Email address</FormLabel>
                   <Input
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    type="email"
+                    type='email'
                   />
                 </FormControl>
 
-                <FormControl id="password" isRequired>
+                <FormControl id='password' isRequired>
                   <FormLabel>Password</FormLabel>
                   <InputGroup>
-                    <Input 
-                      value={password} 
-                      onChange={e => setPassword(e.target.value)} 
-                      type={showPassword ? 'text' : 'password'} 
-                      />
+                    <Input
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      type={showPassword ? 'text' : 'password'}
+                    />
                     <InputRightElement h={'full'}>
 
                       <Button
@@ -144,29 +143,34 @@ const SignupPage = (props) => {
                 </FormControl>
 
                 <Stack spacing={10} pt={2}>
+
                   <Button
-                    loadingText="Submitting"
+                    loadingText='Submitting'
                     onClick={handleFormSubmit}
-                    size="lg"
+                    size='lg'
                     bg={'blue.400'}
                     color={'white'}
-                    _hover={{
-                      bg: 'blue.500',
-                    }}>
+                    _hover={{ bg: 'blue.500' }}>
                     Sign up
                   </Button>
+
                 </Stack>
 
                 <Stack pt={6}>
                   <Text align={'center'}>
-                    Already a user? <Link onClick={() => navigate('../login')} color={'blue.400'}>Login</Link>
+                    Already a user?
+
+                    <Link
+                      onClick={() => navigate('../login')}
+                      color={'blue.400'}>
+                      Login
+                    </Link>
+
                   </Text>
                 </Stack>
-
               </Stack>
             </Box>
           </form>
-
         </Stack>
       </Flex>
     </PageContainer>

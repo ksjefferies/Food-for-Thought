@@ -1,4 +1,4 @@
-import { Link, useColorModeValue } from "@chakra-ui/react";
+import { Link, useColorModeValue } from '@chakra-ui/react';
 
 export const NavLink = ({ children, href }) => (
   <Link
@@ -9,7 +9,9 @@ export const NavLink = ({ children, href }) => (
       textDecoration: 'none',
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
+
     href={href}>
+
     {children}
   </Link>
 );

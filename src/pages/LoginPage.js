@@ -1,7 +1,7 @@
-import PageContainer from "../component/pageContainer/PageContainer";
-import cookie from "js-cookie"
-import React from "react"
-import { useState, useEffect } from "react"
+import PageContainer from '../component/pageContainer/PageContainer';
+import React from 'react';
+import cookie from 'js-cookie';
+import { useState, useEffect } from 'react';
 import {
   Flex,
   Box,
@@ -14,7 +14,7 @@ import {
   Button,
   Heading,
   Text,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
 
 const LoginPage = (props) => {
@@ -23,26 +23,26 @@ const LoginPage = (props) => {
   // ({...formData, [e.target.name]: e.target.value})
   // }
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    const query = await fetch("/api/user/auth",
+    const query = await fetch('/api/user/auth',
       {
-        method: "post",
+        method: 'post',
         body: JSON.stringify(
           {
             email: email,
             password: password,
           }),
-        headers: { "Content-Type": "application/json" }
+        headers: { 'Content-Type': 'application/json' }
       })
 
     const result = await query.json()
 
     if (result && !result.err && result.data && result.data.token) {
-      cookie.set("auth-token", result.data.token, { expires: 3 })
+      cookie.set('auth-token', result.data.token, { expires: 3 })
     }
     window.location.replace('/')
   }
@@ -71,10 +71,10 @@ const LoginPage = (props) => {
             <Text
               fontSize={'lg'}
               color={'gray.600'}>
-              to enjoy all of our cool 
+              to enjoy all of our cool
               <Link
                 color={'blue.400'}>
-                 {" features"}
+                {' features'}
               </Link> ✌️
             </Text>
           </Stack>
@@ -87,7 +87,7 @@ const LoginPage = (props) => {
               p={8}>
 
               <Stack spacing={4}>
-                <FormControl id="email">
+                <FormControl id='email'>
                   <FormLabel>
                     Email address
                   </FormLabel>
@@ -95,16 +95,20 @@ const LoginPage = (props) => {
                   <Input
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    type="email"
+                    type='email'
                   />
                 </FormControl>
+                <FormControl id='password'>
 
-                <FormControl id="password">
                   <FormLabel>
                     Password
                   </FormLabel>
 
-                  <Input value={password} onChange={e => setPassword(e.target.value)} type="password" />
+                  <Input
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    type='password'
+                  />
                 </FormControl>
 
                 <Stack spacing={10}>
@@ -125,12 +129,10 @@ const LoginPage = (props) => {
                     onClick={handleFormSubmit}
                     bg={'#3B38B9'}
                     color={'white'}
-                    _hover={
-                      {
-                        bg: 'blue.500',
-                      }}>
+                    _hover={{ bg: 'blue.500' }}>
                     Sign in
                   </Button>
+
                 </Stack>
               </Stack>
             </Box>

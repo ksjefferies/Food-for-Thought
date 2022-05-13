@@ -1,5 +1,5 @@
-import React from 'react';
 import PageContainer from '../component/pageContainer/PageContainer';
+import React from 'react';
 import {
     Box,
     Button,
@@ -27,13 +27,16 @@ export function Contact() {
                     borderRadius="lg"
                     m={{ base: 5, md: 16, lg: 10 }}
                     p={{ base: 5, lg: 16 }}>
+
                     <Box>
                         <VStack spacing={{ base: 4, md: 8, lg: 20 }}>
                             <Heading
-                                fontSize={{
-                                    base: '4xl',
-                                    md: '5xl',
-                                }}>
+                                fontSize={
+                                    {
+                                        base: '4xl',
+                                        md: '5xl',
+                                    }
+                                }>
                                 Get in Touch
                             </Heading>
 
@@ -43,14 +46,18 @@ export function Contact() {
                                 p={8}
                                 color={useColorModeValue('gray.700', 'whiteAlpha.900')}
                                 shadow="base">
+
                                 <VStack spacing={5}>
                                     <FormControl isRequired>
                                         <FormLabel>Name</FormLabel>
 
                                         <InputGroup>
-                                            <Input type="text" name="name" placeholder="Your Name" />
+                                            <Input
+                                                type="text"
+                                                name="name"
+                                                placeholder="Your Name"
+                                            />
                                         </InputGroup>
-
                                     </FormControl>
 
                                     <FormControl isRequired>
@@ -63,7 +70,6 @@ export function Contact() {
                                                 placeholder="Your Email"
                                             />
                                         </InputGroup>
-
                                     </FormControl>
 
                                     <FormControl isRequired>
@@ -81,15 +87,13 @@ export function Contact() {
                                         colorScheme="blue"
                                         bg="blue.400"
                                         color="white"
-                                        _hover={{
-                                            bg: 'blue.500',
-                                        }}
+                                        _hover={{ bg: 'blue.500' }}
                                         isFullWidth>
+
                                         Send Message
                                     </Button>
                                 </VStack>
                             </Box>
-
                         </VStack>
                     </Box>
                 </Box>
