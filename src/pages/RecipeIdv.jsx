@@ -1,12 +1,11 @@
 import PageContainer from "../component/pageContainer/PageContainer";
-import RenderComments from "../component/commentComponents/Comment";
-import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { recipeByID } from "../utils/recipeHelper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
 import { useState } from "react";
+import { useParams } from "react-router";
 import {
   Box,
   Container,
@@ -154,6 +153,7 @@ export function RecipeIdv() {
                   {line}
                 </Text>
               ))}
+              {/* <RenderComments/> */}
             </Box>
           </Stack>
         </Container>

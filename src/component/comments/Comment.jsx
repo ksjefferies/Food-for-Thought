@@ -22,7 +22,7 @@ function RenderComments(props) {
     const isLoggedIn = Auth.loggedIn()
 
     const getComments = async() => {
-
+        //fetch all com
 
         // setAllComments(result)
     }
