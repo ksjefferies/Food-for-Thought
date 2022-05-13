@@ -36,12 +36,12 @@ export function RecipeIdv() {
   const authUser = useUser()
   const handleFav = async () => {
     setIsFavorite(!isFavorite)
-  
+
     if (isFavorite === true) {
       //save it to DB
       const userID = authUser.user._id
       const fav = id
-      
+
 
     } else {
       //or delete it from DB
@@ -51,8 +51,12 @@ export function RecipeIdv() {
   const [isFavorite, setIsFavorite] = useState(false);
   return (
     <PageContainer>
-      <Container>
-        <SimpleGrid>
+      <Container maxW={'7xl'} bg={'#E2F0FF'}>
+        <SimpleGrid
+          columns={{ base: 1, lg: 2 }}
+          spacing={{ base: 8, md: 10 }}
+          py={'7'}
+          my={{ base: 15, md: 20 }}>
           <Flex>
             {data?.image &&
               <Image
@@ -79,12 +83,12 @@ export function RecipeIdv() {
                 {data?.title}
               </Heading>
               {authUser.user !== null && (
-              <FontAwesomeIcon
-                icon={isFavorite ? faStar : regularStar}
-                size="3x"
-                color="#3275a8"
-                onClick={handleFav}
-              />)}
+                <FontAwesomeIcon
+                  icon={isFavorite ? faStar : regularStar}
+                  size="3x"
+                  color="#3275a8"
+                  onClick={handleFav}
+                />)}
             </HStack>
             <Text
               fontSize={{ base: '13px', lg: '15px' }}
