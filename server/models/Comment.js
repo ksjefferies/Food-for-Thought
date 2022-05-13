@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const commentSchema = new Schema({
 
   commentBody: {
-    type: String,
+   type: String,
   },
 
   createdAt: {
@@ -15,7 +15,7 @@ const commentSchema = new Schema({
   userID: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'user'
     }
   ],
 

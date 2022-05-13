@@ -26,7 +26,7 @@ const userSchema = new Schema({
 
   favorites: {
     type: Array
-  }
+  },
 
   createdAt: {
     type: Date,
