@@ -92,6 +92,10 @@ module.exports = {
     }
 
     return res.status(200).json({ _id: user._id, email: user.email })
+  },
+
+  async createFavorite({params}, res){
+    const user = await User.findById(params._id);
   }
 
 };

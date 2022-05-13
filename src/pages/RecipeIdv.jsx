@@ -22,6 +22,7 @@ import {
   UnorderedList,
   HStack
 } from '@chakra-ui/react';
+import { useUser } from '../utils/UserContext'
 
 export function RecipeIdv() {
     const { id } = useParams();
@@ -30,10 +31,15 @@ export function RecipeIdv() {
         queryFn: recipeByID,
         ...{ enabled: !!id }
     })
-    const handleFav = () => {
+    const authUser = useUser()
+    const handleFav = async () => {
         setIsFavorite(!isFavorite)
+
         if (isFavorite === true) {
             //save it to DB
+        const userID = authUser.user._id
+        const fav = await fetch('/api/user')
+
         } else {
             //or delete it from DB
         }
