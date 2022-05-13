@@ -18,20 +18,20 @@ function App() {
   return (
     <ChakraProvider >
       <UserProvider>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Landing />} />
-            <Route path='/recipe' element={<Recipe />} />
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/signup' element={<SignupPage />} />
-            <Route path='/recipe/:id' element={<RecipeIdv />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/mypage' element={<MyPage />} />
-            <Route path='/contact' element={<Contact />} />
-          </Routes>
-        </BrowserRouter>
-      </QueryClientProvider>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <Routes>
+              <Route path='/' element={<Landing />} />
+              <Route path='/recipe' element={<Recipe />} />
+              <Route path='/login' element={<LoginPage />} />
+              <Route path='/signup' element={<SignupPage />} />
+              <Route path='/recipe/:id' element={<RecipeIdv />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/mypage' element={<MyPage />} />
+              <Route path='/contact' element={<Contact />} />
+            </Routes>
+          </BrowserRouter>
+        </QueryClientProvider>
       </UserProvider>
     </ChakraProvider>
   );
