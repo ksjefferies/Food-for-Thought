@@ -1,5 +1,5 @@
 import PageContainer from "../component/pageContainer/PageContainer";
-import RenderComments from "../component/comments/Comment";
+import RenderComments from "../component/comments/Comment"
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { recipeByID } from "../utils/recipeHelper";
@@ -108,8 +108,10 @@ export function RecipeIdv() {
                   textTransform={'uppercase'}
                   mb={'4'}
                 >
+
                   Ingredients
                 </Text>
+
 
                 <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
                   <UnorderedList w={'100%'}>
