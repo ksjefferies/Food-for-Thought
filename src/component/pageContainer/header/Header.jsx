@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from 'react-router';
 import { NavLink } from './NavLink';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router';
+import SearchBar from "./SearchBar";
 import {
     Box,
     Flex,
@@ -16,8 +16,7 @@ import {
     MenuDivider,
     useDisclosure,
     useColorModeValue,
-    Stack,
-    Input
+    Stack
 } from '@chakra-ui/react';
 
 const Links = [
@@ -30,20 +29,20 @@ const Links = [
         href: "/about"
     },
     {
-        text: 'My Page',
+        text: 'My Favorites',
         href: '/mypage'
     }
 ];
 
 export default function Header() {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [searchValue, setSearchValue] = useState("")
-    let navigate = useNavigate()
+    const navigate = useNavigate();
 
     return (
         <Box
             bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+
                 <IconButton
                     size={'md'}
                     icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -53,6 +52,7 @@ export default function Header() {
                 />
                 <HStack spacing={8} alignItems={'center'}>
                     <Box>Logo</Box>
+
                     <HStack
                         as={'nav'}
                         spacing={4}
@@ -61,6 +61,7 @@ export default function Header() {
                             <NavLink href={link.href} key={link.text}>{link.text}</NavLink>
                         ))}
                     </HStack>
+
                 </HStack>
                 <Flex alignItems={'center'}>
                     <HStack
@@ -68,21 +69,16 @@ export default function Header() {
                         flex={1}
                         minW="md">
 
-                        <Input
-                            flexGrow={0}
-                            placeholder='Recipe Search'
-                            value={searchValue}
-                            onChange={(e => setSearchValue(e.target.value))}
-                            onKeyDown={(e) => e.key === 'Enter' && navigate(`/recipe?q=${encodeURIComponent(searchValue)}`)}
-                        />
+                        <SearchBar />
 
-                        <Button
+                        <Button onClick={() => navigate('../login')}
                             variant={'solid'}
                             colorScheme={'teal'}
                             size={'sm'}
                             mr={4}>
                             Sign in
                         </Button>
+
                         <Menu>
                             <MenuButton
                                 as={Button}
@@ -97,26 +93,17 @@ export default function Header() {
                                     }
                                 />
                             </MenuButton>
+
                             <MenuList>
-                                <MenuItem>My Profile</MenuItem>
-                                <MenuItem>Favorites</MenuItem>
+                                <MenuItem>Account Settings</MenuItem>
+                                <MenuItem onClick={() => navigate('../mypage')}>Favorites</MenuItem>
                                 <MenuDivider />
-                                <MenuItem>Logout</MenuItem>
+                                <MenuItem onClick={() => navigate('../')}>Logout</MenuItem>
                             </MenuList>
                         </Menu>
                     </HStack>
                 </Flex>
             </Flex>
-
-            {isOpen ? (
-                <Box pb={4} display={{ md: 'none' }}>
-                    <Stack as={'nav'} spacing={4}>
-                        {Links.map((link) => (
-                            <NavLink key={link}>{link}</NavLink>
-                        ))}
-                    </Stack>
-                </Box>
-            ) : null}
         </Box>
     );
 }

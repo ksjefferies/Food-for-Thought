@@ -57,6 +57,7 @@ export function MyPage(props) {
         <Container>
         <RecipeCard></RecipeCard>
         </Container>
+
         </PageContainer>
     )
 }
