@@ -26,6 +26,26 @@ module.exports = {
     res.status(200).json({ _id: user._id, email: user.email });
   },
 
+  async getAllUsers(req, res) {
+    const allUsers = await User.find({});
+
+    if (!allUsers) {
+      return res.status(400).json({ message: 'No users found' });
+    }
+
+    res.status(200).json(allUsers);
+  },
+
+  async getUserById({ params }, res) {
+    const user = await User.findById(params._id);
+
+    if (!user) {
+      return res.status(400).json({ message: 'No user found by that id' });
+    }
+
+    res.status(200).json(user);
+  },
+
   async authUser({ body }, res) {
 
     // Find the user by the email address
