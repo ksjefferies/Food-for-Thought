@@ -3,7 +3,9 @@ const {
     createComment,
     getComments,
     updateComment,
-    deleteComment
+    deleteComment,
+    getCommentByRecipeId
+
 } = require('../../controllers/comment-controller')
 
 // /api/comments
@@ -14,5 +16,8 @@ router.route("/:_id").post(createComment);
 
 // /api/comments/commentID
 router.route("/:_id").put(updateComment).delete(deleteComment)
+
+// api/comments/recipeID
+router.route("/recipe/:_id").get(getCommentByRecipeId)
 
 module.exports = router;

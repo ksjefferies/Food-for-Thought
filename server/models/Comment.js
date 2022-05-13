@@ -19,12 +19,9 @@ const commentSchema = new Schema({
     }
   ],
 
-  recipeID: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Recipe'
-    }
-  ],
+  recipeID: {
+    type: String
+  },
 
 });
 

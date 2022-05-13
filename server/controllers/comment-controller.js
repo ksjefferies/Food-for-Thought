@@ -9,7 +9,8 @@ module.exports = {
         try {
             const newComment = await Comment.create({
                 commentBody: body.commentBody,
-                userID: params._id
+                userID: params._id,
+                recipeID: body.recipeID
             });
             console.log(body)
 
@@ -46,6 +47,21 @@ module.exports = {
     async getCommentById({ params }, res) {
         try {
             const singleComment = await Comment.findOne({ _id: params.CommentId })
+
+            if (!singleComment) {
+                return res.status(400).json({ message: 'No Comment with that ID!' });
+            }
+
+            res.json(singleComment)
+
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+    //get comment by id
+    async getCommentByRecipeId({ params }, res) {
+        try {
+            const singleComment = await Comment.find().where('recipeID').equals(params._id)
 
             if (!singleComment) {
                 return res.status(400).json({ message: 'No Comment with that ID!' });
