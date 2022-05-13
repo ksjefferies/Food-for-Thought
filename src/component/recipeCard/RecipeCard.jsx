@@ -15,57 +15,58 @@ export const RecipeCard = ({ label, image, dietLabels, uri }) => {
     return (
         <Center py={6}>
             <Box
-                flex={1}
-                flexDirection={1}
-                maxW={'445px'}
-                w={'half'}
-                bg={useColorModeValue('white', 'gray.900')}
+                display={"flex"}
+                flexDirection="column"
+                flexGrow={1}
+                h={"full"}
+                bg={'#E2F0FF'}
                 boxShadow={'2xl'}
                 rounded={'md'}
-                p={6}
+                px={3}
+                justifyContent={"space-between"}
                 overflow={'hidden'}>
 
-                <Image
-                    h={'370px'}
-                    w={'full'}
-                    bg={'gray.100'}
-                    border={'1px'}
-                    rounded={'lg'}
-                    mt={0}
-                    mx={0}
-                    mb={6}
-                    pos={'relative'}
-                    src={image}
-                    layout={'fill'}
-                />
+                <Link href={`/recipe/${id}`}>
+                    <Image
+                        w={'full'}
+                        bg={'gray.100'}
+                        // border='1px' borderColor='#A6AFC8'
+                        rounded={'lg'}
+                        mt={3}
+                        mx={0}
+                        mb={1}
+                        pos={'relative'}
+                        src={image}
+                        layout={'fill'}
+                    />
 
-                <Stack>
-                    <Link href={`/recipe/${id}`}>
+                    <Stack>
+
                         <Heading
                             color={useColorModeValue('gray.700', 'white')}
-                            fontSize={'2xl'}
+                            fontSize={'md'}
                             fontFamily={'body'}
                             align={'center'}>
                             {label}
                         </Heading>
-                    </Link>
-                </Stack>
+                    </Stack>
+                </Link>
 
                 {dietLabels &&
-
-                    <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
+                    <Stack align={'center'} justify={'center'} direction={'row'} display="flex" m={2}>
                         {dietLabels.map(label => (
-                            <Badge px={2}
+                            <Badge
+                                fontSize={"x-small"}
+                                px={2}
                                 py={1}
                                 fontWeight={'400'}
                             >
                                 {label}
-
                             </Badge>
                         ))}
                     </Stack>
                 }
             </Box>
-        </Center>
+        </Center >
     );
 }

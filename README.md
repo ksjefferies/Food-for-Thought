@@ -50,6 +50,8 @@ Condimentum ullamcorper, curabitur luctus aenean donec ultrices iaculis varius p
 -----
 ## Technologies Used:
 
+https://recipied.io/
+
 ![mongo](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![node](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![react](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
