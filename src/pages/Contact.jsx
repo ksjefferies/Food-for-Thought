@@ -1,5 +1,6 @@
 import React from 'react';
 import PageContainer from '../component/pageContainer/PageContainer';
+import  backgroundImage  from '../assets/images/contact-image.jpeg';
 import {
     Box,
     Button,
@@ -12,6 +13,7 @@ import {
     Textarea,
     useColorModeValue,
     VStack,
+    Image,
 } from '@chakra-ui/react';
 
 export function Contact() {
@@ -21,13 +23,21 @@ export function Contact() {
             <Flex
                 bg={useColorModeValue('gray.100', 'gray.900')}
                 align="center"
-                justify="center"
+                justify={
+                    {
+                        base: 'center',
+                        md: 'space-around',
+                        xl: 'space-between'
+                    }
+                }
                 id="contact">
+                    
                 <Box
                     borderRadius="lg"
                     m={{ base: 5, md: 16, lg: 10 }}
                     p={{ base: 5, lg: 16 }}>
                     <Box>
+
                         <VStack spacing={{ base: 4, md: 8, lg: 20 }}>
                             <Heading
                                 fontSize={{
@@ -37,7 +47,12 @@ export function Contact() {
                                 Get in Touch
                             </Heading>
 
+                            <Image
+                                src={backgroundImage}
+                                size= "100%"
+                            />
                             <Box
+                            
                                 bg={useColorModeValue('white', 'gray.700')}
                                 borderRadius="lg"
                                 p={8}

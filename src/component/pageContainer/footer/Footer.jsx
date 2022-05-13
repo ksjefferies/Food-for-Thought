@@ -1,5 +1,3 @@
-import {useState} from 'react'
-import Popup from './Popup'
 import {
     Box,
     Container,
@@ -10,11 +8,7 @@ import {
 } from '@chakra-ui/react';
 
 export default function Footer() {
-    const [isOpen, setIsOpen] = useState(false);
- 
-    const togglePopup = () => {
-      setIsOpen(!isOpen);
-    }
+
     return (
         <Box
             bg={useColorModeValue('gray.100', 'gray.900')}
@@ -31,7 +25,7 @@ export default function Footer() {
                     <Link href={'/'}>Home</Link>
                     {/* <Link href={'/about'}>About</Link>
                     <Link href={'/mypage'}>My Page</Link> */}
-                    <Link onClick={togglePopup} >Contact</Link>
+                    <Link href={'/contact'} >Contact</Link>
                 </Stack>
             </Container>
         </Box>
