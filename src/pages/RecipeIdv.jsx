@@ -22,6 +22,7 @@ import {
     UnorderedList,
     HStack
 } from '@chakra-ui/react';
+import { useUser } from '../utils/UserContext'
 
 export function RecipeIdv() {
     const { id } = useParams();
@@ -30,15 +31,18 @@ export function RecipeIdv() {
         queryFn: recipeByID,
         ...{ enabled: !!id }
     })
-    const handleFav = () => {
+    const authUser = useUser()
+    const handleFav = async () => {
         setIsFavorite(!isFavorite)
-        if (isFavorite == true) {
+        if (isFavorite == true)  {
             //save it to DB
+        const userID = authUser.user._id
+        const fav = await fetch('/api/user')
+
         } else {
             //or delete it from DB
         }
     }
-
     const [isFavorite, setIsFavorite] = useState(false);
     return (
         <PageContainer>
@@ -72,12 +76,13 @@ export function RecipeIdv() {
                                 fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
                                 {data?.title}
                             </Heading>
+                            {authUser.user !== null && (
                             <FontAwesomeIcon
                                 icon={isFavorite ? faStar : regularStar}
                                 size="3x"
                                 color="#3275a8"
                                 onClick={handleFav}
-                            />
+                            />)}
                         </HStack>
 
                         <Text
