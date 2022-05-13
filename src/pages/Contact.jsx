@@ -14,6 +14,7 @@ import {
     useColorModeValue,
     VStack,
     Image,
+    Stack
 } from '@chakra-ui/react';
 
 export function Contact() {
@@ -30,8 +31,17 @@ export function Contact() {
                         xl: 'space-between'
                     }
                 }
+                direction={{ base: "column-reverse", md: "row" }}
+                wrap="no-wrap"
+                minH="70vh"
+                px={8}
+                mb={16}
                 id="contact">
-                    
+                <Stack 
+                     spacing={4}
+                     w={{ base: "80%", md: "40%" }}
+                     align={["center", "center", "flex-start", "flex-start"]}
+                 >
                 <Box
                     borderRadius="lg"
                     m={{ base: 5, md: 16, lg: 10 }}
@@ -46,11 +56,6 @@ export function Contact() {
                                 }}>
                                 Get in Touch
                             </Heading>
-
-                            <Image
-                                src={backgroundImage}
-                                size= "100%"
-                            />
                             <Box
                             
                                 bg={useColorModeValue('white', 'gray.700')}
@@ -108,6 +113,7 @@ export function Contact() {
                         </VStack>
                     </Box>
                 </Box>
+                </Stack>
             </Flex>
         </PageContainer>
     );
