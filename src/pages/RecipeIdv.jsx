@@ -32,7 +32,7 @@ export function RecipeIdv() {
     })
     const handleFav = () => {
         setIsFavorite(!isFavorite)
-        if (isFavorite == true) {
+        if (isFavorite === true) {
             //save it to DB
         } else {
             //or delete it from DB
