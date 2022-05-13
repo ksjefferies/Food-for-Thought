@@ -1,4 +1,5 @@
 const url = 'https://api.edamam.com/api/recipes/v2';
+const recipeUrl = 'https://recipied.io/api';
 
 const apiParams = {
     app_key: "cda9a2ddad77ff868cec50dc7286234c",
@@ -14,5 +15,21 @@ export async function recipeBySearch({ queryKey }) {
 export async function recipeByID({ queryKey }) {
     let params = new URLSearchParams(apiParams)
     let res = await fetch(`${url}/${queryKey[1]}?${params.toString()}`)
-    return res.json()
+    const ridData = await res.json();
+
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "url": ridData.recipe.url
+    });
+
+    const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    return (await fetch("https://recipied.io/api", requestOptions)).json();
 }
