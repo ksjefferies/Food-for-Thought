@@ -172,28 +172,3 @@ const SignupPage = (props) => {
 }
 
 export default SignupPage
-// export default function SignupPage() {
-//   const [showPassword, setShowPassword] = useState(false);
-//   const navigate = useNavigate();
-
-//   const defForm = { email: "", password: "" }
-//   const [formData, setFormData] = useState(defForm)
-
-//   const handleInputChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value })
-//   }
-
-//   const handleFormSubmit = async (e) => {
-//     e.preventDefault()
-
-//     const query = await fetch("/api/user",
-//       {
-//         method: "post",
-//         body: JSON.stringify(formData),
-//         headers: { "Content-Type": "application/json" }
-//       })
-//     console.log(query)
-
-//     const result = await query.json()
-//     console.log(result)
-//   }
