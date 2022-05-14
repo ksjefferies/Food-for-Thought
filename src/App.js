@@ -12,6 +12,7 @@ import { Contact } from "./pages/Contact";
 import UserProvider from "./utils/UserContext";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import { Profile } from './pages/Profile';
 
 function App() {
   const queryClient = new QueryClient()
@@ -29,6 +30,7 @@ function App() {
               <Route path='/about' element={<About />} />
               <Route path='/mypage' element={<MyPage />} />
               <Route path='/contact' element={<Contact />} />
+              <Route path='/profile' element={<Profile />} />
             </Routes>
           </BrowserRouter>
         </QueryClientProvider>

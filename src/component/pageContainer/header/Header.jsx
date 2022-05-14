@@ -32,6 +32,10 @@ const Links = [
     {
         text: 'My Favorites',
         href: '/mypage'
+    },
+    {
+        text: 'Profile',
+        href: '/profile'
     }
 ];
 
