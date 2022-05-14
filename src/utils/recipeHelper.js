@@ -8,7 +8,11 @@ const apiParams = {
 }
 
 export async function recipeBySearch({ queryKey }) {
-    let params = new URLSearchParams({ ...apiParams, ...{ q: queryKey[1] } })
+    //Remove nullish keys from the object
+    let searchParams = queryKey[1].filter(e => e[1] ?? false)
+    searchParams = Object.fromEntries(searchParams)
+
+    let params = new URLSearchParams({ ...apiParams, ...searchParams })
     let res = await fetch(`${url}?${params.toString()}`)
     return res.json()
 }
