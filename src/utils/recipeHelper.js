@@ -19,13 +19,15 @@ export async function recipeBySearch({ queryKey }) {
 export async function recipeByID({ queryKey }) {
     let params = new URLSearchParams(apiParams)
     let res = await fetch(`${url}/${queryKey[1]}?${params.toString()}`)
-    const ridData = await res.json();
+    return res.json();
+}
 
+export async function recipeByURL({ queryKey }) {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-        "url": ridData.recipe.url
+        "url": queryKey[1]
     });
 
     const requestOptions = {
