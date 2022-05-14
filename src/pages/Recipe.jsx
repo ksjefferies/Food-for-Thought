@@ -1,26 +1,62 @@
 import PageContainer from "../component/pageContainer/PageContainer";
 import { RecipeCard } from "../component/recipeCard/RecipeCard";
 import { useQuery } from 'react-query'
-import { SimpleGrid, Spinner } from "@chakra-ui/react";
+import { SimpleGrid, Spinner, Select, HStack, Input, Button } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
 import { recipeBySearch } from "../utils/recipeHelper";
+import { useState } from "react";
 
 export function Recipe() {
+    let [searchParams, setSearchParams] = useSearchParams();
 
-    let [searchParams] = useSearchParams();
-    const query = searchParams.get("q")
+    const [params, setParams] = useState(Object.fromEntries(searchParams) ?? { q: "" })
 
-    const { isLoading, data } = useQuery({
-        queryKey: ["recipes", query],
+    let dietOptions = ['', 'balanced', 'high-fiber', 'high-protein', 'low-carb', 'low-fat', 'low-sodium']
+    
+    let healthOptions = ['', 'alcohol-cocktail', 'alcohol-free', 'celery-free', 'crustacean-free',
+        'dairy-free', 'DASH', 'egg-free', 'fish-free', 'fodmap-free', 'gluten-free', 'immuno-supportive', 'keto-friendly', 'kidney-friendly', 'kosher', 'low-fat-abs', 'low-potassium', 'low-sugar', 'lupine-free', 'Mediterranean', 'mollusk-free', 'mustard-free', 'no-oil-added', 'paleo', 'peanut-free', 'pescatarian', 'pork-free', 'red-meat-free', 'sesame-free', 'shellfish-free', 'soy-free', 'sugar-conscious', 'sulfite-free', 'tree-nut-free', 'vegan', 'vegetarian', 'wheat-free']
+
+    let cuisineOptions = ['', 'American', 'Asian', 'British', 'Caribbean', 'Central Europe', 'Chinese', 'Eastern Europe', 'French', 'Indian', 'Italian', 'Japanese', 'Kosher', 'Mediterranean', 'Mexican', 'Middle Eastern', 'Nordic', 'South American', 'South East Asian']
+
+    const { isLoading, data, refetch, is } = useQuery({
+        queryKey: ["recipes", [...searchParams]],
         queryFn: recipeBySearch,
-        ...{ enabled: !!query }
+        ...{ enabled: !!searchParams.get('q') }
     })
 
+    const handleChange = (e) => {
+        setParams(prev => ({
+            ...prev,
+            [e.target.id]: e.target.value
+        }))
+    }
+
     if (isLoading) return <Spinner />
+
     return (
         <PageContainer>
+
+            <HStack>
+                <Select id="diet" value={params.diet} placeholder='Diet' onChange={handleChange}  >
+                    {dietOptions.map(option => (
+                        <option value={option}>{option}</option>
+                    ))}
+                </Select>
+                <Select id='health' value={params.health} placeholder='Dietary Restrictions' onChange={handleChange} >
+                    {healthOptions.map(option => (
+                        <option value={option}>{option}</option>
+                    ))}
+                </Select>
+                <Select id='cuisineType' value={params.cuisineType} placeholder='Cuisine' onChange={handleChange} >
+                    {cuisineOptions.map(option => (
+                        <option value={option}>{option}</option>
+                    ))}
+                </Select>
+            </HStack>
+            <Input id="q" value={params.q} placeholder='Recipe Search' onChange={handleChange} ></Input>
+            <Button onClick={e => setSearchParams(params)}>Search</Button>
             <SimpleGrid minChildWidth='240px' spacing='20px' margin='8'>
-            {data?.hits.map(hit => (<RecipeCard {...hit.recipe} />))}
+                {data?.hits.map(hit => (<RecipeCard {...hit.recipe} />))}
             </SimpleGrid>
         </PageContainer>
     )
