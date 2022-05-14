@@ -2,7 +2,7 @@ import PageContainer from "../component/pageContainer/PageContainer";
 import RenderComments from "../component/comments/Comment"
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
-import { recipeByID } from "../utils/recipeHelper";
+import { recipeByID, recipeByURL } from "../utils/recipeHelper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
@@ -24,31 +24,36 @@ import {
   HStack
 } from '@chakra-ui/react';
 
-
 export function RecipeIdv() {
   const { id } = useParams();
-  const { data } = useQuery({
+  const authUser = useUser()
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const edamame = useQuery({
     queryKey: ["recipePage", id],
     queryFn: recipeByID,
     ...{ enabled: !!id }
   })
-  console.log(id)
-  const authUser = useUser()
+
+  const url = edamame?.data?.recipe?.url
+
+  const recipe = useQuery({
+    queryKey: ["recipePage", url],
+    queryFn: recipeByURL,
+    ...{ enabled: !!url }
+  })
+
   const handleFav = async () => {
     setIsFavorite(!isFavorite)
-
     if (isFavorite === true) {
       //save it to DB
       const userID = authUser.user._id
       const fav = id
-
-
     } else {
       //or delete it from DB
     }
   }
 
-  const [isFavorite, setIsFavorite] = useState(false);
   return (
     <PageContainer>
       <Container maxW={'7xl'} bg={'#E2F0FF'}>
@@ -58,30 +63,31 @@ export function RecipeIdv() {
           py={'7'}
           my={{ base: 15, md: 20 }}>
           <Flex>
-            {data?.image &&
+
+            {recipe?.data?.image &&
               <Image
                 rounded={'md'}
                 alt={'product image'}
-                src={data?.image}
+                src={recipe?.data?.image}
                 fit={'cover'}
                 align={'center'}
                 w={'100%'}
-                h={{ base: '100%', sm: '400px', lg: '500px' }}
-              />
+                h={{ base: '100%', sm: '400px', lg: '500px' }} />
             }
           </Flex>
           <Stack spacing={{ base: 6, md: 2 }}>
             <HStack
               as={'header'}
-              justify={'space-between'}
-            >
+              justify={'space-between'}>
               <Heading
                 lineHeight={1.1}
                 fontWeight={600}
-                fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}
-              >
-                {data?.title}
+                fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
+
+                {recipe?.data?.title}
+
               </Heading>
+
               {authUser.user !== null && (
                 <FontAwesomeIcon
                   icon={isFavorite ? faStar : regularStar}
@@ -89,13 +95,13 @@ export function RecipeIdv() {
                   color="#3275a8"
                   onClick={handleFav}
                 />)}
+
             </HStack>
             <Text
               fontSize={{ base: '13px', lg: '15px' }}
               fontWeight={'500'}
-              textTransform={'uppercase'}
-            >
-              {`Yield: ${data?.yields}`}
+              textTransform={'uppercase'}>
+              {`Yield: ${recipe?.data?.yields}`}
             </Text>
 
             <Stack
@@ -105,25 +111,20 @@ export function RecipeIdv() {
                 <StackDivider
                   borderColor={useColorModeValue('gray.200', 'gray.600')}
                 />
-              }
-            >
+              }>
               <Box>
                 <Text
                   fontSize={{ base: '16px', lg: '18px' }}
                   color={useColorModeValue('yellow.500', 'yellow.300')}
                   fontWeight={'500'}
                   textTransform={'uppercase'}
-                  mb={'4'}
-                >
-
+                  mb={'4'}>
                   Ingredients
                 </Text>
-
-
                 <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
                   <UnorderedList w={'100%'}>
-                    {data?.ingredients.map(item => (
-                      <ListItem>{item}</ListItem>
+                    {recipe?.data?.ingredients.map((item, index) => (
+                      <ListItem key={index}>{item}</ListItem>
                     ))}
                   </UnorderedList>
                 </SimpleGrid>
@@ -154,8 +155,9 @@ export function RecipeIdv() {
               Directions
             </Text>
 
-            {data?.instructions.split("\n").map(line => (
+            {recipe?.data?.instructions.split("\n").map((line, index) => (
               <Text
+                key={index}
                 fontSize={{ base: 'xl', md: '2xl' }}
                 textAlign={'left'}
                 maxW={'6xl'}
