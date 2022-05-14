@@ -56,7 +56,7 @@ export function RecipeIdv() {
 
   return (
     <PageContainer>
-      <Container maxW={'7xl'} bg={'#E2F0FF'}>
+      <Container maxW={'4xl'} bg={'#E2F0FF'}>
         <SimpleGrid
           columns={{ base: 1, lg: 2 }}
           spacing={{ base: 8, md: 10 }}
@@ -72,7 +72,8 @@ export function RecipeIdv() {
                 fit={'cover'}
                 align={'center'}
                 w={'100%'}
-                h={{ base: '100%', sm: '400px', lg: '500px' }} />
+                h={{ base: '100%', sm: '400px', lg: '500px' }}
+              />
             }
           </Flex>
           <Stack spacing={{ base: 6, md: 2 }}>
@@ -94,14 +95,17 @@ export function RecipeIdv() {
                   size="3x"
                   color="#3275a8"
                   onClick={handleFav}
-                />)}
+                />)
+              }
 
             </HStack>
             <Text
               fontSize={{ base: '13px', lg: '15px' }}
               fontWeight={'500'}
               textTransform={'uppercase'}>
+
               {`Yield: ${recipe?.data?.yields}`}
+
             </Text>
 
             <Stack
@@ -119,13 +123,17 @@ export function RecipeIdv() {
                   fontWeight={'500'}
                   textTransform={'uppercase'}
                   mb={'4'}>
+
                   Ingredients
+
                 </Text>
                 <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
                   <UnorderedList w={'100%'}>
+
                     {recipe?.data?.ingredients.map((item, index) => (
                       <ListItem key={index}>{item}</ListItem>
                     ))}
+
                   </UnorderedList>
                 </SimpleGrid>
               </Box>
@@ -140,8 +148,8 @@ export function RecipeIdv() {
             <StackDivider
               borderColor={useColorModeValue('gray.200', 'gray.600')}
             />
-          }
-        >
+          }>
+
           <Box>
             <Text
               fontSize={{ base: '16px', lg: '25px' }}
@@ -152,7 +160,9 @@ export function RecipeIdv() {
               mb={'3'}
               pt={{ base: 15, md: 1 }}
             >
+
               Directions
+
             </Text>
 
             {recipe?.data?.instructions.split("\n").map((line, index) => (
@@ -161,11 +171,12 @@ export function RecipeIdv() {
                 fontSize={{ base: 'xl', md: '2xl' }}
                 textAlign={'left'}
                 maxW={'6xl'}
-                mb={'5'}
-              >
+                mb={'5'}>
+
                 {line}
-              </Text>
-            ))}
+
+              </Text>))
+              }              
           </Box>
         </Stack>
       </Container>
