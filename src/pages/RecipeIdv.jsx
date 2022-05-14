@@ -56,26 +56,13 @@ export function RecipeIdv() {
 
   return (
     <PageContainer>
-      <Container maxW={'4xl'} bg={'#E2F0FF'}>
+      <Container maxW={'3xl'} bg={'#E2F0FF'}>
         <SimpleGrid
-          columns={{ base: 1, lg: 2 }}
+          rows={{ base: 1, lg: 2 }}
           spacing={{ base: 8, md: 10 }}
-          py={'7'}
+          py={'5'}
           my={{ base: 15, md: 20 }}>
-          <Flex>
 
-            {recipe?.data?.image &&
-              <Image
-                rounded={'md'}
-                alt={'product image'}
-                src={recipe?.data?.image}
-                fit={'cover'}
-                align={'center'}
-                w={'100%'}
-                h={{ base: '100%', sm: '400px', lg: '500px' }}
-              />
-            }
-          </Flex>
           <Stack spacing={{ base: 6, md: 2 }}>
             <HStack
               as={'header'}
@@ -108,38 +95,89 @@ export function RecipeIdv() {
 
             </Text>
 
-            <Stack
-              spacing={{ base: 4, sm: 6 }}
-              direction={'column'}
-              divider={
-                <StackDivider
-                  borderColor={useColorModeValue('gray.200', 'gray.600')}
+            <Flex justifyContent={'center'}>
+
+              {recipe?.data?.image &&
+                <Image
+                  rounded={'md'}
+                  alt={'product image'}
+                  src={recipe?.data?.image}
+                  fit={'cover'}
+                  align={'center'}
+                  w={'50%'}
+                  h={{ base: '50%', sm: '400px', lg: '500px' }}
                 />
-              }>
-              <Box>
-                <Text
-                  fontSize={{ base: '16px', lg: '18px' }}
-                  color={useColorModeValue('yellow.500', 'yellow.300')}
-                  fontWeight={'500'}
-                  textTransform={'uppercase'}
-                  mb={'4'}>
+              }
+            </Flex>
 
-                  Ingredients
+            <HStack gap={'30'}>
+              <Stack
+                spacing={{ base: 4, sm: 6 }}
+                direction={'column'}
+                divider={
+                  <StackDivider
+                    borderColor={useColorModeValue('gray.200', 'gray.600')}
+                  />
+                }>
+                <Box>
+                  <Text
+                    fontSize={{ base: '16px', lg: '18px' }}
+                    color={useColorModeValue('black')}
+                    fontWeight={'500'}
+                    textDecoration={'underline'}
+                    textTransform={'uppercase'}
+                    mb={'4'}>
 
-                </Text>
-                <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
-                  <UnorderedList w={'100%'}>
+                    Ingredients
 
-                    {recipe?.data?.ingredients.map((item, index) => (
-                      <ListItem key={index}>{item}</ListItem>
-                    ))}
+                  </Text>
+                  <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
+                    <UnorderedList w={'100%'}>
 
-                  </UnorderedList>
-                </SimpleGrid>
-              </Box>
-            </Stack>
+                      {recipe?.data?.ingredients.map((item, index) => (
+                        <ListItem key={index}>{item}</ListItem>))
+                      }
+
+                    </UnorderedList>
+                  </SimpleGrid>
+                </Box>
+              </Stack>
+
+              <Stack
+                spacing={{ base: 4, sm: 6 }}
+                direction={'column'}
+                divider={
+                  <StackDivider
+                    borderColor={useColorModeValue('black')}
+                  />
+                }>
+                <Box>
+                  <Text
+                    fontSize={{ base: '16px', lg: '18px' }}
+                    color={useColorModeValue('black')}
+                    fontWeight={'500'}
+                    textDecoration={'underline'}
+                    textTransform={'uppercase'}
+                    mb={'4'}>
+
+                    Nutrients
+
+                  </Text>
+                  <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
+                    <UnorderedList w={'100%'}>
+
+                      {recipe?.data?.ingredients.map((item, index) => (
+                        <ListItem key={index}>{item}</ListItem>))
+                      }
+
+                    </UnorderedList>
+                  </SimpleGrid>
+                </Box>
+              </Stack>
+            </HStack>
           </Stack>
         </SimpleGrid>
+
         <Stack
           spacing={{ base: 1, sm: 6 }}
           mb={'20'}
@@ -152,23 +190,21 @@ export function RecipeIdv() {
 
           <Box>
             <Text
-              fontSize={{ base: '16px', lg: '25px' }}
-              color={useColorModeValue('yellow.500', 'yellow.300')}
+              fontSize={{ base: '16px', lg: '18px' }}
+              color={useColorModeValue('black')}
               fontWeight={'500'}
               textDecoration={'underline'}
               textTransform={'uppercase'}
               mb={'3'}
-              pt={{ base: 15, md: 1 }}
-            >
+              pt={{ base: 15, md: 1 }}>
 
               Directions
-
             </Text>
 
             {recipe?.data?.instructions.split("\n").map((line, index) => (
               <Text
                 key={index}
-                fontSize={{ base: 'xl', md: '2xl' }}
+                // fontSize={{ base: 'xl', md: '2xl' }}
                 textAlign={'left'}
                 maxW={'6xl'}
                 mb={'5'}>
@@ -176,7 +212,7 @@ export function RecipeIdv() {
                 {line}
 
               </Text>))
-              }              
+            }
           </Box>
         </Stack>
       </Container>
