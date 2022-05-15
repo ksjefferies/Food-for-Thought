@@ -1,6 +1,11 @@
-import React from "react";
-import { useEffect, useState } from "react";
 import PageContainer from "../component/pageContainer/PageContainer";
+import React from "react";
+import PropTypes from "prop-types"
+import { useEffect, useState } from "react";
+import { useQuery } from 'react-query'
+import { useUser } from "../utils/UserContext";
+import { RecipeCard } from "../component/recipeCard/RecipeCard";
+import { recipeByID } from "../utils/recipeHelper";
 import {
   Stack,
   Text,
@@ -9,13 +14,9 @@ import {
   useBreakpointValue,
   Heading,
   Flex,
-  Box
+  Box,
+  Button
 } from '@chakra-ui/react';
-import { useUser } from "../utils/UserContext";
-import { RecipeCard } from "../component/recipeCard/RecipeCard";
-import { useQuery } from 'react-query'
-import { recipeByID } from "../utils/recipeHelper";
-
 
 export function MyPage(props) {
   const authUser = useUser()
@@ -25,10 +26,12 @@ export function MyPage(props) {
   const getFavorites = async () => {
     const userID = authUser.user._id
     const query = await fetch(`/api/user/${userID}`)
+
     return query.json()
   }
   const getAllFavorites = async ({ queryKey }) => {
     const data = queryKey[1]
+
     return Promise.all(data.favorites.map(item => recipeByID({ id: item })))
   }
   const favorites = useQuery({
@@ -42,83 +45,93 @@ export function MyPage(props) {
     queryFn: getAllFavorites,
     enabled: !!favorites.data
   })
-
-
-
+  
   return (
+
     <PageContainer>
-
       <Flex
-        minH={'35vh'}
-        direction={{ base: 'column-reverse', md: 'row' }}
-        mx={30}
-        
+      direction={"column"}
       >
-        <Flex
-          flex={1}
-          align={'center'}
-          justify={'center'}>
-          <Stack
-            spacing={6} w={'full'} maxW={'lg'}>
-            <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: useBreakpointValue({ base: '20%', md: '30%' }),
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  zIndex: -1,
 
-                }}>
-                  {favorites?.data.username}'s
-              </Text>
-              <br />{' '}
-              <Text color={'#00CECB'} as={'span'}>
-                Favorites
-              </Text>{' '}
-            </Heading>
-            <Text
-              fontSize={{ base: 'md', lg: 'lg' }}
-              color={'gray.500'}>
-              Any recipes you've favorited will show up below!
-            </Text>
-          </Stack>
-        </Flex>
 
-        <Flex
-          align="center"
-          justify={
-            {
-              base: "center",
-              md: "space-around",
-              xl: "space-between"
-            }
-    
-          } flex={0.9}>
+  
+      <Flex
+        align="center"
+        justify={
+          {
+            base: "center",
+            md: "space-around",
+            xl: "space-between"
+          }
+        }
+        direction={{ base: "column-reverse", md: "row" }}
+        wrap="no-wrap"
+        minH="70vh"
+        margin={10}
+        px={8}
+        // mr={14}
+        // mt={10}
+        // mb={10}
+        >
+
+        <Stack
+          spacing={4}
+          w={{ base: "80%", md: "40%" }}
+          align={["center", "center", "flex-start", "flex-start"]}>
+
+          <Heading
+            as="h2"
+            size="med"
+            fontWeight="bold"
+            color="primary.800"
+            textAlign={["center", "center", "left", "left"]}>
+            {favorites?.data.username}'s
+            <Text color={'#00CECB'} as={'span'}>
+              Favorites
+            </Text>{' '}
+          </Heading>
+
+          <Text
+            fontSize={{ base: 'md', lg: 'lg' }}
+            color={'gray.500'}>
+            Any recipes you've favorited will show up below!
+          </Text>
+
+          <Heading
+            as="h2"
+            size="md"
+            color="primary.800"
+            opacity="0.8"
+            fontWeight="normal"
+            lineHeight={1.5}
+            textAlign={["center", "center", "left", "left"]}>
+          </Heading>
+        </Stack>
+
+        <Box
+          w={{ base: "100%", sm: "75%", md: "75%" }}
+          mb={{ base: 5, md: 0 }}>
 
           <Image
-          borderRadius={5}
-            alt={'Login Image'}
             src={
-              'https://source.unsplash.com/1600x900/?healthy-food'
-            }
+              'https://source.unsplash.com/1600x900/?healthy-food'}
+            size="100%"
+            rounded="1rem"
+            shadow="2xl"
           />
-        </Flex>
-
-
+        </Box>
       </Flex>
+
       {API.isSuccess && (
         <SimpleGrid
-          minChildWidth='240px'
           spacing='20px'
           margin='8'>
+
           {API.data.map((item, index) => (<RecipeCard key={index} {...item.recipe} />))}
+
         </SimpleGrid>
       )}
+          </Flex>
     </PageContainer>
   )
 }

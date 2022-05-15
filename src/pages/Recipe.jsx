@@ -17,7 +17,8 @@ import {
     AccordionIcon,
     Button,
     Box,
-    Flex
+    Flex,
+    Skeleton
 } from "@chakra-ui/react";
 
 export function Recipe() {
@@ -32,7 +33,7 @@ export function Recipe() {
 
     let cuisineOptions = ['', 'American', 'Asian', 'British', 'Caribbean', 'Central Europe', 'Chinese', 'Eastern Europe', 'French', 'Indian', 'Italian', 'Japanese', 'Kosher', 'Mediterranean', 'Mexican', 'Middle Eastern', 'Nordic', 'South American', 'South East Asian']
 
-    const { isLoading, data, refetch, is } = useQuery({
+    const { isLoading, data, refetch, isSuccess } = useQuery({
         queryKey: ["recipes", [...searchParams]],
         queryFn: recipeBySearch,
         ...{ enabled: !!searchParams.get('q') }
@@ -45,10 +46,9 @@ export function Recipe() {
         }))
     }
 
-    if (isLoading) return <Spinner />
-
     return (
         <PageContainer>
+            <Flex flex={1} flexDir={"column"}>
             <Flex
                 justifyContent={"space-between"}
                 mx={10}
@@ -59,7 +59,9 @@ export function Recipe() {
                     flex={0.5}
                     gap={2}>
                     <Input
-
+                        bg={'#F9F6EE'}
+                        borderColor={'light gray'}
+                        border={'1px'}
                         id="q"
                         value={params.q}
                         placeholder='Recipe Search'
@@ -103,12 +105,13 @@ export function Recipe() {
                         </AccordionPanel>
                     </AccordionItem>
                 </Accordion>
-
-
             </Flex>
+            <Skeleton isLoaded={isSuccess}>
             <SimpleGrid minChildWidth='240px' spacing='20px' margin='8'>
                 {data?.hits.map(hit => (<RecipeCard {...hit.recipe} />))}
             </SimpleGrid>
+            </Skeleton>
+            </Flex>
         </PageContainer>
     )
 }

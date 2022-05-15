@@ -28,15 +28,16 @@ export function Landing({ title,
                 }
                 direction={{ base: "column-reverse", md: "row" }}
                 wrap="no-wrap"
-                minH="70vh"
+                
+            
                 px={8}
-                mb={16}
-                {...rest}
+            // mb={16}
+            // {...rest}
             >
                 <Stack
                     spacing={4}
                     w={{ base: "80%", md: "40%" }}
-                    align={["center", "center", "flex-start", "flex-start"]}
+                    align={["center", "center", "center", "center"]}
                 >
                     <Heading
                         as="h2"
@@ -45,7 +46,7 @@ export function Landing({ title,
                         color="primary.800"
                         textAlign={["center", "center", "left", "left"]}
                     >
-                       <Text as='i'>"{title}"</Text>
+                        <Text as='i'>"{title}"</Text>
                     </Heading>
 
                     <Heading
