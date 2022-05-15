@@ -11,15 +11,23 @@ import {
     Button
 } from '@chakra-ui/react'
 
-function RenderComments({allComments}) {
+function RenderComments(props) {
     const [commentData, setCommentData] = useState({
         comment: '',
         username: ''
     })
 
-    const [ renderAllComments, setAllComments ] = useState([])
+    const [ allComments, setAllComments ] = useState([])
 
     const isLoggedIn = Auth.loggedIn()
+
+    const getComments = async() => {
+
+
+        // setAllComments(result)
+    }
+
+    //const { commentPop } = () => useQuery(["comment"], fetchAllComments)
 
     useEffect(() => {
         const getUsername = async () => {
@@ -35,9 +43,9 @@ function RenderComments({allComments}) {
     }, []
     )
 
-    // useEffect( () => {
-    //     getComments()
-    // }, [])
+    useEffect( () => {
+        getComments()
+    }, [])
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -58,6 +66,8 @@ function RenderComments({allComments}) {
 
 
     }
+
+    // console.log(props.comments)
 
     return (
         <VStack

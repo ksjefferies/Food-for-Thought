@@ -60,18 +60,10 @@ export function RecipeIdv() {
   })
   const handleFav = async () => {
     setIsFavorite(!isFavorite)
-<<<<<<< HEAD
-    
-=======
->>>>>>> 432d33a975e1a9f5c9fbdd4874ea98a78986b867
     if (isFavorite === true) {
       //save it to DB
       const userID = authUser.user._id
       const fav = id
-<<<<<<< HEAD
-      
-      
-=======
       const query = await fetch(`/api/user/${userID}/favorites`,{
           method: "post",
           body: JSON.stringify({
@@ -84,7 +76,6 @@ export function RecipeIdv() {
       const result = await query.json()
       console.log("Polish:" + result)
 
->>>>>>> 432d33a975e1a9f5c9fbdd4874ea98a78986b867
     } else {
       //or delete it from DB
     //   const userID = authUser.user._id
@@ -95,31 +86,6 @@ export function RecipeIdv() {
     //   }) 
     }
   }
-  
-  const fetchComments = async ( {queryKey} ) => {
-    const recipeId = queryKey[1] 
-    // make sure that it is pointing to your own API
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "text/plain");
-    
-    var raw = "{\r\n    \"commentBody\": \"Test\",\r\n}";
-    
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-    
-    return(await fetch("/api/comment/recipe/${recipeId}", requestOptions)).json()
-    
-  }
-  
-  const  comments  = useQuery({
-    queryKey: ["recipePage", id],
-    queryFn: fetchComments,
-    ...{ enabled: !!id }
-  })
 
   return (
     <PageContainer>
@@ -252,12 +218,6 @@ export function RecipeIdv() {
 
                 Directions
               </Text>
-<<<<<<< HEAD
-            ))}
-          </Box>
-        </Stack>
-        {comments.isSuccess && <RenderComments allComments={comments.data} />}
-=======
 
               {recipe?.data?.instructions.split("\n").map((line, index) => (
                 <Text
@@ -276,7 +236,6 @@ export function RecipeIdv() {
 
           {edamame?.data && <Link justifySelf={"flex-end"} color="blue.500" isExternal href={edamame?.data?.recipe?.url} target="_blank" >Source Link</Link>}
         </SimpleGrid>
->>>>>>> 432d33a975e1a9f5c9fbdd4874ea98a78986b867
       </Container>
     </PageContainer>
   )
