@@ -44,9 +44,7 @@ export function MyPage(props) {
   })
 
 
-  useEffect(() => {
-    getFavorites()
-  }, [])
+
 
   return (
     <PageContainer>

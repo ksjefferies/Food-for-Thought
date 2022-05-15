@@ -1,5 +1,4 @@
 import PageContainer from "../component/pageContainer/PageContainer";
-// import RenderComments from "../component/comments/Comment"
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { recipeByID, recipeByURL } from "../utils/recipeHelper";
@@ -55,32 +54,29 @@ export function RecipeIdv() {
     queryFn: recipeByURL,
     ...{ enabled: !!url }
   })
+
+  console.log(id)
   const handleFav = async () => {
     setIsFavorite(!isFavorite)
-    if (isFavorite === true) {
-      //save it to DB
+    if (isFavorite !== true) {
       const userID = authUser.user._id
-      const fav = id
       const query = await fetch(`/api/user/${userID}/favorites`,{
-          method: "post",
-          body: JSON.stringify({
-              favorite: fav
-      }),
-          headers:{
-            'Content-Type': 'application/json'
-          }
-      }) 
+          method: "POST",
+          body: JSON.stringify({ favorite: id}),
+          headers: { "Content-Type": "application/json" }
+    }) 
       const result = await query.json()
-      console.log("Polish:" + result)
+      console.log(result)
 
     } else {
-      //or delete it from DB
-    //   const userID = authUser.user._id
-    //   const fav = id
-    //   const query = await fetch(`/api/user/${userID}/favorites/fav`,{
-    //       method: "DELETE",
-    //       favorite: JSON.stringify(fav),
-    //   }) 
+      const userID = authUser.user._id
+      const query = await fetch(`/api/user/${userID}/favorites`,{
+          method: "DELETE",
+          body: JSON.stringify({ favorite: id }),
+          headers: { "Content-Type": "application/json" }
+      }) 
+      const result = await query.json()
+      console.log(result)
     }
   }
 
