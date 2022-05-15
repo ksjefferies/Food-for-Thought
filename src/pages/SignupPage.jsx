@@ -9,6 +9,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Textarea,
   InputGroup,
   HStack,
   InputRightElement,
@@ -18,10 +19,15 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Select,
 } from '@chakra-ui/react';
 
 const SignupPage = (props) => {
 
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [description, setDescription] = useState("")
+  const [skillLevel, setSkillLevel] = useState("")
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -35,6 +41,10 @@ const SignupPage = (props) => {
         method: "post",
         body: JSON.stringify(
           {
+            first: firstName,
+            last: lastName,
+            description: description,
+            skillLevel: skillLevel,
             username: username,
             email: email,
             password: password,
@@ -47,8 +57,8 @@ const SignupPage = (props) => {
     if (result && !result.err && result.data && result.data.token) {
       cookie.set("auth-token", result.data.token, { expires: 3 })
     }
-
     window.location.replace("/login")
+
   
   }
 
@@ -95,17 +105,40 @@ const SignupPage = (props) => {
                   <Box>
                     <FormControl id="firstName">
                       <FormLabel>First Name</FormLabel>
-                      <Input type="text" />
+                      <Input type="text"
+                      onChange={e => setFirstName(e.target.value)}
+                      value={firstName} />
                     </FormControl>
                   </Box>
 
                   <Box>
                     <FormControl id="lastName">
                       <FormLabel>Last Name</FormLabel>
-                      <Input type="text" />
+                      <Input type="text"
+                      onChange={e => setLastName(e.target.value)}
+                      value={lastName} />
                     </FormControl>
                   </Box>
                 </HStack>
+
+                <FormControl id="description">
+                  <FormLabel>Tell us about yourself</FormLabel>
+                  <Textarea
+                    value={description}
+                    onChange={e => setDescription(e.target.value)}
+                    type="text"
+                  />
+                </FormControl>
+                
+                <FormControl>
+                  <Select placeholder='Skill Level' 
+                  onChange={e => setSkillLevel(e.target.value)}
+                  type="skillLevel">
+                    <option value={skillLevel}>Beginner</option>
+                    <option value={skillLevel}>HomeMaker</option>
+                    <option value={skillLevel}>Gordon Ramsay</option>
+                  </Select>
+                </FormControl>
 
                 <FormControl id="username" isRequired>
                   <FormLabel>Username</FormLabel>

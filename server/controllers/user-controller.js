@@ -11,6 +11,10 @@ module.exports = {
     const password = await bcrypt.hash(body.password, salt)
 
     const userToInsert = {
+      first: body.first,
+      last: body.last,
+      description: body.description,
+      skillLevel: body.skillLevel,
       email: body.email,
       password: password,
       username: body.username,
