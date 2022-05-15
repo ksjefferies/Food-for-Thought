@@ -17,7 +17,6 @@ import {
     MenuDivider,
     useDisclosure,
     useColorModeValue,
-    Stack
 } from '@chakra-ui/react';
 
 const Links = [
@@ -25,6 +24,9 @@ const Links = [
         text: 'Home',
         href: '/'
     },
+];
+
+const AuthLinks = [
     {
         text: 'About',
         href: "/about"
@@ -37,15 +39,15 @@ const Links = [
         text: 'Profile',
         href: '/profile'
     }
-];
+]
 
 export default function Header() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const navigate = useNavigate();
     const authUser = useUser()
-    console.log(!!authUser.user)
+
     return (
-        <Box sx={{ position: 'fixed'}} width={'100%'} zIndex={'5'} 
+        <Box sx={{ position: 'fixed' }} width={'100%'} zIndex={'5'}
             bg={useColorModeValue('black', 'gray.900')} px={4}>
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
 
@@ -60,13 +62,18 @@ export default function Header() {
                     <Box>Logo</Box>
 
                     <HStack
-                    textColor={'white'}
+                        textColor={'white'}
                         as={'nav'}
                         spacing={4}
                         display={{ base: 'none', md: 'flex' }}>
-                        {Links.map((link) => (
-                            <NavLink href={link.href} key={link.text}>{link.text}</NavLink>
-                        ))}
+                        {!authUser.user
+                            ? Links.map((link) => (
+                                <NavLink href={link.href} key={link.text}>{link.text}</NavLink>
+                            ))
+                            : [...Links, ...AuthLinks].map((link) => (
+                                <NavLink href={link.href} key={link.text}>{link.text}</NavLink>
+                            ))
+                        }
                     </HStack>
 
                 </HStack>
