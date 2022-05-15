@@ -17,6 +17,6 @@ router.route('/verify').post(verifyUser);
 // /api/user/:userId/favorites/
 router.route('/:_id/favorites').post(addFavorite)
 // /api/user/:userId/favorites/favoriteID
-router.route('/:_id/favorites/:id').delete(deleteFavorite);
+router.route('/:_id/favorites').delete(deleteFavorite);
 
 module.exports = router;

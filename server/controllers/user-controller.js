@@ -109,7 +109,7 @@ module.exports = {
     async deleteFavorite({params, body}, res) {
       const user = User.findOneAndDelete(
         { _id: params._id },
-        { $pull: { favorites: params  }},
+        { $pull: { favorites: body.favorite  }},
       )
       if( !user ){
         return res.status(400).json({ message: 'No favorite found' });

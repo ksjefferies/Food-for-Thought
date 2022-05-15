@@ -45,10 +45,6 @@ const API = useQuery({
 })
 
 
-useEffect( () => {
-  getFavorites()
-}, [])
-
 
     return (
         <PageContainer>
