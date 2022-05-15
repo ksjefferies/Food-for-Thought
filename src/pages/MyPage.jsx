@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react';
 import { useUser } from "../utils/UserContext";
 import { RecipeCard } from "../component/recipeCard/RecipeCard";
-import { getUserById } from "../../../user-controller";
 
 
 export function MyPage(props) {
@@ -32,12 +31,9 @@ const getFavorites = async() => {
   setReadyToRender(true)
 }
 
-const getU
-
 console.log(favoriteList)
 
 useEffect( () => {
-  getUserId()
   getFavorites()
 }, [])
 
