@@ -43,10 +43,6 @@ export function MyPage(props) {
     enabled: !!favorites.data
   })
 
-  useEffect(() => {
-    getFavorites()
-  }, [])
-
   return (
     <PageContainer>
 
