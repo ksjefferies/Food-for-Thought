@@ -80,7 +80,7 @@ export function MyPage(props) {
               <Box
 
                 w={'full'}
-                bg={'#ececfb'}
+                bg={'white'}
                 boxShadow={'2xl'}
                 rounded={'lg'}
                 p={6}
