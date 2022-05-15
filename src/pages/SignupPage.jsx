@@ -23,14 +23,14 @@ import {
 } from '@chakra-ui/react';
 
 const SignupPage = (props) => {
-
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [description, setDescription] = useState("")
-  const [skillLevel, setSkillLevel] = useState("")
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  
+  const handleChange = (e) => {
+    setFormProps(prev => ({
+        ...prev,
+        [e.target.id]: e.target.value
+    }))
+}
+  const [ formProps, setFormProps ] = useState({})
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -39,18 +39,10 @@ const SignupPage = (props) => {
     const query = await fetch("/api/user",
       {
         method: "post",
-        body: JSON.stringify(
-          {
-            first: firstName,
-            last: lastName,
-            description: description,
-            skillLevel: skillLevel,
-            username: username,
-            email: email,
-            password: password,
-          }),
+        body: JSON.stringify(formProps),
         headers: { "Content-Type": "application/json" }
       })
+
 
     const result = await query.json()
 
@@ -103,67 +95,74 @@ const SignupPage = (props) => {
               <Stack spacing={4}>
                 <HStack>
                   <Box>
-                    <FormControl id="firstName">
+                    <FormControl >
                       <FormLabel>First Name</FormLabel>
-                      <Input type="text"
-                      onChange={e => setFirstName(e.target.value)}
-                      value={firstName} />
+                      <Input 
+                      id="first"
+                      type="text"
+                      onChange={handleChange}
+                      value={formProps?.first || ""} />
                     </FormControl>
                   </Box>
 
                   <Box>
-                    <FormControl id="lastName">
+                    <FormControl >
                       <FormLabel>Last Name</FormLabel>
                       <Input type="text"
-                      onChange={e => setLastName(e.target.value)}
-                      value={lastName} />
+                      onChange={handleChange}
+                      value={formProps?.last || ""} 
+                      id="last"/>
                     </FormControl>
                   </Box>
                 </HStack>
 
-                <FormControl id="description">
+                <FormControl>
                   <FormLabel>Tell us about yourself</FormLabel>
                   <Textarea
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
+                   id="description"
+                    value={formProps?.description || ""}
+                    onChange={handleChange}
                     type="text"
                   />
                 </FormControl>
                 
                 <FormControl>
                   <Select placeholder='Skill Level' 
-                  onChange={e => setSkillLevel(e.target.value)}
-                  type="skillLevel">
-                    <option value={skillLevel}>Beginner</option>
-                    <option value={skillLevel}>HomeMaker</option>
-                    <option value={skillLevel}>Gordon Ramsay</option>
+                  onChange={handleChange}
+                  id="skillLevel">
+                    <option>Beginner</option>
+                    <option>HomeMaker</option>
+                    <option>Gordon Ramsay</option>
                   </Select>
                 </FormControl>
 
-                <FormControl id="username" isRequired>
+                <FormControl  isRequired>
                   <FormLabel>Username</FormLabel>
                   <Input
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
+                  id="username"
+                    value={formProps?.username || ""}
+                    onChange={handleChange}
                     type="username"
                   />
                 </FormControl>
 
-                <FormControl id="email" isRequired>
+                <FormControl  isRequired>
                   <FormLabel>Email address</FormLabel>
                   <Input
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
+                  id="email"
+                    value={formProps?.email || ""}
+                    onChange={handleChange}
                     type="email"
                   />
                 </FormControl>
 
-                <FormControl id="password" isRequired>
+                <FormControl  isRequired>
                   <FormLabel>Password</FormLabel>
                   <InputGroup>
                     <Input 
-                      value={password} 
-                      onChange={e => setPassword(e.target.value)} 
+                    id="password"
+                      value={formProps?.password || ""} 
+                      onChange={handleChange}
                       type={showPassword ? 'text' : 'password'} 
                       />
                     <InputRightElement h={'full'}>
