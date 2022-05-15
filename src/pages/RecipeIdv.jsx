@@ -110,6 +110,7 @@ export function RecipeIdv() {
         my={50}
         align={"center"}
       >
+      
         <SimpleGrid
           maxW={800}
           bg={'#E2F0FF'}
@@ -117,8 +118,9 @@ export function RecipeIdv() {
           spacing={{ base: 8, md: 10 }}
           p={'5'}
 
-        >
-          <Skeleton isLoaded={recipe.isSuccess}>
+        >   
+         <Skeleton flex={1} isLoaded={recipe.isSuccess}>
+        
           <Stack spacing={{ base: 6, md: 2 }}>
             <HStack
               as={'header'}
@@ -218,7 +220,7 @@ export function RecipeIdv() {
               </Flex>
             </Flex>
           </Stack>
-          </Skeleton>
+        
           <Stack
             spacing={{ base: 1, sm: 6 }}
             mb={'20'}
@@ -258,8 +260,9 @@ export function RecipeIdv() {
           </Stack>
 
           {edamame?.data && <Link justifySelf={"flex-end"} color="blue.500" isExternal href={edamame?.data?.recipe?.url} target="_blank" >Source Link</Link>}
+          </Skeleton>
         </SimpleGrid>
-        
+     
       </Flex>
     </PageContainer>
   )
