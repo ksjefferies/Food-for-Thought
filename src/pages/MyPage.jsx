@@ -17,6 +17,7 @@ import { RecipeCard } from "../component/recipeCard/RecipeCard";
 import { useQuery } from 'react-query'
 import { recipeByID } from "../utils/recipeHelper";
 
+
 export function MyPage(props) {
 const authUser = useUser()
 const [ readyToRender, setReadyToRender ] = useState(false)
@@ -44,10 +45,9 @@ const API = useQuery({
 })
 
 
-console.log(favorites)
-
-
-
+useEffect( () => {
+  getFavorites()
+}, [])
 
 
     return (
