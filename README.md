@@ -16,7 +16,24 @@
 -----
 ## Description:
 
-Condimentum ullamcorper, curabitur luctus aenean donec ultrices iaculis varius pulvinar. Vulputate orci mi maecenas est vehicula nam consectetur? Ornare est venenatis imperdiet curae; facilisi non. Suspendisse pellentesque per nostra. Lectus senectus pellentesque feugiat facilisis praesent aptent leo justo nulla. Interdum ultrices ut tempus mus sagittis odio litora tempor. Fermentum mattis rutrum laoreet ornare augue? Mi cubilia vestibulum donec pulvinar auctor interdum vitae. Commodo porttitor commodo tempor tempor ultrices massa blandit enim turpis in. Ad curabitur vestibulum porttitor elementum diam.
+Recipe site for a user to login, and search for recipes.  Recipe searching has advanced seach filters that allow seaches for:
+- Diets:
+    * Low Sodium
+    * Low Card
+    * Low Protein
+    * Balanced
+    * High Fiber
+- Restrictions
+    * Peanut Free
+    * Kidney Friendly
+    * and many others...
+- Cuisine
+    * Italian
+    * Chinese
+    * French
+    * and many many others...
+
+Once the user selects the recipe, from the search results, it loads and formats onto a recipe page.  The individual page allows you to favorite the recipe, and also displays all nutrient information.
 
 -----
 ## Images:
@@ -39,13 +56,13 @@ Condimentum ullamcorper, curabitur luctus aenean donec ultrices iaculis varius p
 ## Authors:
 
 - [Kelly Jefferies](https://github.com/ksjefferies)
-- [Alyssa Rodriguez](https://github.com/AlyssaRodri)
 - [Victor Kennedy](https://github.com/Victorini1)
+- [Alyssa Rodriguez](https://github.com/AlyssaRodri)
 - [Stephen Elliott](https://github.com/UsernameisStephen)
 
 ## Contributors:
 
-- [Daniel Norred](https://github.com/MinisculeGirraffe)
+- Daniel Norred (Custom API for website recipe parsing)
 
 -----
 ## Technologies Used:
@@ -65,17 +82,3 @@ https://recipied.io/
 ## License:
 
 [![License](https://img.shields.io/badge/License-MIT%20License-Green)](http://choosealicense.com/licenses/mit/)
-
------
-## Source material used:
-
-
-https://chakra-templates.dev  
-https://chakra-ui.com  
-https://React-query.tanstack.com (guides and concepts)  
-https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams#examples (URLSearchParams)  
-https://Reactrouter.com  
-https://stackoverflow.com/questions/29312123/how-does-the-double-exclamation-work-in-javascript  
-https://stackoverflow.com/questions/31272207/to-call-onchange-event-after-pressing-enter-key  
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent (encodeURIComponent)
-https://github.com/monsterlessonsacademy/monsterlessonsacademy/blob/144-react-comments/src/comments/Comments.js
