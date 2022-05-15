@@ -13,7 +13,7 @@ export default function SearchBar() {
     }
 
     return (
-        <InputGroup>
+        <InputGroup display={{ base: "none", md: "inherit" }}>
             <InputRightElement
                 onClick={submitSearch}
                 _hover={{ cursor: 'pointer' }}

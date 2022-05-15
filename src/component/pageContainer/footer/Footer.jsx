@@ -22,8 +22,7 @@ export default function Footer() {
                 align={'center'}>
                 <Stack direction={'row'} spacing={6} textColor={'white'}>
                     <Link href={'/'}>Home</Link>
-                    {/* <Link href={'/about'}>About</Link>
-                    <Link href={'/mypage'}>My Page</Link> */}
+                    <Link href={'/about'}>About</Link>
                     <Link href={'/contact'} >Contact</Link>
                 </Stack>
             </Container>

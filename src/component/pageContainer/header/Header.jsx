@@ -17,20 +17,18 @@ import {
     MenuDivider,
     useDisclosure,
     useColorModeValue,
+    Link,
 } from '@chakra-ui/react';
 
 const Links = [
     {
-        text: 'Home',
-        href: '/'
+        text: 'About',
+        href: "/about"
     },
 ];
 
 const AuthLinks = [
-    {
-        text: 'About',
-        href: "/about"
-    },
+
     {
         text: 'My Favorites',
         href: '/mypage'
@@ -47,19 +45,46 @@ export default function Header() {
     const authUser = useUser()
 
     return (
-        <Box sx={{ position: 'fixed' }} width={'100%'} zIndex={'5'}
+        <Box sx={{ position: 'fixed' }} width={'100%'} h={"55"} zIndex={'5'}
             bg={useColorModeValue('black', 'gray.900')} px={4}>
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-                    <IconButton
-                        size={'sm'}
-                        icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+                <Menu isLazy>
+                    <MenuButton
+                        as={IconButton}
                         aria-label={'Open Menu'}
                         display={{ md: 'none' }}
                         onClick={isOpen ? onClose : onOpen}
-                    />
+                        icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}>
+                    </MenuButton>
+                    <MenuList>
+                        {!authUser.user
+                            ? Links.map((link) => (
+                                <MenuItem key={link.text}>
+                                    <Link href={link.href}>
+
+                                        {link.text}
+                                    </Link>
+                                </MenuItem>
+                            ))
+                            : [...Links, ...AuthLinks, , { text: 'Search', href: "/recipe" },].map((link) => (
+                                <MenuItem key={link.text}>
+                                    <Link href={link.href}>
+
+                                        {link.text}
+                                    </Link>
+                                </MenuItem>
+                            ))
+                        }
+                    </MenuList>
+                </Menu>
 
                 <HStack spacing={8} alignItems={'center'} textColor={'white'}>
-                    <Box>Logo</Box>
+                    <Box>
+                        <Link href='/'>
+                            Logo
+                        </Link>
+
+                    </Box>
 
                     <HStack
                         textColor={'white'}
@@ -81,7 +106,7 @@ export default function Header() {
                     <HStack
                         spacing={4}
                         flex={1}
-                        minW="md">
+                    >
                         <SearchBar />
                         {
                             !authUser.user
@@ -102,9 +127,7 @@ export default function Header() {
                                         minW={0}>
                                         <Avatar
                                             size={'sm'}
-                                            src={
-                                                'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                                            }
+
                                         />
                                     </MenuButton>
 
