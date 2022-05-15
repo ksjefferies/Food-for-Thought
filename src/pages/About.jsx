@@ -8,7 +8,7 @@ export function About() {
         <PageContainer>
 
             <Stack
-                bg={'#F1F3F0'}
+                bg={'#f6f6f6'}
                 py={16}
                 px={8}
                 spacing={{ base: 8, md: 10 }}

@@ -12,30 +12,42 @@ import {
     Textarea,
     useColorModeValue,
     VStack,
+    Image
 } from '@chakra-ui/react';
+import image from '../assets/images/image.jpeg'
 
 export function Contact() {
     return (
         <PageContainer>
 
             <Flex
-                bg={useColorModeValue('gray.100', 'gray.900')}
+                flex={1}
+
                 align="center"
                 justify="center"
-                id="contact">
+                id="contact"
+
+                wrap="no-wrap"
+                margin={10}
+            // px={8}
+            >
                 <Box
                     borderRadius="lg"
-                    m={{ base: 5, md: 16, lg: 10 }}
-                    p={{ base: 5, lg: 16 }}>
-                    <Box>
-                        <VStack spacing={{ base: 4, md: 8, lg: 20 }}>
-                            <Heading
-                                fontSize={{
-                                    base: '4xl',
-                                    md: '5xl',
-                                }}>
-                                Get in Touch
-                            </Heading>
+                >
+                    <Heading
+                        fontSize={{
+                            base: '4xl',
+                            md: '5xl',
+                        }}>
+                        Get in Touch
+                    </Heading>
+
+                    <Flex gap={10} align={{ base: "center", md: "flex-start" }} direction={{ base: "column-reverse", md: "row" }}>
+                        <Image
+                            boxSize='400px'
+                            objectFit='cover'
+                            src={image} />
+                        <VStack spacing={{ base: 4, }}>
 
                             <Box
                                 bg={useColorModeValue('white', 'gray.700')}
@@ -91,7 +103,7 @@ export function Contact() {
                             </Box>
 
                         </VStack>
-                    </Box>
+                    </Flex>
                 </Box>
             </Flex>
         </PageContainer>

@@ -104,8 +104,9 @@ export function Recipe() {
                     </AccordionItem>
                 </Accordion>
             </Flex>
-            <Skeleton flex={1} isLoaded={isSuccess}>
-            <SimpleGrid minChildWidth='240px' spacing='20px' margin='8'>
+
+            <Skeleton flex={1} mx={8} isLoaded={isSuccess}>
+            <SimpleGrid minChildWidth='240px' spacing='20px'>
                 {data?.hits.map(hit => (<RecipeCard {...hit.recipe} />))}
             </SimpleGrid>
             </Skeleton>

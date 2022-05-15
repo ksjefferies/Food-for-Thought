@@ -21,10 +21,7 @@ import {
 } from '@chakra-ui/react';
 
 const Links = [
-    {
-        text: 'About',
-        href: "/about"
-    },
+
 ];
 
 const AuthLinks = [
