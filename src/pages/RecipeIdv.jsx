@@ -1,5 +1,5 @@
 import PageContainer from "../component/pageContainer/PageContainer";
-import RenderComments from "../component/comments/Comment"
+// import RenderComments from "../component/comments/Comment"
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { recipeByID, recipeByURL } from "../utils/recipeHelper";
@@ -120,6 +120,7 @@ export function RecipeIdv() {
                   />
                 }>
                 <Box>
+
                   <Text
                     fontSize={{ base: '16px', lg: '18px' }}
                     color={useColorModeValue('black')}
@@ -129,7 +130,6 @@ export function RecipeIdv() {
                     mb={'4'}>
 
                     Ingredients
-
                   </Text>
                   <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
                     <UnorderedList w={'100%'}>
@@ -137,21 +137,23 @@ export function RecipeIdv() {
                       {recipe?.data?.ingredients.map((item, index) => (
                         <ListItem key={index}>{item}</ListItem>))
                       }
-
                     </UnorderedList>
                   </SimpleGrid>
+
                 </Box>
               </Stack>
 
               <Stack
                 spacing={{ base: 4, sm: 6 }}
                 direction={'column'}
+
                 divider={
                   <StackDivider
                     borderColor={useColorModeValue('black')}
                   />
                 }>
                 <Box>
+
                   <Text
                     fontSize={{ base: '16px', lg: '18px' }}
                     color={useColorModeValue('black')}
@@ -161,17 +163,17 @@ export function RecipeIdv() {
                     mb={'4'}>
 
                     Nutrients
-
                   </Text>
+
                   <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
                     <UnorderedList w={'100%'}>
 
                       {recipe?.data?.ingredients.map((item, index) => (
                         <ListItem key={index}>{item}</ListItem>))
                       }
-
                     </UnorderedList>
                   </SimpleGrid>
+
                 </Box>
               </Stack>
             </HStack>

@@ -12,6 +12,7 @@ export default function PageContainer({ children }) {
             <Box
                 flex={1}
                 flexGrow={1}
+                marginTop={"75"}
             >
                 {children}
             </Box>
