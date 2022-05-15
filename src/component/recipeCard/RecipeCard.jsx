@@ -12,7 +12,7 @@ import {
 export const RecipeCard = ({ label, image, dietLabels, uri }) => {
     const id = (uri.split("_"))[1]
     return (
-        <Center py={6}>
+        <Center maxW={300} py={6}>
             <Box
                 display={"flex"}
                 flexDirection="column"

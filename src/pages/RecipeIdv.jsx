@@ -33,7 +33,8 @@ import {
   Th,
   Td,
   TableContainer,
-  Link
+  Link,
+  Skeleton
 } from '@chakra-ui/react';
 
 export function RecipeIdv() {
@@ -60,21 +61,21 @@ export function RecipeIdv() {
     setIsFavorite(!isFavorite)
     if (isFavorite !== true) {
       const userID = authUser.user._id
-      const query = await fetch(`/api/user/${userID}/favorites`,{
-          method: "POST",
-          body: JSON.stringify({ favorite: id}),
-          headers: { "Content-Type": "application/json" }
-    }) 
+      const query = await fetch(`/api/user/${userID}/favorites`, {
+        method: "POST",
+        body: JSON.stringify({ favorite: id }),
+        headers: { "Content-Type": "application/json" }
+      })
       const result = await query.json()
       console.log(result)
 
     } else {
       const userID = authUser.user._id
-      const query = await fetch(`/api/user/${userID}/favorites`,{
-          method: "DELETE",
-          body: JSON.stringify({ favorite: id }),
-          headers: { "Content-Type": "application/json" }
-      }) 
+      const query = await fetch(`/api/user/${userID}/favorites`, {
+        method: "DELETE",
+        body: JSON.stringify({ favorite: id }),
+        headers: { "Content-Type": "application/json" }
+      })
       const result = await query.json()
       console.log(result)
     }
@@ -82,13 +83,21 @@ export function RecipeIdv() {
 
   return (
     <PageContainer>
-      <Container maxW={'3xl'} bg={'#E2F0FF'}>
+      <Flex
+        flex={1}
+        flexDir={"column"}
+        my={50}
+        align={"center"}
+      >
         <SimpleGrid
+          maxW={800}
+          bg={'#E2F0FF'}
           rows={{ base: 1, lg: 2 }}
           spacing={{ base: 8, md: 10 }}
-          py={'5'}
-          my={{ base: 15, md: 20 }}>
+          p={'5'}
 
+        >
+          <Skeleton isLoaded={recipe.isSuccess}>
           <Stack spacing={{ base: 6, md: 2 }}>
             <HStack
               as={'header'}
@@ -130,8 +139,7 @@ export function RecipeIdv() {
                   src={recipe?.data?.image}
                   fit={'cover'}
                   align={'center'}
-                  w={'50%'}
-                  h={{ base: '50%', sm: '400px', lg: '500px' }}
+
                 />
               }
             </Flex>
@@ -189,6 +197,7 @@ export function RecipeIdv() {
               </Flex>
             </Flex>
           </Stack>
+          </Skeleton>
           <Stack
             spacing={{ base: 1, sm: 6 }}
             mb={'20'}
@@ -229,7 +238,8 @@ export function RecipeIdv() {
 
           {edamame?.data && <Link justifySelf={"flex-end"} color="blue.500" isExternal href={edamame?.data?.recipe?.url} target="_blank" >Source Link</Link>}
         </SimpleGrid>
-      </Container>
+        
+      </Flex>
     </PageContainer>
   )
 }

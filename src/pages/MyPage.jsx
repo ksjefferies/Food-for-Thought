@@ -1,5 +1,6 @@
 import PageContainer from "../component/pageContainer/PageContainer";
 import React from "react";
+import PropTypes from "prop-types"
 import { useEffect, useState } from "react";
 import { useQuery } from 'react-query'
 import { useUser } from "../utils/UserContext";
@@ -13,6 +14,8 @@ import {
   useBreakpointValue,
   Heading,
   Flex,
+  Box,
+  Button
 } from '@chakra-ui/react';
 
 export function MyPage(props) {
@@ -44,81 +47,90 @@ export function MyPage(props) {
   })
 
   return (
+
     <PageContainer>
-
       <Flex
-        minH={'35vh'}
-        direction={{ base: 'column-reverse', md: 'row' }}
-        mx={30}>
+      direction={"column"}
+      >
 
-        <Flex
-          flex={1}
-          align={'center'}
-          justify={'center'}>
+  
+      <Flex
+        align="center"
+        justify={
+          {
+            base: "center",
+            md: "space-around",
+            xl: "space-between"
+          }
+        }
+        direction={{ base: "column-reverse", md: "row" }}
+        wrap="no-wrap"
+        minH="70vh"
+        margin={10}
+        px={8}
+        // mr={14}
+        // mt={10}
+        // mb={10}
+        >
 
-          <Stack
-            spacing={6}
-            w={'full'}
-            maxW={'lg'}>
+        <Stack
+          spacing={4}
+          w={{ base: "80%", md: "40%" }}
+          align={["center", "center", "flex-start", "flex-start"]}>
 
-            <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: useBreakpointValue({ base: '20%', md: '30%' }),
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  zIndex: -1,
+          <Heading
+            as="h2"
+            size="med"
+            fontWeight="bold"
+            color="primary.800"
+            textAlign={["center", "center", "left", "left"]}>
 
-                }}>
-              </Text>
-              <br />{' '}
+            <Text color={'#00CECB'} as={'span'}>
+              Favorites
+            </Text>{' '}
+          </Heading>
 
-              <Text color={'#00CECB'} as={'span'}>
-                Favorites
-              </Text>{' '}
-            </Heading>
+          <Text
+            fontSize={{ base: 'md', lg: 'lg' }}
+            color={'gray.500'}>
+            Any recipes you've favorited will show up below!
+          </Text>
 
-            <Text
-              fontSize={{ base: 'md', lg: 'lg' }}
-              color={'gray.500'}>
-              Any recipes you've favorited will show up below!
-            </Text>
-          </Stack>
-        </Flex>
+          <Heading
+            as="h2"
+            size="md"
+            color="primary.800"
+            opacity="0.8"
+            fontWeight="normal"
+            lineHeight={1.5}
+            textAlign={["center", "center", "left", "left"]}>
+          </Heading>
+        </Stack>
 
-        <Flex
-          align="center"
-          justify={
-            {
-              base: "center",
-              md: "space-around",
-              xl: "space-between"
-            }
-
-          } flex={0.9}>
+        <Box
+          w={{ base: "100%", sm: "75%", md: "75%" }}
+          mb={{ base: 5, md: 0 }}>
 
           <Image
-            borderRadius={5}
-            alt={'Login Image'}
             src={
-              'https://source.unsplash.com/1600x900/?healthy-food'
-            }
+              'https://source.unsplash.com/1600x900/?healthy-food'}
+            size="100%"
+            rounded="1rem"
+            shadow="2xl"
           />
-        </Flex>
+        </Box>
       </Flex>
+
       {API.isSuccess && (
         <SimpleGrid
-          minChildWidth='240px'
           spacing='20px'
           margin='8'>
+
           {API.data.map((item, index) => (<RecipeCard key={index} {...item.recipe} />))}
+
         </SimpleGrid>
       )}
+          </Flex>
     </PageContainer>
   )
 }

@@ -10,9 +10,10 @@ export default function PageContainer({ children }) {
             width={"full"}>
             <Header />
             <Box
+            display={"flex"}
                 flex={1}
                 flexGrow={1}
-                marginTop={"75"}
+                marginTop={"55"}
             >
                 {children}
             </Box>
