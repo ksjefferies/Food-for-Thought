@@ -1,4 +1,4 @@
-import { Image, Box, Flex, Stack, Heading, Button } from '@chakra-ui/react'
+import { Image, Box, Flex, Stack, Heading, Button, Text } from '@chakra-ui/react'
 import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
 import PageContainer from "../component/pageContainer/PageContainer";
@@ -39,13 +39,13 @@ export function Landing({ title,
                     align={["center", "center", "flex-start", "flex-start"]}
                 >
                     <Heading
-                        as="h1"
-                        size="xl"
+                        as="h2"
+                        size="med"
                         fontWeight="bold"
                         color="primary.800"
                         textAlign={["center", "center", "left", "left"]}
                     >
-                        {title}
+                       <Text as='i'>{title}</Text>
                     </Heading>
 
                     <Heading
@@ -57,10 +57,10 @@ export function Landing({ title,
                         lineHeight={1.5}
                         textAlign={["center", "center", "left", "left"]}
                     >
-                        {subtitle}
-                        {authUser.user !== null && (<p>Does this work</p>)}
+                        {/* {subtitle} */}
+                        {/* {authUser.user !== null && (<p>Does this work</p>)} */}
                     </Heading>
-                    {!authUser.user &&  <Link to={ctaLink}>
+                    {!authUser.user && <Link to={ctaLink}>
                         <Button
                             colorScheme="teal"
                             borderRadius="8px"
@@ -71,8 +71,8 @@ export function Landing({ title,
                         >
                             {ctaText}
                         </Button>
-                    </Link> }
-                   
+                    </Link>}
+
                 </Stack>
                 <Box
                     w={{ base: "80%", sm: "60%", md: "50%" }}
@@ -98,7 +98,7 @@ Landing.propTypes = {
 }
 
 Landing.defaultProps = {
-    title: "This is our recipe App",
+    title: "Always remember: If you’re alone in the kitchen and you drop the lamb, you can always just pick it up. Who’s going to know? - Julia Child",
     subtitle: "This is the description of our website.",
     ctaText: "Create your account now",
     ctaLink: "/signup",
