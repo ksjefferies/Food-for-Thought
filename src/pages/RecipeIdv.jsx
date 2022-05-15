@@ -36,17 +36,42 @@ export function RecipeIdv() {
   const authUser = useUser()
   const handleFav = async () => {
     setIsFavorite(!isFavorite)
-  
+    
     if (isFavorite === true) {
       //save it to DB
       const userID = authUser.user._id
       const fav = id
       
-
+      
     } else {
       //or delete it from DB
     }
   }
+  
+  const fetchComments = async ( {queryKey} ) => {
+    const recipeId = queryKey[1] 
+    // make sure that it is pointing to your own API
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "text/plain");
+    
+    var raw = "{\r\n    \"commentBody\": \"Test\",\r\n}";
+    
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    
+    return(await fetch("/api/comment/recipe/${recipeId}", requestOptions)).json()
+    
+  }
+  
+  const  comments  = useQuery({
+    queryKey: ["recipePage", id],
+    queryFn: fetchComments,
+    ...{ enabled: !!id }
+  })
 
   const [isFavorite, setIsFavorite] = useState(false);
   return (
@@ -162,6 +187,7 @@ export function RecipeIdv() {
             ))}
           </Box>
         </Stack>
+        {comments.isSuccess && <RenderComments allComments={comments.data} />}
       </Container>
     </PageContainer>
   )
