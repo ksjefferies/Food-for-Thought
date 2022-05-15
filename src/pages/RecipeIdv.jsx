@@ -21,8 +21,24 @@ import {
   useColorModeValue,
   ListItem,
   UnorderedList,
-  HStack
+  HStack,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+  Link
 } from '@chakra-ui/react';
+
 
 export function RecipeIdv() {
   const { id } = useParams();
@@ -127,113 +143,99 @@ export function RecipeIdv() {
               }
             </Flex>
 
-            <HStack gap={'30'}>
-              <Stack
-                spacing={{ base: 4, sm: 6 }}
-                direction={'column'}
-                divider={
-                  <StackDivider
-                    borderColor={useColorModeValue('gray.200', 'gray.600')}
-                  />
-                }>
-                <Box>
-
-                  <Text
-                    fontSize={{ base: '16px', lg: '18px' }}
-                    color={useColorModeValue('black')}
-                    fontWeight={'500'}
-                    textDecoration={'underline'}
-                    textTransform={'uppercase'}
-                    mb={'4'}>
-
-                    Ingredients
-                  </Text>
-                  <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
-                    <UnorderedList w={'100%'}>
-
-                      {recipe?.data?.ingredients.map((item, index) => (
-                        <ListItem key={index}>{item}</ListItem>))
-                      }
-                    </UnorderedList>
-                  </SimpleGrid>
-
-                </Box>
-              </Stack>
-
-              <Stack
-                spacing={{ base: 4, sm: 6 }}
-                direction={'column'}
-
-                divider={
-                  <StackDivider
-                    borderColor={useColorModeValue('black')}
-                  />
-                }>
-                <Box>
-
-                  <Text
-                    fontSize={{ base: '16px', lg: '18px' }}
-                    color={useColorModeValue('black')}
-                    fontWeight={'500'}
-                    textDecoration={'underline'}
-                    textTransform={'uppercase'}
-                    mb={'4'}>
-
-                    Nutrients
-                  </Text>
-
-                  <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
-                    <UnorderedList w={'100%'}>
-
-                      {recipe?.data?.ingredients.map((item, index) => (
-                        <ListItem key={index}>{item}</ListItem>))
-                      }
-                    </UnorderedList>
-                  </SimpleGrid>
-
-                </Box>
-              </Stack>
-            </HStack>
+            <Accordion allowToggle >
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box flex='1' textAlign='left'>
+                      Nutrition Info
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                  <AccordionPanel>
+                    <TableContainer>
+                      <Table>
+                        <Thead>
+                          <Th textDecoration={"underline"}>Nutrient</Th>
+                          <Th textDecoration={"underline"} isNumeric>Amount</Th>
+                          <Th textDecoration={"underline"}>Unit</Th>
+                        </Thead>
+                        <Tbody>
+                          {edamame.data && Object.values(edamame?.data?.recipe?.totalNutrients).map((item, index) => (
+                            <Tr>
+                              <Td>{item.label}</Td>
+                              <Td isNumeric>{parseFloat(item.quantity).toFixed(2)}</Td>
+                              <Td>{item.unit}</Td>
+                            </Tr>
+                          ))}
+                        </Tbody>
+                      </Table>
+                    </TableContainer>
+                  </AccordionPanel>
+                </h2>
+              </AccordionItem>
+            </Accordion>
+            <Flex justify={"flex-start"} align={"flex-start"}>
+              <Flex direction={'column'} >
+                <Text
+                  fontSize={{ base: '16px', lg: '18px' }}
+                  color={useColorModeValue('black')}
+                  fontWeight={'500'}
+                  textDecoration={'underline'}
+                  textTransform={'uppercase'}
+                  mb={'4'}>
+                  Ingredients
+                </Text>
+                <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
+                  <UnorderedList w={'100%'}>
+                    {recipe?.data?.ingredients.map((item, index) => (
+                      <ListItem key={index}>{item}</ListItem>))
+                    }
+                  </UnorderedList>
+                </SimpleGrid>
+              </Flex>
+            </Flex>
           </Stack>
-        </SimpleGrid>
+          <Stack
+            spacing={{ base: 1, sm: 6 }}
+            mb={'20'}
+            direction={'row'}
+            divider={
+              <StackDivider
+                borderColor={useColorModeValue('gray.200', 'gray.600')}
+              />
+            }>
 
-        <Stack
-          spacing={{ base: 1, sm: 6 }}
-          mb={'20'}
-          direction={'row'}
-          divider={
-            <StackDivider
-              borderColor={useColorModeValue('gray.200', 'gray.600')}
-            />
-          }>
-
-          <Box>
-            <Text
-              fontSize={{ base: '16px', lg: '18px' }}
-              color={useColorModeValue('black')}
-              fontWeight={'500'}
-              textDecoration={'underline'}
-              textTransform={'uppercase'}
-              mb={'3'}
-              pt={{ base: 15, md: 1 }}>
-
-              Directions
-            </Text>
-
-            {recipe?.data?.instructions.split("\n").map((line, index) => (
+            <Box>
               <Text
-                key={index}
-                // fontSize={{ base: 'xl', md: '2xl' }}
-                textAlign={'left'}
-                maxW={'6xl'}
-                mb={'5'}>
+                fontSize={{ base: '16px', lg: '18px' }}
+                color={useColorModeValue('black')}
+                fontWeight={'500'}
+                textDecoration={'underline'}
+                textTransform={'uppercase'}
+                mb={'3'}
+                pt={{ base: 15, md: 1 }}>
 
-                {line}
+                Directions
+              </Text>
 
-              </Text>))
-            }
-          </Box>
-        </Stack>
+              {recipe?.data?.instructions.split("\n").map((line, index) => (
+                <Text
+                  key={index}
+                  // fontSize={{ base: 'xl', md: '2xl' }}
+                  textAlign={'left'}
+                  maxW={'6xl'}
+                  mb={'5'}>
+
+                  {line}
+
+                </Text>))
+              }
+            </Box>
+          </Stack>
+
+          {edamame?.data && <Link justifySelf={"flex-end"} color="blue.500" isExternal href={edamame?.data?.recipe?.url} target="_blank" >Source Link</Link>}
+        </SimpleGrid>
       </Container>
     </PageContainer>
   )
