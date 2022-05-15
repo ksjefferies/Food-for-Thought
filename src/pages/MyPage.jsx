@@ -67,9 +67,6 @@ export function MyPage(props) {
           minH="70vh"
           margin={10}
           px={8}
-        // mr={14}
-        // mt={10}
-        // mb={10}
         >
 
           <Stack
@@ -152,13 +149,12 @@ export function MyPage(props) {
 
 
         {API.isSuccess && (
-          <SimpleGrid
-            spacing='20px'
+          <Flex gap={20}
             margin='8'>
 
             {API.data.map((item, index) => (<RecipeCard key={index} {...item.recipe} />))}
 
-          </SimpleGrid>
+          </Flex>
         )}
       </Flex>
     </PageContainer>
