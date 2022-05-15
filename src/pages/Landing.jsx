@@ -100,7 +100,7 @@ Landing.propTypes = {
 
 Landing.defaultProps = {
     title: "Always remember: If you’re alone in the kitchen and you drop the lamb, you can always just pick it up. Who’s going to know? - Julia Child",
-    subtitle: "This is the description of our website.",
+    // subtitle: "This is the description of our website.",
     ctaText: "Create your account now",
     ctaLink: "/signup",
 }
