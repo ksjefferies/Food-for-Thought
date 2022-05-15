@@ -45,7 +45,7 @@ export function Landing({ title,
                         color="primary.800"
                         textAlign={["center", "center", "left", "left"]}
                     >
-                       <Text as='i'>{title}</Text>
+                       <Text as='i'>"{title}"</Text>
                     </Heading>
 
                     <Heading

@@ -30,15 +30,12 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
   Link
 } from '@chakra-ui/react';
-
 
 export function RecipeIdv() {
   const { id } = useParams();

@@ -17,7 +17,6 @@ import {
     MenuDivider,
     useDisclosure,
     useColorModeValue,
-    Stack
 } from '@chakra-ui/react';
 
 const Links = [
@@ -25,8 +24,8 @@ const Links = [
         text: 'Home',
         href: '/'
     },
-
 ];
+
 const AuthLinks = [
     {
         text: 'About',
@@ -47,7 +46,6 @@ export default function Header() {
     const navigate = useNavigate();
     const authUser = useUser()
 
-    console.log(!authUser.user)
     return (
         <Box sx={{ position: 'fixed' }} width={'100%'} zIndex={'5'}
             bg={useColorModeValue('black', 'gray.900')} px={4}>
