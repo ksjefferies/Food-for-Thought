@@ -60,7 +60,7 @@ export function Landing({ title,
                         {subtitle}
                         {authUser.user !== null && (<p>Does this work</p>)}
                     </Heading>
-                    <Link to={ctaLink}>
+                    {!authUser.user &&  <Link to={ctaLink}>
                         <Button
                             colorScheme="teal"
                             borderRadius="8px"
@@ -71,7 +71,8 @@ export function Landing({ title,
                         >
                             {ctaText}
                         </Button>
-                    </Link>
+                    </Link> }
+                   
                 </Stack>
                 <Box
                     w={{ base: "80%", sm: "60%", md: "50%" }}

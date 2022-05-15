@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import PageContainer from "../component/pageContainer/PageContainer";
 import { 
     Stack, 
@@ -11,9 +12,44 @@ import {
     Button,
     Flex,
 } from '@chakra-ui/react';
+import { useUser } from "../utils/UserContext";
 import { RecipeCard } from "../component/recipeCard/RecipeCard";
+import { useQuery } from 'react-query'
+import { recipeByID } from "../utils/recipeHelper";
+
 
 export function MyPage(props) {
+const authUser = useUser()
+const [ readyToRender, setReadyToRender ] = useState(false)
+const [ favoriteList, setFavoriteList ] = useState([])
+
+const getFavorites = async() => {
+  const userID = authUser.user._id
+  const query = await fetch(`/api/user/${userID}`)
+  return query.json()
+}
+const getAllFavorites = async ({ queryKey }) => {
+ const data = queryKey[1]
+ return Promise.all(data.favorites.map(item => recipeByID({id: item})))
+}
+const favorites = useQuery({
+  queryKey: ["favoriteList", authUser.user],
+  queryFn: getFavorites,
+  enabled: !!authUser.user
+})
+
+const API = useQuery({
+  queryKey: ["favoriteList", favorites.data],
+  queryFn: getAllFavorites,
+  enabled: !!favorites.data
+})
+
+
+useEffect( () => {
+  getFavorites()
+}, [])
+
+
     return (
         <PageContainer>
 
@@ -32,8 +68,9 @@ export function MyPage(props) {
                 bottom: 1,
                 left: 0,
                 zIndex: -1,
+                
               }}>
-              Username's
+            
             </Text>
             <br />{' '}
             <Text color={'#00CECB'} as={'span'}>
@@ -55,10 +92,11 @@ export function MyPage(props) {
         />
       </Flex>
     </Stack>
-        <Container>
-        <RecipeCard></RecipeCard>
-        </Container>
-
-        </PageContainer>
+   {API.isSuccess &&(
+      <SimpleGrid minChildWidth='240px' spacing='20px' margin='8'>
+        {API.data.map(( item, index ) =>  ( <RecipeCard key={index} {...item.recipe }/>))}
+      </SimpleGrid>
+    )}
+    </PageContainer>
     )
 }

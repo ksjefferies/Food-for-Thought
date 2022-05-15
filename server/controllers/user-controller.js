@@ -94,10 +94,10 @@ module.exports = {
     return res.status(200).json({ _id: user._id, email: user.email })
   },
 // add favorite to favorite list
-  async addFavorite({params}, res){
-    const user = await User.findByIdAndUpdate(
+  async addFavorite({params, body}, res){
+    const user = await User.findOneAndUpdate(
       {_id: params._id,},
-      { $addToSet: { favorite: favorite }})
+      { $addToSet: { favorites: body.favorite }})
       if( !user ){
         return res.status(400).json({ message: 'No users found' });
       }   
@@ -105,11 +105,11 @@ module.exports = {
     },
 
   
-    // delete favorite to favorite list
-    async deleteFavorite({params}, res) {
+    // delete favorite from favorite list
+    async deleteFavorite({params, body}, res) {
       const user = User.findOneAndDelete(
         { _id: params._id },
-        { $pull: { favorites: {id: id } }},
+        { $pull: { favorites: params  }},
       )
       if( !user ){
         return res.status(400).json({ message: 'No favorite found' });

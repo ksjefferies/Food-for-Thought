@@ -8,20 +8,26 @@ const apiParams = {
 }
 
 export async function recipeBySearch({ queryKey }) {
-    let params = new URLSearchParams({ ...apiParams, ...{ q: queryKey[1] } })
+    //Remove nullish keys from the object
+    let searchParams = queryKey[1].filter(e => e[1] ?? false)
+    searchParams = Object.fromEntries(searchParams)
+
+    let params = new URLSearchParams({ ...apiParams, ...searchParams })
     let res = await fetch(`${url}?${params.toString()}`)
     return res.json()
 }
-export async function recipeByID({ queryKey }) {
+export async function recipeByID({ queryKey, id }) {
     let params = new URLSearchParams(apiParams)
-    let res = await fetch(`${url}/${queryKey[1]}?${params.toString()}`)
-    const ridData = await res.json();
+    let res = await fetch(`${url}/${ id ?? queryKey[1]  }?${params.toString()}`)
+    return res.json();
+}
 
+export async function recipeByURL({ queryKey }) {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-        "url": ridData.recipe.url
+        "url": queryKey[1]
     });
 
     const requestOptions = {
