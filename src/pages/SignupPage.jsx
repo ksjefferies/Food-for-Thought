@@ -59,6 +59,7 @@ const SignupPage = (props) => {
     <PageContainer>
       <Flex
         minH={'100%'}
+        w={'100%'}
         align={'center'}
         justify={'center'}
         bg={useColorModeValue('gray.50', 'gray.800')}>

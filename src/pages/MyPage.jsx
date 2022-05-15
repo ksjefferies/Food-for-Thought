@@ -15,7 +15,10 @@ import {
   Heading,
   Flex,
   Box,
-  Button
+  Button,
+  Center,
+  Avatar,
+  Container
 } from '@chakra-ui/react';
 
 export function MyPage(props) {
@@ -50,83 +53,114 @@ export function MyPage(props) {
 
     <PageContainer>
       <Flex direction={"column"} >
-      <Flex
-        align="center"
-        justify={
-          {
-            base: "center",
-            md: "space-around",
-            xl: "space-between"
+        <Flex
+          align="center"
+          justify={
+            {
+              base: "center",
+              md: "space-around",
+              xl: "space-between"
+            }
           }
-        }
-        direction={{ base: "column-reverse", md: "row" }}
-        wrap="no-wrap"
-        minH="70vh"
-        margin={10}
-        px={8}
+          direction={{ base: "column-reverse", md: "row" }}
+          wrap="no-wrap"
+          minH="70vh"
+          margin={10}
+          px={8}
         // mr={14}
         // mt={10}
         // mb={10}
         >
 
-        <Stack
-          spacing={4}
-          w={{ base: "80%", md: "40%" }}
-          align={["center", "center", "flex-start", "flex-start"]}>
+          <Stack
+            spacing={4}
+            w={{ base: "80%", md: "40%" }}
+            align={["center", "center", "flex-start", "flex-start"]}>
 
-          <Heading
-            as="h2"
-            size="med"
-            fontWeight="bold"
-            color="primary.800"
-            textAlign={["center", "center", "left", "left"]}>
+            <Center py={6}
+              w={'90%'}>
 
-            <Text color={'#00CECB'} as={'span'}>
-            {favorites?.data?.username}'s Favorites
-            </Text>{' '}
-          </Heading>
+              <Box
 
-          <Text
-            fontSize={{ base: 'md', lg: 'lg' }}
-            color={'gray.500'}>
-            Any recipes you've favorited will show up below!
-          </Text>
+                w={'full'}
+                bg={'#ececfb'}
+                boxShadow={'2xl'}
+                rounded={'lg'}
+                p={6}
+                textAlign={'center'}>
+                <Avatar
+                  size={'2xl'}
+                  src={
+                    'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+                  }
+                  alt={'Avatar Alt'}
+                  mb={4}
 
-          <Heading
-            as="h2"
-            size="md"
-            color="primary.800"
-            opacity="0.8"
-            fontWeight="normal"
-            lineHeight={1.5}
-            textAlign={["center", "center", "left", "left"]}>
-          </Heading>
-        </Stack>
+                />
+                <Heading fontSize={'3xl'} fontFamily={'body'}>
+                  {favorites?.data?.username}
+                </Heading>
+                <Text fontSize={'xl'} fontWeight={600} color={'gray.500'} mb={4}>
+                  {favorites?.data?.first} {favorites?.data?.last}
+                </Text>
+                <Text
+                  textAlign={'center'}
+                  color={'#334242'}
+                  px={3}>
+                  Cooking Experience: {favorites?.data?.skillLevel}
+                </Text>
+                <Text
+                  textAlign={'center'}
+                  color={'#334242'}
+                  px={3}>
+                  Bio: {favorites?.data?.description}
+                </Text>
 
-        <Box
-          w={{ base: "100%", sm: "75%", md: "75%" }}
-          mb={{ base: 5, md: 0 }}>
+              </Box>
+            </Center>
 
-          <Image
-            src={
-              'https://source.unsplash.com/1600x900/?healthy-food'}
-            size="100%"
-            rounded="1rem"
-            shadow="2xl"
-          />
-        </Box>
+            <Heading
+              as="h2"
+              size="md"
+              color="primary.800"
+              opacity="0.8"
+              fontWeight="normal"
+              lineHeight={1.5}
+              textAlign={["center", "center", "left", "left"]}>
+            </Heading>
+          </Stack>
+
+          <Box
+            w={{ base: "100%", sm: "75%", md: "75%" }}
+            mb={{ base: 5, md: 0 }}>
+
+            <Image
+              src={
+                'https://source.unsplash.com/1600x900/?healthy-food'}
+              size="100%"
+              rounded="1rem"
+              shadow="2xl"
+            />
+          </Box>
+        </Flex>
+                <Container display={'flex'} justifyContent={'center'} >
+                <Text color={'#00CECB'} fontWeight={800} fontSize={'3xl'}>
+                 Favorite List
+                </Text>
+            
+                </Container>
+
+
+        {API.isSuccess && (
+          <SimpleGrid
+            spacing='20px'
+            margin='8'>
+
+            {API.data.map((item, index) => (<RecipeCard key={index} {...item.recipe} />))}
+
+          </SimpleGrid>
+        )}
       </Flex>
-
-      {API.isSuccess && (
-        <SimpleGrid
-          spacing='20px'
-          margin='8'>
-
-          {API.data.map((item, index) => (<RecipeCard key={index} {...item.recipe} />))}
-
-        </SimpleGrid>
-      )}
-          </Flex>
     </PageContainer>
   )
 }
