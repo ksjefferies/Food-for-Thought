@@ -16,9 +16,9 @@ export async function recipeBySearch({ queryKey }) {
     let res = await fetch(`${url}?${params.toString()}`)
     return res.json()
 }
-export async function recipeByID({ queryKey }) {
+export async function recipeByID({ queryKey, id }) {
     let params = new URLSearchParams(apiParams)
-    let res = await fetch(`${url}/${queryKey[1]}?${params.toString()}`)
+    let res = await fetch(`${url}/${ id ?? queryKey[1]  }?${params.toString()}`)
     return res.json();
 }
 
