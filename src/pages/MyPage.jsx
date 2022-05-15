@@ -1,6 +1,10 @@
+import PageContainer from "../component/pageContainer/PageContainer";
 import React from "react";
 import { useEffect, useState } from "react";
-import PageContainer from "../component/pageContainer/PageContainer";
+import { useQuery } from 'react-query'
+import { useUser } from "../utils/UserContext";
+import { RecipeCard } from "../component/recipeCard/RecipeCard";
+import { recipeByID } from "../utils/recipeHelper";
 import {
   Stack,
   Text,
@@ -9,13 +13,7 @@ import {
   useBreakpointValue,
   Heading,
   Flex,
-  Box
 } from '@chakra-ui/react';
-import { useUser } from "../utils/UserContext";
-import { RecipeCard } from "../component/recipeCard/RecipeCard";
-import { useQuery } from 'react-query'
-import { recipeByID } from "../utils/recipeHelper";
-
 
 export function MyPage(props) {
   const authUser = useUser()
@@ -25,10 +23,12 @@ export function MyPage(props) {
   const getFavorites = async () => {
     const userID = authUser.user._id
     const query = await fetch(`/api/user/${userID}`)
+
     return query.json()
   }
   const getAllFavorites = async ({ queryKey }) => {
     const data = queryKey[1]
+
     return Promise.all(data.favorites.map(item => recipeByID({ id: item })))
   }
   const favorites = useQuery({
@@ -43,24 +43,24 @@ export function MyPage(props) {
     enabled: !!favorites.data
   })
 
-
-
-
   return (
     <PageContainer>
 
       <Flex
         minH={'35vh'}
         direction={{ base: 'column-reverse', md: 'row' }}
-        mx={30}
-        
-      >
+        mx={30}>
+
         <Flex
           flex={1}
           align={'center'}
           justify={'center'}>
+
           <Stack
-            spacing={6} w={'full'} maxW={'lg'}>
+            spacing={6}
+            w={'full'}
+            maxW={'lg'}>
+
             <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
               <Text
                 as={'span'}
@@ -77,10 +77,12 @@ export function MyPage(props) {
                 }}>
               </Text>
               <br />{' '}
+
               <Text color={'#00CECB'} as={'span'}>
                 Favorites
               </Text>{' '}
             </Heading>
+
             <Text
               fontSize={{ base: 'md', lg: 'lg' }}
               color={'gray.500'}>
@@ -97,19 +99,17 @@ export function MyPage(props) {
               md: "space-around",
               xl: "space-between"
             }
-    
+
           } flex={0.9}>
 
           <Image
-          borderRadius={5}
+            borderRadius={5}
             alt={'Login Image'}
             src={
               'https://source.unsplash.com/1600x900/?healthy-food'
             }
           />
         </Flex>
-
-
       </Flex>
       {API.isSuccess && (
         <SimpleGrid

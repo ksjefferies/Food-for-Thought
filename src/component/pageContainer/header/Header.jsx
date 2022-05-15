@@ -50,14 +50,14 @@ export default function Header() {
         <Box sx={{ position: 'fixed' }} width={'100%'} zIndex={'5'}
             bg={useColorModeValue('black', 'gray.900')} px={4}>
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+                    <IconButton
+                        size={'sm'}
+                        icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+                        aria-label={'Open Menu'}
+                        display={{ md: 'none' }}
+                        onClick={isOpen ? onClose : onOpen}
+                    />
 
-                <IconButton
-                    size={'md'}
-                    icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-                    aria-label={'Open Menu'}
-                    display={{ md: 'none' }}
-                    onClick={isOpen ? onClose : onOpen}
-                />
                 <HStack spacing={8} alignItems={'center'} textColor={'white'}>
                     <Box>Logo</Box>
 
