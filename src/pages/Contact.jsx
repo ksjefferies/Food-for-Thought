@@ -26,28 +26,26 @@ export function Contact() {
                 align="center"
                 justify="center"
                 id="contact"
-
+             
                 wrap="no-wrap"
                 margin={10}
             // px={8}
             >
                 <Box
                     borderRadius="lg"
+                // m={{ base: 5, md: 16, lg: 10 }}
+                // p={{ base: 5, lg: 16 }}
                 >
-                    <Heading
-                        fontSize={{
-                            base: '4xl',
-                            md: '5xl',
-                        }}>
-                        Get in Touch
-                    </Heading>
-
-                    <Flex gap={10} align={{ base: "center", md: "flex-start" }} direction={{ base: "column-reverse", md: "row" }}>
-                        <Image
-                            boxSize='400px'
-                            objectFit='cover'
-                            src={image} />
+                    <Flex  gap={10}  direction={{ base: "column-reverse", md: "row" }}>
+                        <Image src={image} />
                         <VStack spacing={{ base: 4, }}>
+                            <Heading
+                                fontSize={{
+                                    base: '4xl',
+                                    md: '5xl',
+                                }}>
+                                Get in Touch
+                            </Heading>
 
                             <Box
                                 bg={useColorModeValue('white', 'gray.700')}
