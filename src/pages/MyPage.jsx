@@ -14,32 +14,41 @@ import {
 } from '@chakra-ui/react';
 import { useUser } from "../utils/UserContext";
 import { RecipeCard } from "../component/recipeCard/RecipeCard";
-import { getUserById } from "../../../user-controller";
-
+import { useQuery } from 'react-query'
+import { recipeByID } from "../utils/recipeHelper";
 
 export function MyPage(props) {
 const authUser = useUser()
 const [ readyToRender, setReadyToRender ] = useState(false)
 const [ favoriteList, setFavoriteList ] = useState([])
-const [ username, setUsername ] = useState()
-
 
 const getFavorites = async() => {
   const userID = authUser.user._id
   const query = await fetch(`/api/user/${userID}`)
-  const result = await query.json()
-  setFavoriteList(result)
-  setReadyToRender(true)
+  return query.json()
 }
+const getAllFavorites = async ({ queryKey }) => {
+ const data = queryKey[1]
+ return Promise.all(data.favorites.map(item => recipeByID({id: item})))
+}
+const favorites = useQuery({
+  queryKey: ["favoriteList", authUser.user],
+  queryFn: getFavorites,
+  enabled: !!authUser.user
+})
 
-const getU
+const API = useQuery({
+  queryKey: ["favoriteList", favorites.data],
+  queryFn: getAllFavorites,
+  enabled: !!favorites.data
+})
 
-console.log(favoriteList)
 
-useEffect( () => {
-  getUserId()
-  getFavorites()
-}, [])
+console.log(favorites)
+
+
+
+
 
     return (
         <PageContainer>
@@ -83,9 +92,9 @@ useEffect( () => {
         />
       </Flex>
     </Stack>
-    { readyToRender === true &&(
+   {API.isSuccess &&(
       <SimpleGrid minChildWidth='240px' spacing='20px' margin='8'>
-      {favoriteList.favorites.map( (<RecipeCard />))}
+        {API.data.map(( item, index ) =>  ( <RecipeCard key={index} {...item.recipe }/>))}
       </SimpleGrid>
     )}
     </PageContainer>
