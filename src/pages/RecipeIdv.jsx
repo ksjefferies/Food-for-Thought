@@ -42,15 +42,32 @@ export function RecipeIdv() {
     queryFn: recipeByURL,
     ...{ enabled: !!url }
   })
-
   const handleFav = async () => {
     setIsFavorite(!isFavorite)
     if (isFavorite === true) {
       //save it to DB
       const userID = authUser.user._id
       const fav = id
+      const query = await fetch(`/api/user/${userID}/favorites`,{
+          method: "post",
+          body: JSON.stringify({
+              favorite: fav
+      }),
+          headers:{
+            'Content-Type': 'application/json'
+          }
+      }) 
+      const result = await query.json()
+      console.log("Polish:" + result)
+
     } else {
       //or delete it from DB
+    //   const userID = authUser.user._id
+    //   const fav = id
+    //   const query = await fetch(`/api/user/${userID}/favorites/fav`,{
+    //       method: "DELETE",
+    //       favorite: JSON.stringify(fav),
+    //   }) 
     }
   }
 
