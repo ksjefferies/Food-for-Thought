@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import PageContainer from "../component/pageContainer/PageContainer";
 import { 
     Stack, 
@@ -11,9 +12,35 @@ import {
     Button,
     Flex,
 } from '@chakra-ui/react';
+import { useUser } from "../utils/UserContext";
 import { RecipeCard } from "../component/recipeCard/RecipeCard";
+import { getUserById } from "../../../user-controller";
+
 
 export function MyPage(props) {
+const authUser = useUser()
+const [ readyToRender, setReadyToRender ] = useState(false)
+const [ favoriteList, setFavoriteList ] = useState([])
+const [ username, setUsername ] = useState()
+
+
+const getFavorites = async() => {
+  const userID = authUser.user._id
+  const query = await fetch(`/api/user/${userID}`)
+  const result = await query.json()
+  setFavoriteList(result)
+  setReadyToRender(true)
+}
+
+const getU
+
+console.log(favoriteList)
+
+useEffect( () => {
+  getUserId()
+  getFavorites()
+}, [])
+
     return (
         <PageContainer>
 
@@ -32,8 +59,9 @@ export function MyPage(props) {
                 bottom: 1,
                 left: 0,
                 zIndex: -1,
+                
               }}>
-              Username's
+            
             </Text>
             <br />{' '}
             <Text color={'#00CECB'} as={'span'}>
@@ -55,10 +83,11 @@ export function MyPage(props) {
         />
       </Flex>
     </Stack>
-        <Container>
-        <RecipeCard></RecipeCard>
-        </Container>
-
-        </PageContainer>
+    { readyToRender === true &&(
+      <SimpleGrid minChildWidth='240px' spacing='20px' margin='8'>
+      {favoriteList.favorites.map( (<RecipeCard />))}
+      </SimpleGrid>
+    )}
+    </PageContainer>
     )
 }
