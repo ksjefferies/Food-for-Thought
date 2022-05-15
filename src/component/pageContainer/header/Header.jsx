@@ -27,12 +27,8 @@ const Links = [
 const AuthLinks = [
 
     {
-        text: 'My Favorites',
+        text: 'My Profile',
         href: '/mypage'
-    },
-    {
-        text: 'Profile',
-        href: '/profile'
     }
 ]
 
@@ -77,8 +73,8 @@ export default function Header() {
 
                 <HStack spacing={8} alignItems={'center'} textColor={'white'}>
                     <Box>
-                        <Link href='/'>
-                            Logo
+                        <Link fontWeight={'bold'} mr={'5'} href='/'>
+                            Food for Thought
                         </Link>
 
                     </Box>
