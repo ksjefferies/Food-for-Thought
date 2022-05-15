@@ -45,7 +45,6 @@ export function MyPage(props) {
 
 
 
-
   return (
     <PageContainer>
 
@@ -75,6 +74,7 @@ export function MyPage(props) {
                   zIndex: -1,
 
                 }}>
+                  {favorites?.data.username}'s
               </Text>
               <br />{' '}
               <Text color={'#00CECB'} as={'span'}>

@@ -1,5 +1,7 @@
 import PageContainer from "../component/pageContainer/PageContainer";
 import { Box, Stack, Text, Container } from '@chakra-ui/react';
+import { useQuery } from 'react-query'
+import { useUser } from "../utils/UserContext";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { SimpleGrid } from "@chakra-ui/react";
@@ -13,6 +15,22 @@ import {
 } from '@chakra-ui/react';
 
 export function Profile() {
+    const authUser = useUser()
+    const getUser = async () =>{
+        const userID = authUser.user._id
+        const query = await fetch(`/api/user/${userID}`)
+        return query.json()
+    }
+
+    const userInfo = useQuery({
+        queryKey: ["UserData", authUser.user],
+        queryFn: getUser,
+        enabled: !!authUser.user
+    })
+
+    console.log(userInfo)
+
+
     return (
         <PageContainer>
             <Stack
@@ -62,13 +80,11 @@ export function Profile() {
                                 </Box>
 
                                 <UnorderedList w={'100%'}>
-                                    <ListItem>First Name:</ListItem>
+                                    <ListItem>First Name: {userInfo?.data?.first}</ListItem>
                                     <ListItem>State:</ListItem>
                                     <ListItem>Recipe Specialty:</ListItem>
                                     <ListItem>Cooking Experience:</ListItem>
-                                    <ListItem>Bio:
-                                        <a> I'm a Full Stack developer with 10 years experience in IT Support Management. I recently transitioned into the web development world after earning a certificate in Full Stack Web Development (MERN) from Southern Methodist University.</a>
-                                    </ListItem>
+                                    <ListItem>Bio: {userInfo?.data?.description}</ListItem>
                                 </UnorderedList>
                             </SimpleGrid>
                         </Box>

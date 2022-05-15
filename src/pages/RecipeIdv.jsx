@@ -55,7 +55,7 @@ export function RecipeIdv() {
     ...{ enabled: !!url }
   })
 
-  console.log(id)
+  
   const handleFav = async () => {
     setIsFavorite(!isFavorite)
     if (isFavorite !== true) {
@@ -67,8 +67,12 @@ export function RecipeIdv() {
     }) 
       const result = await query.json()
       console.log(result)
+     
 
-    } else {
+    } 
+    
+    else {
+     
       const userID = authUser.user._id
       const query = await fetch(`/api/user/${userID}/favorites`,{
           method: "DELETE",
@@ -77,7 +81,18 @@ export function RecipeIdv() {
       }) 
       const result = await query.json()
       console.log(result)
+      setIsFavorite(!isFavorite)
     }
+
+  }
+
+  const checkFavorite = async () => {
+    const userID = authUser.user._id
+    const query = await fetch (`/api/user/${userID}`, {
+      method: "GET",
+      headers:  { "Content-Type": "application/json" }
+    })
+    console.log(query)
   }
 
   return (
