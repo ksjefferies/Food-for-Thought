@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
 import { useUser } from '../utils/UserContext'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -34,7 +34,8 @@ import {
   Td,
   TableContainer,
   Link,
-  Skeleton
+  Skeleton,
+  SkeletonCircle
 } from '@chakra-ui/react';
 
 export function RecipeIdv() {
@@ -84,17 +85,22 @@ export function RecipeIdv() {
       console.log(result)
       setIsFavorite(!isFavorite)
     }
-
+    
   }
-
-  const checkFavorite = async () => {
+  
+  const getUser = async () =>{
     const userID = authUser.user._id
-    const query = await fetch (`/api/user/${userID}`, {
-      method: "GET",
-      headers:  { "Content-Type": "application/json" }
-    })
-    console.log(query)
+    const query = await fetch(`/api/user/${userID}`)
+    return query.json()
   }
+
+  const userInfo = useQuery({
+    queryKey: ["UserData", authUser.user],
+    queryFn: getUser,
+    enabled: !!authUser.user,
+    onSuccess: (data) => {setIsFavorite(data?.favorites?.some(element =>(element == id)))}
+  })
+  
 
   return (
     <PageContainer>
@@ -128,13 +134,13 @@ export function RecipeIdv() {
 
               </Heading>
 
-              {authUser.user !== null && (
+              {authUser.user !== null && (<SkeletonCircle isLoaded={userInfo.isSuccess}>
                 <FontAwesomeIcon
                   icon={isFavorite ? faStar : regularStar}
                   size="3x"
                   color="#3275a8"
                   onClick={handleFav}
-                />)
+                /></SkeletonCircle>)
               }
 
             </HStack>

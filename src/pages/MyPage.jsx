@@ -80,9 +80,9 @@ export function MyPage(props) {
             fontWeight="bold"
             color="primary.800"
             textAlign={["center", "center", "left", "left"]}>
-            {favorites?.data?.username}'s
+
             <Text color={'#00CECB'} as={'span'}>
-              Favorites
+            {favorites?.data?.username}'s Favorites
             </Text>{' '}
           </Heading>
 
