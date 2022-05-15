@@ -59,7 +59,9 @@ export function Recipe() {
                     flex={0.5}
                     gap={2}>
                     <Input
-
+                        bg={'#F9F6EE'}
+                        borderColor={'light gray'}
+                        border={'1px'}
                         id="q"
                         value={params.q}
                         placeholder='Recipe Search'
