@@ -49,12 +49,7 @@ export function MyPage(props) {
   return (
 
     <PageContainer>
-      <Flex
-      direction={"column"}
-      >
-
-
-  
+      <Flex direction={"column"} >
       <Flex
         align="center"
         justify={
@@ -85,7 +80,7 @@ export function MyPage(props) {
             fontWeight="bold"
             color="primary.800"
             textAlign={["center", "center", "left", "left"]}>
-            {favorites?.data.username}'s
+            {favorites?.data?.username}'s
             <Text color={'#00CECB'} as={'span'}>
               Favorites
             </Text>{' '}
