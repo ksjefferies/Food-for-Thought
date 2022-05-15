@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 
 export default function Footer() {
+
     return (
         <Box 
             bg={useColorModeValue('black')}
@@ -27,22 +28,6 @@ export default function Footer() {
                     <Link href={'/contact'} >Contact</Link>
                 </Stack>
             </Container>
-
-            {/* <Box
-                borderTopWidth={1}
-                borderStyle={'solid'}
-                borderColor={useColorModeValue('gray.200', 'gray.700')}>
-                <Container
-                    as={Stack}
-                    maxW={'6xl'}
-                    py={4}
-                    direction={{ base: 'column', md: 'row' }}
-                    spacing={4}
-                    justify={{ base: 'center', md: 'space-between' }}
-                    align={{ base: 'center', md: 'center' }}>
-                    <Text>© 2022 Chakra Templates. All rights reserved</Text>
-                </Container>
-            </Box> */}
         </Box>
     );
 }

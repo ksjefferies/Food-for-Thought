@@ -1,5 +1,6 @@
 import React from 'react';
 import PageContainer from '../component/pageContainer/PageContainer';
+import  backgroundImage  from '../assets/images/contact-image.jpeg';
 import {
     Box,
     Button,
@@ -12,22 +13,41 @@ import {
     Textarea,
     useColorModeValue,
     VStack,
+    Image,
+    Stack
 } from '@chakra-ui/react';
 
 export function Contact() {
     return (
-        <PageContainer>
+        <PageContainer  >
 
             <Flex
                 bg={useColorModeValue('gray.100', 'gray.900')}
                 align="center"
-                justify="center"
+                justify={
+                    {
+                        base: 'center',
+                        md: 'space-around',
+                        xl: 'space-between'
+                    }
+                }
+                direction={{ base: "column-reverse", md: "row" }}
+                wrap="no-wrap"
+                minH="70vh"
+                px={8}
+                mb={16}
                 id="contact">
+                <Stack 
+                     spacing={4}
+                     w={{ base: "80%", md: "40%" }}
+                     align={["center", "center", "flex-start", "flex-start"]}
+                 >
                 <Box
                     borderRadius="lg"
                     m={{ base: 5, md: 16, lg: 10 }}
                     p={{ base: 5, lg: 16 }}>
                     <Box>
+
                         <VStack spacing={{ base: 4, md: 8, lg: 20 }}>
                             <Heading
                                 fontSize={{
@@ -36,8 +56,8 @@ export function Contact() {
                                 }}>
                                 Get in Touch
                             </Heading>
-
                             <Box
+                            
                                 bg={useColorModeValue('white', 'gray.700')}
                                 borderRadius="lg"
                                 p={8}
@@ -93,6 +113,7 @@ export function Contact() {
                         </VStack>
                     </Box>
                 </Box>
+                </Stack>
             </Flex>
         </PageContainer>
     );
