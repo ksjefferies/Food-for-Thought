@@ -9,8 +9,8 @@ import {
 
 export default function Footer() {
     return (
-        <Box
-            bg={useColorModeValue('gray.100', 'gray.900')}
+        <Box 
+            bg={useColorModeValue('black')}
             color={useColorModeValue('gray.700', 'gray.200')}>
                 <Flex h={1} alignItems={'center'} justifyContent={'center'}></Flex>
             <Container
@@ -20,7 +20,7 @@ export default function Footer() {
                 spacing={4}
                 justify={'center'}
                 align={'center'}>
-                <Stack direction={'row'} spacing={6}>
+                <Stack direction={'row'} spacing={6} textColor={'white'}>
                     <Link href={'/'}>Home</Link>
                     {/* <Link href={'/about'}>About</Link>
                     <Link href={'/mypage'}>My Page</Link> */}

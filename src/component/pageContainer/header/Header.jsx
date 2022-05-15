@@ -45,8 +45,8 @@ export default function Header() {
     const authUser = useUser()
     console.log(!!authUser.user)
     return (
-        <Box
-            bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+        <Box sx={{ position: 'fixed'}} width={'100%'} zIndex={'5'} 
+            bg={useColorModeValue('black', 'gray.900')} px={4}>
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
 
                 <IconButton
@@ -56,10 +56,11 @@ export default function Header() {
                     display={{ md: 'none' }}
                     onClick={isOpen ? onClose : onOpen}
                 />
-                <HStack spacing={8} alignItems={'center'}>
+                <HStack spacing={8} alignItems={'center'} textColor={'white'}>
                     <Box>Logo</Box>
 
                     <HStack
+                    textColor={'white'}
                         as={'nav'}
                         spacing={4}
                         display={{ base: 'none', md: 'flex' }}>
