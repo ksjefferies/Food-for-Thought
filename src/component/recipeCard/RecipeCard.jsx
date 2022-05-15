@@ -18,7 +18,7 @@ export const RecipeCard = ({ label, image, dietLabels, uri }) => {
                 flexDirection="column"
                 flexGrow={1}
                 h={"full"}
-                bg={'#E2F0FF'}
+                bg={'white'}
                 boxShadow={'2xl'}
                 rounded={'md'}
                 px={3}

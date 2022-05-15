@@ -112,8 +112,11 @@ export function RecipeIdv() {
       >
       
         <SimpleGrid
+        borderRadius={'10'}
+        boxShadow={'2xl'}
+        
           maxW={800}
-          bg={'#E2F0FF'}
+          bg={'white'}
           rows={{ base: 1, lg: 2 }}
           spacing={{ base: 8, md: 10 }}
           p={'5'}
@@ -258,8 +261,10 @@ export function RecipeIdv() {
               }
             </Box>
           </Stack>
-
-          {edamame?.data && <Link justifySelf={"flex-end"} color="blue.500" isExternal href={edamame?.data?.recipe?.url} target="_blank" >Source Link</Link>}
+          <Flex direction={"row"} justifyContent={"flex-end"}>
+          {edamame?.data && <Link color="blue.500" isExternal href={edamame?.data?.recipe?.url} target="_blank" >Source Link</Link>}
+          </Flex>
+        
           </Skeleton>
         </SimpleGrid>
      

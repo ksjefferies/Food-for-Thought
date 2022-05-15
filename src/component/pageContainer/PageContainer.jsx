@@ -11,6 +11,7 @@ export default function PageContainer({ children }) {
             <Header />
             <Box
             display={"flex"}
+            bg={'#f6f6f6'}
                 flex={1}
                 flexGrow={1}
                 marginTop={"55"}
