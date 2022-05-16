@@ -1,7 +1,7 @@
 const { User, Recipe } = require('../models');
 require("dotenv").config()
 
-/* 
+/*
     getAllRecipes,
     getOneRecipe,
     getRecipeBySearch,

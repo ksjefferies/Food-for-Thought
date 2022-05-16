@@ -1,18 +1,16 @@
-// import logo from './logo.svg';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import UserProvider from './utils/UserContext';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react'
-import { QueryClientProvider, QueryClient } from "react-query";
+import { QueryClientProvider, QueryClient } from 'react-query';
 import { About } from './pages/About';
 import { Landing } from './pages/Landing';
 import { Recipe } from './pages/Recipe';
 import { RecipeIdv } from './pages/RecipeIdv';
 import { MyPage } from './pages/MyPage';
-import { Contact } from "./pages/Contact";
-import UserProvider from "./utils/UserContext";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
-import { Profile } from './pages/Profile';
+import { Contact } from './pages/Contact';
 
 function App() {
   const queryClient = new QueryClient()
@@ -30,7 +28,6 @@ function App() {
               <Route path='/about' element={<About />} />
               <Route path='/mypage' element={<MyPage />} />
               <Route path='/contact' element={<Contact />} />
-              <Route path='/profile' element={<Profile />} />
             </Routes>
           </BrowserRouter>
         </QueryClientProvider>

@@ -1,4 +1,4 @@
-import { Link, useColorModeValue } from "@chakra-ui/react";
+import { Link, useColorModeValue } from '@chakra-ui/react';
 
 export const NavLink = ({ children, href }) => (
   <Link

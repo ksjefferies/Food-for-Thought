@@ -1,7 +1,7 @@
 const { User } = require('../models');
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-require("dotenv").config()
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
 module.exports = {
 
@@ -73,52 +73,51 @@ module.exports = {
       id: user._id
     }, process.env.JWT_SECRET)
 
-    res.header("auth-token", token).json({ error: null, data: { user, token } })
+    res.header('auth-token', token).json({ error: null, data: { user, token } })
   },
 
   async verifyUser(req, res) {
-    const token = req.headers["auth-token"]
+    const token = req.headers['auth-token']
 
     if (!token) {
-      return res.status(401).json({ msg: "authorized" })
+      return res.status(401).json({ msg: 'authorized' })
     }
 
     const isVerified = jwt.verify(token, process.env.JWT_SECRET)
 
     if (!isVerified) {
-      return res.status(401).json({ msg: "authorized" })
+      return res.status(401).json({ msg: 'authorized' })
     }
 
     const user = await User.findById(isVerified.id)
 
     if (!user) {
-      return res.status(401).json({ msg: "authorized" })
+      return res.status(401).json({ msg: 'authorized' })
     }
 
     return res.status(200).json({ _id: user._id, email: user.email })
   },
-// add favorite to favorite list
-  async addFavorite({params, body}, res){
+  // add favorite to favorite list
+  async addFavorite({ params, body }, res) {
     const user = await User.findOneAndUpdate(
-      {_id: params._id,},
-      { $addToSet: { favorites: body.favorite }}, { runValidators: true, new: true })
-      if( !user ){
-        return res.status(400).json({ message: 'No users found' });
-      }   
-      res.status(200).json(user);
-    },
+      { _id: params._id, },
+      { $addToSet: { favorites: body.favorite } }, { runValidators: true, new: true })
+    if (!user) {
+      return res.status(400).json({ message: 'No users found' });
+    }
+    res.status(200).json(user);
+  },
 
-  
-    // delete favorite from favorite list
-    async deleteFavorite({params, body}, res) {
-      const user = await User.findOneAndUpdate(
-        { _id: params._id },
-        { $pull:  { favorites: body.favorite }  },
-        { runValidators: true, new: true }
-      )
-      if( !user ){
-        return res.status(400).json(user);
-      }   
-      res.status(200).json(user);
-    },
-  };
+  // delete favorite from favorite list
+  async deleteFavorite({ params, body }, res) {
+    const user = await User.findOneAndUpdate(
+      { _id: params._id },
+      { $pull: { favorites: body.favorite } },
+      { runValidators: true, new: true }
+    )
+    if (!user) {
+      return res.status(400).json(user);
+    }
+    res.status(200).json(user);
+  },
+};

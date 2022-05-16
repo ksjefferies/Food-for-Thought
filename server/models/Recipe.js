@@ -5,26 +5,21 @@ const recipeSchema = new Schema({
     type: String,
     required: true,
   },
-
   category: {
     type: String,
   },
-
   ingredients: {
     type: String,
   },
-
   image: {
     type: String,
   },
-
   userID: [
     {
       type: Schema.Types.ObjectId,
       ref: 'User'
     }
   ]
-
 });
 
 const Recipe = model('Recipe', recipeSchema);

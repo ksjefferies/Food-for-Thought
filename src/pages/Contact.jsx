@@ -22,21 +22,15 @@ export function Contact() {
 
             <Flex
                 flex={1}
+                align='center'
+                justify='center'
+                id='contact'
+                wrap='no-wrap'
+                margin={10}>
 
-                align="center"
-                justify="center"
-                id="contact"
-             
-                wrap="no-wrap"
-                margin={10}
-            // px={8}
-            >
                 <Box
-                    borderRadius="lg"
-                // m={{ base: 5, md: 16, lg: 10 }}
-                // p={{ base: 5, lg: 16 }}
-                >
-                    <Flex  gap={10}  direction={{ base: "column-reverse", md: "row" }}>
+                    borderRadius='lg'>
+                    <Flex gap={10} direction={{ base: 'column-reverse', md: 'row' }}>
                         <Image src={image} />
                         <VStack spacing={{ base: 4, }}>
                             <Heading
@@ -49,48 +43,48 @@ export function Contact() {
 
                             <Box
                                 bg={useColorModeValue('white', 'gray.700')}
-                                borderRadius="lg"
+                                borderRadius='lg'
                                 p={8}
                                 color={useColorModeValue('gray.700', 'whiteAlpha.900')}
-                                shadow="base">
+                                shadow='base'>
                                 <VStack spacing={5}>
                                     <FormControl isRequired>
                                         <FormLabel>Name</FormLabel>
 
                                         <InputGroup>
-                                            <Input type="text" name="name" placeholder="Your Name" />
+                                            <Input
+                                                type='text'
+                                                name='name'
+                                                placeholder='Your Name' />
                                         </InputGroup>
 
                                     </FormControl>
-
                                     <FormControl isRequired>
                                         <FormLabel>Email</FormLabel>
 
                                         <InputGroup>
                                             <Input
-                                                type="email"
-                                                name="email"
-                                                placeholder="Your Email"
+                                                type='email'
+                                                name='email'
+                                                placeholder='Your Email'
                                             />
                                         </InputGroup>
 
                                     </FormControl>
-
                                     <FormControl isRequired>
                                         <FormLabel>Message</FormLabel>
 
                                         <Textarea
-                                            name="message"
-                                            placeholder="Your Message"
+                                            name='message'
+                                            placeholder='Your Message'
                                             rows={6}
-                                            resize="none"
+                                            resize='none'
                                         />
                                     </FormControl>
-
                                     <Button
-                                        colorScheme="blue"
-                                        bg="blue.400"
-                                        color="white"
+                                        colorScheme='blue'
+                                        bg='blue.400'
+                                        color='white'
                                         _hover={{
                                             bg: 'blue.500',
                                         }}
@@ -99,7 +93,6 @@ export function Contact() {
                                     </Button>
                                 </VStack>
                             </Box>
-
                         </VStack>
                     </Flex>
                 </Box>

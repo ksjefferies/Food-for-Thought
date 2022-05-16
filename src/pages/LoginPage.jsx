@@ -1,8 +1,8 @@
-import PageContainer from "../component/pageContainer/PageContainer";
-import cookie from "js-cookie"
-import React from "react"
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router";
+import PageContainer from '../component/pageContainer/PageContainer';
+import cookie from 'js-cookie'
+import React from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router';
 import {
   Flex,
   Box,
@@ -19,32 +19,27 @@ import {
 } from '@chakra-ui/react';
 
 const LoginPage = (props) => {
-
-  // const handleInputChange = (e) => {
-  // ({...formData, [e.target.name]: e.target.value})
-  // }
-
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const navigate = useNavigate();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    const query = await fetch("/api/user/auth",
+    const query = await fetch('/api/user/auth',
       {
-        method: "post",
+        method: 'post',
         body: JSON.stringify(
           {
             email: email,
             password: password,
           }),
-        headers: { "Content-Type": "application/json" }
+        headers: { 'Content-Type': 'application/json' }
       })
 
     const result = await query.json()
 
     if (result && !result.err && result.data && result.data.token) {
-      cookie.set("auth-token", result.data.token, { expires: 3 })
+      cookie.set('auth-token', result.data.token, { expires: 3 })
     }
     window.location.replace('/')
   }
@@ -86,7 +81,7 @@ const LoginPage = (props) => {
               p={8}>
 
               <Stack spacing={4}>
-                <FormControl id="email" isRequired>
+                <FormControl id='email' isRequired>
                   <FormLabel>
                     Email address
                   </FormLabel>
@@ -94,24 +89,24 @@ const LoginPage = (props) => {
                   <Input
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    type="email"
+                    type='email'
                   />
                 </FormControl>
 
-                <FormControl id="password" isRequired>
+                <FormControl id='password' isRequired>
                   <FormLabel>
                     Password
                   </FormLabel>
 
-                  <Input value={password} onChange={e => setPassword(e.target.value)} type="password" />
+                  <Input value={password} onChange={e => setPassword(e.target.value)} type='password' />
                 </FormControl>
 
                 <Stack spacing={10}>
                   <Stack
                     direction={{ base: 'column', sm: 'row' }}
                     align={'start'}
-                    justify={'space-between'}
-                  >
+                    justify={'space-between'}>
+
                     <Checkbox>
                       Remember me
                     </Checkbox>
@@ -120,8 +115,6 @@ const LoginPage = (props) => {
                       onClick={() => navigate('../Contact')}
                       color={'blue.400'}>Forgot password? Contact us here!
                     </Link>
-
-
                   </Stack>
 
                   <Button
@@ -135,7 +128,6 @@ const LoginPage = (props) => {
                       }}>
                     Sign in
                   </Button>
-
 
                   <Stack pt={0}>
                     <Text align={'center'}>
