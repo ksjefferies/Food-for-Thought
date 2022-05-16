@@ -175,9 +175,9 @@ export function RecipeIdv() {
                         <Table>
                           <Thead>
                             <Tr>
-                            <Th textDecoration={'underline'}>Nutrient</Th>
-                            <Th textDecoration={'underline'} isNumeric>Amount</Th>
-                            <Th textDecoration={'underline'}>Unit</Th>
+                              <Th textDecoration={'underline'}>Nutrient</Th>
+                              <Th textDecoration={'underline'} isNumeric>Amount</Th>
+                              <Th textDecoration={'underline'}>Unit</Th>
                             </Tr>
                           </Thead>
                           <Tbody>

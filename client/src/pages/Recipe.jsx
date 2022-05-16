@@ -63,9 +63,9 @@ export function Recipe() {
                             id='q'
                             value={params.q || ''}
                             placeholder='Recipe Search'
-                            onChange={handleChange} 
+                            onChange={handleChange}
                             onKeyDown={(e) => e.key === 'Enter' && setSearchParams(params)}
-                            >
+                        >
                         </Input>
                         <Button onClick={e => setSearchParams(params)}>Search</Button>
                     </Flex>
@@ -86,19 +86,19 @@ export function Recipe() {
                                     gap={{ sm: 5 }}
                                 >
                                     <Select id='diet' value={params.diet} placeholder='Diet' onChange={handleChange}  >
-                                        {dietOptions.map((option,index) => (
+                                        {dietOptions.map((option, index) => (
                                             <option key={index} value={option}>{option}</option>
                                         ))}
                                     </Select>
 
                                     <Select id='health' value={params.health} placeholder='Restrictions' onChange={handleChange} >
-                                        {healthOptions.map((option,index) => (
+                                        {healthOptions.map((option, index) => (
                                             <option key={index} value={option}>{option}</option>
                                         ))}
                                     </Select>
 
                                     <Select id='cuisineType' value={params.cuisineType} placeholder='Cuisine' onChange={handleChange} >
-                                        {cuisineOptions.map((option,index) => (
+                                        {cuisineOptions.map((option, index) => (
                                             <option key={index} value={option}>{option}</option>
                                         ))}
                                     </Select>
@@ -110,7 +110,7 @@ export function Recipe() {
 
                 <Skeleton flex={1} mx={8} isLoaded={isSuccess}>
                     <SimpleGrid minChildWidth='240px' spacing='20px'>
-                        {data?.hits.map((hit,index) => (<RecipeCard key={index} {...hit.recipe} />))}
+                        {data?.hits.map((hit, index) => (<RecipeCard key={index} {...hit.recipe} />))}
                     </SimpleGrid>
                 </Skeleton>
             </Flex>
