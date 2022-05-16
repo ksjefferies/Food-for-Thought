@@ -174,13 +174,15 @@ export function RecipeIdv() {
                       <TableContainer>
                         <Table>
                           <Thead>
+                            <Tr>
                             <Th textDecoration={'underline'}>Nutrient</Th>
                             <Th textDecoration={'underline'} isNumeric>Amount</Th>
                             <Th textDecoration={'underline'}>Unit</Th>
+                            </Tr>
                           </Thead>
                           <Tbody>
                             {edamame.data && Object.values(edamame?.data?.recipe?.totalNutrients).map((item, index) => (
-                              <Tr>
+                              <Tr key={index}>
                                 <Td>{item.label}</Td>
                                 <Td isNumeric>{parseFloat(item.quantity).toFixed(2)}</Td>
                                 <Td>{item.unit}</Td>
