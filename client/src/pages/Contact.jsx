@@ -38,7 +38,7 @@ export function Contact() {
                                     base: '4xl',
                                     md: '5xl',
                                 }}>
-                                Get in Touch
+                                Questions?
                             </Heading>
 
                             <Box
