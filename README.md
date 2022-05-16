@@ -56,7 +56,7 @@ Once the user selects the recipe, from the search results, it loads and formats 
 -----
 ## Site URL:
 
-- [Food for Thought]('https://food-for-thought2.herokuapp.com/')
+- [Food for Thought](https://food-for-thought2.herokuapp.com/)
 
 ## GitHub Repository:
 
