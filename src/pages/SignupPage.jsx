@@ -1,6 +1,6 @@
-import PageContainer from "../component/pageContainer/PageContainer";
-import cookie from "js-cookie"
-import { useNavigate } from "react-router";
+import PageContainer from '../component/pageContainer/PageContainer';
+import cookie from 'js-cookie'
+import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {
@@ -36,24 +36,21 @@ const SignupPage = (props) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    const query = await fetch("/api/user",
+    const query = await fetch('/api/user',
       {
-        method: "post",
+        method: 'post',
         body: JSON.stringify(formProps),
-        headers: { "Content-Type": "application/json" }
+        headers: { 'Content-Type': 'application/json' }
       })
 
 
     const result = await query.json()
 
     if (result && !result.err && result.data && result.data.token) {
-      cookie.set("auth-token", result.data.token, { expires: 3 })
+      cookie.set('auth-token', result.data.token, { expires: 3 })
     }
-    window.location.replace("/login")
-
-  
+    window.location.replace('/login')  
   }
-
 
   return (
     <PageContainer>
@@ -85,7 +82,6 @@ const SignupPage = (props) => {
             </Text>
           </Stack>
 
-
           <form onSubmit={handleFormSubmit}>
             <Box
               rounded={'lg'}
@@ -99,20 +95,20 @@ const SignupPage = (props) => {
                     <FormControl >
                       <FormLabel>First Name</FormLabel>
                       <Input 
-                      id="first"
-                      type="text"
+                      id='first'
+                      type='text'
                       onChange={handleChange}
-                      value={formProps?.first || ""} />
+                      value={formProps?.first || ''} />
                     </FormControl>
                   </Box>
 
                   <Box>
                     <FormControl >
                       <FormLabel>Last Name</FormLabel>
-                      <Input type="text"
+                      <Input type='text'
                       onChange={handleChange}
-                      value={formProps?.last || ""} 
-                      id="last"/>
+                      value={formProps?.last || ''} 
+                      id='last'/>
                     </FormControl>
                   </Box>
                 </HStack>
@@ -120,17 +116,17 @@ const SignupPage = (props) => {
                 <FormControl>
                   <FormLabel>Tell us about yourself</FormLabel>
                   <Textarea
-                   id="description"
-                    value={formProps?.description || ""}
+                   id='description'
+                    value={formProps?.description || ''}
                     onChange={handleChange}
-                    type="text"
+                    type='text'
                   />
                 </FormControl>
                 
                 <FormControl>
                   <Select placeholder='Skill Level' 
                   onChange={handleChange}
-                  id="skillLevel">
+                  id='skillLevel'>
                     <option>Beginner</option>
                     <option>HomeMaker</option>
                     <option>Gordon Ramsay</option>
@@ -140,20 +136,20 @@ const SignupPage = (props) => {
                 <FormControl  isRequired>
                   <FormLabel>Username</FormLabel>
                   <Input
-                  id="username"
-                    value={formProps?.username || ""}
+                  id='username'
+                    value={formProps?.username || ''}
                     onChange={handleChange}
-                    type="username"
+                    type='username'
                   />
                 </FormControl>
 
                 <FormControl  isRequired>
                   <FormLabel>Email address</FormLabel>
                   <Input
-                  id="email"
-                    value={formProps?.email || ""}
+                  id='email'
+                    value={formProps?.email || ''}
                     onChange={handleChange}
-                    type="email"
+                    type='email'
                   />
                 </FormControl>
 
@@ -161,8 +157,8 @@ const SignupPage = (props) => {
                   <FormLabel>Password</FormLabel>
                   <InputGroup>
                     <Input 
-                    id="password"
-                      value={formProps?.password || ""} 
+                    id='password'
+                      value={formProps?.password || ''} 
                       onChange={handleChange}
                       type={showPassword ? 'text' : 'password'} 
                       />
@@ -173,6 +169,7 @@ const SignupPage = (props) => {
                         onClick={() =>
                           setShowPassword((showPassword) => !showPassword)
                         }>
+
                         {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                       </Button>
 
@@ -182,9 +179,9 @@ const SignupPage = (props) => {
 
                 <Stack spacing={10} pt={2}>
                   <Button
-                    loadingText="Submitting"
+                    loadingText='Submitting'
                     onClick={handleFormSubmit}
-                    size="lg"
+                    size='lg'
                     bg={'blue.400'}
                     color={'white'}
                     _hover={{
@@ -203,7 +200,6 @@ const SignupPage = (props) => {
               </Stack>
             </Box>
           </form>
-
         </Stack>
       </Flex>
     </PageContainer>

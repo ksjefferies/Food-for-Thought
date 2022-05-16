@@ -2,9 +2,9 @@ const url = 'https://api.edamam.com/api/recipes/v2';
 const recipeUrl = 'https://recipied.io/api';
 
 const apiParams = {
-    app_key: "cda9a2ddad77ff868cec50dc7286234c",
-    app_id: "85effab9",
-    type: "public"
+    app_key: 'cda9a2ddad77ff868cec50dc7286234c',
+    app_id: '85effab9',
+    type: 'public'
 }
 
 export async function recipeBySearch({ queryKey }) {
@@ -16,18 +16,19 @@ export async function recipeBySearch({ queryKey }) {
     let res = await fetch(`${url}?${params.toString()}`)
     return res.json()
 }
+
 export async function recipeByID({ queryKey, id }) {
     let params = new URLSearchParams(apiParams)
-    let res = await fetch(`${url}/${ id ?? queryKey[1]  }?${params.toString()}`)
+    let res = await fetch(`${url}/${id ?? queryKey[1]}?${params.toString()}`)
     return res.json();
 }
 
 export async function recipeByURL({ queryKey }) {
     let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append('Content-Type', 'application/json');
 
     const raw = JSON.stringify({
-        "url": queryKey[1]
+        'url': queryKey[1]
     });
 
     const requestOptions = {
@@ -37,5 +38,5 @@ export async function recipeByURL({ queryKey }) {
         redirect: 'follow'
     };
 
-    return (await fetch("https://recipied.io/api", requestOptions)).json();
+    return (await fetch('https://recipied.io/api', requestOptions)).json();
 }

@@ -1,9 +1,9 @@
-import PageContainer from "../component/pageContainer/PageContainer";
-import { RecipeCard } from "../component/recipeCard/RecipeCard";
-import { useState } from "react";
+import PageContainer from '../component/pageContainer/PageContainer';
+import { RecipeCard } from '../component/recipeCard/RecipeCard';
+import { useState } from 'react';
 import { useQuery } from 'react-query'
-import { useSearchParams } from "react-router-dom";
-import { recipeBySearch } from "../utils/recipeHelper";
+import { useSearchParams } from 'react-router-dom';
+import { recipeBySearch } from '../utils/recipeHelper';
 import {
     SimpleGrid,
     Select,
@@ -17,7 +17,7 @@ import {
     Box,
     Flex,
     Skeleton
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 export function Recipe() {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -32,7 +32,7 @@ export function Recipe() {
     let cuisineOptions = ['', 'American', 'Asian', 'British', 'Caribbean', 'Central Europe', 'Chinese', 'Eastern Europe', 'French', 'Indian', 'Italian', 'Japanese', 'Kosher', 'Mediterranean', 'Mexican', 'Middle Eastern', 'Nordic', 'South American', 'South East Asian']
 
     const { data, isSuccess } = useQuery({
-        queryKey: ["recipes", [...searchParams]],
+        queryKey: ['recipes', [...searchParams]],
         queryFn: recipeBySearch,
         ...{ enabled: !!searchParams.get('q') }
     })
@@ -46,70 +46,71 @@ export function Recipe() {
 
     return (
         <PageContainer>
-            <Flex flex={1} flexDir={"column"}>
-            <Flex
-                justifyContent={"space-between"}
-                mx={10}
-                my={5}
-                direction={{ base: "row", sm: "column", md: "row" }}
-                gap={{ sm: 5 }}>
+            <Flex flex={1} flexDir={'column'}>
                 <Flex
-                    flex={0.5}
-                    gap={2}>
-                    <Input
-                        bg={'#F9F6EE'}
-                        borderColor={'light gray'}
-                        border={'1px'}
-                        id="q"
-                        value={params.q || ""}
-                        placeholder='Recipe Search'
-                        onChange={handleChange} >
-                    </Input>
-                    <Button onClick={e => setSearchParams(params)}>Search</Button>
+                    justifyContent={'space-between'}
+                    mx={10}
+                    my={5}
+                    direction={{ base: 'row', sm: 'column', md: 'row' }}
+                    gap={{ sm: 5 }}>
+                    <Flex
+                        flex={0.5}
+                        gap={2}>
+                        <Input
+                            bg={'#F9F6EE'}
+                            borderColor={'light gray'}
+                            border={'1px'}
+                            id='q'
+                            value={params.q || ''}
+                            placeholder='Recipe Search'
+                            onChange={handleChange} >
+                        </Input>
+                        <Button onClick={e => setSearchParams(params)}>Search</Button>
+                    </Flex>
 
+                    <Accordion flex={0.3} allowToggle>
+                        <AccordionItem>
+                            <h2>
+                                <AccordionButton>
+                                    <Box flex='1' textAlign='left'>
+                                        Advanced Search Options
+                                    </Box>
+                                    <AccordionIcon />
+                                </AccordionButton>
+                            </h2>
+                            <AccordionPanel pb={4}>
+                                <Flex
+                                    direction={'column'}
+                                    gap={{ sm: 5 }}
+                                >
+                                    <Select id='diet' value={params.diet} placeholder='Diet' onChange={handleChange}  >
+                                        {dietOptions.map(option => (
+                                            <option value={option}>{option}</option>
+                                        ))}
+                                    </Select>
+
+                                    <Select id='health' value={params.health} placeholder='Restrictions' onChange={handleChange} >
+                                        {healthOptions.map(option => (
+                                            <option value={option}>{option}</option>
+                                        ))}
+                                    </Select>
+
+                                    <Select id='cuisineType' value={params.cuisineType} placeholder='Cuisine' onChange={handleChange} >
+                                        {cuisineOptions.map(option => (
+                                            <option value={option}>{option}</option>
+                                        ))}
+                                    </Select>
+                                </Flex>
+                            </AccordionPanel>
+                        </AccordionItem>
+                    </Accordion>
                 </Flex>
 
-                <Accordion flex={0.3} allowToggle>
-                    <AccordionItem>
-                        <h2>
-                            <AccordionButton>
-                                <Box flex='1' textAlign='left'>
-                                    Advanced Search Options
-                                </Box>
-                                <AccordionIcon />
-                            </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                            <Flex
-                                direction={"column"}
-                                gap={{ sm: 5 }}
-                            >
-                                <Select id="diet" value={params.diet} placeholder='Diet' onChange={handleChange}  >
-                                    {dietOptions.map(option => (
-                                        <option value={option}>{option}</option>
-                                    ))}
-                                </Select>
-                                <Select id='health' value={params.health} placeholder='Restrictions' onChange={handleChange} >
-                                    {healthOptions.map(option => (
-                                        <option value={option}>{option}</option>
-                                    ))}
-                                </Select>
-                                <Select id='cuisineType' value={params.cuisineType} placeholder='Cuisine' onChange={handleChange} >
-                                    {cuisineOptions.map(option => (
-                                        <option value={option}>{option}</option>
-                                    ))}
-                                </Select>
-                            </Flex>
-                        </AccordionPanel>
-                    </AccordionItem>
-                </Accordion>
-            </Flex>
-
-            <Skeleton flex={1} mx={8} isLoaded={isSuccess}>
-            <SimpleGrid minChildWidth='240px' spacing='20px'>
-                {data?.hits.map(hit => (<RecipeCard {...hit.recipe} />))}
-            </SimpleGrid>
-            </Skeleton>
+                <Skeleton flex={1} mx={8} isLoaded={isSuccess}>
+                    <SimpleGrid minChildWidth='240px' spacing='20px'>
+                        {data?.hits.map(hit => (<RecipeCard {...hit.recipe} />))}
+                    </SimpleGrid>
+                </Skeleton>
             </Flex>
         </PageContainer>
     )

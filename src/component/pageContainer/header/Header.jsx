@@ -1,7 +1,7 @@
+import SearchBar from './SearchBar';
 import { NavLink } from './NavLink';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router';
-import SearchBar from "./SearchBar";
 import { useUser } from '../../../utils/UserContext'
 import {
     Box,
@@ -20,12 +20,9 @@ import {
     Link,
 } from '@chakra-ui/react';
 
-const Links = [
-
-];
+const Links = [];
 
 const AuthLinks = [
-
     {
         text: 'My Profile',
         href: '/mypage'
@@ -38,9 +35,16 @@ export default function Header() {
     const authUser = useUser()
 
     return (
-        <Box sx={{ position: 'fixed' }} width={'100%'} h={"55"} zIndex={'5'}
-            bg={useColorModeValue('black', 'gray.900')} px={4}>
-            <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+        <Box
+            sx={{ position: 'fixed' }}
+            width={'100%'} h={'55'}
+            zIndex={'5'}
+            bg={useColorModeValue('black', 'gray.900')}
+            px={4}>
+            <Flex
+                h={16}
+                alignItems={'center'}
+                justifyContent={'space-between'}>
                 <Menu isLazy>
                     <MenuButton
                         as={IconButton}
@@ -59,7 +63,7 @@ export default function Header() {
                                     </Link>
                                 </MenuItem>
                             ))
-                            : [...Links, ...AuthLinks, , { text: 'Search', href: "/recipe" },].map((link) => (
+                            : [...Links, ...AuthLinks, { text: 'Search', href: '/recipe' }].map((link) => (
                                 <MenuItem key={link.text}>
                                     <Link href={link.href}>
 
@@ -71,12 +75,17 @@ export default function Header() {
                     </MenuList>
                 </Menu>
 
-                <HStack spacing={8} alignItems={'center'} textColor={'white'}>
+                <HStack
+                    spacing={8}
+                    alignItems={'center'}
+                    textColor={'white'}>
                     <Box>
-                        <Link fontWeight={'bold'} mr={'5'} href='/'>
+                        <Link
+                            fontWeight={'bold'}
+                            mr={'5'}
+                            href='/'>
                             Food for Thought
                         </Link>
-
                     </Box>
 
                     <HStack
@@ -98,8 +107,7 @@ export default function Header() {
                 <Flex alignItems={'center'}>
                     <HStack
                         spacing={4}
-                        flex={1}
-                    >
+                        flex={1}>
                         <SearchBar />
                         {
                             !authUser.user
@@ -134,7 +142,6 @@ export default function Header() {
                                         }}>Logout</MenuItem>
                                     </MenuList>
                                 </Menu>)}
-
                     </HStack>
                 </Flex>
             </Flex>

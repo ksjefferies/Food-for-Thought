@@ -10,19 +10,21 @@ import {
 } from '@chakra-ui/react';
 
 export const RecipeCard = ({ label, image, dietLabels, uri }) => {
-    const id = (uri.split("_"))[1]
+    const id = (uri.split('_'))[1]
     return (
-        <Center maxW={300} py={6}>
+        <Center
+            maxW={300}
+            py={6}>
             <Box
-                display={"flex"}
-                flexDirection="column"
+                display={'flex'}
+                flexDirection='column'
                 flexGrow={1}
-                h={"full"}
+                h={'full'}
                 bg={'white'}
                 boxShadow={'2xl'}
                 rounded={'md'}
                 px={3}
-                justifyContent={"space-between"}
+                justifyContent={'space-between'}
                 overflow={'hidden'}>
 
                 <Link href={`/recipe/${id}`}>
@@ -49,14 +51,17 @@ export const RecipeCard = ({ label, image, dietLabels, uri }) => {
                 </Link>
 
                 {dietLabels &&
-                    <Stack align={'center'} justify={'center'} direction={'row'} display="flex" m={2}>
+                    <Stack
+                        align={'center'}
+                        justify={'center'}
+                        direction={'row'}
+                        display='flex' m={2}>
                         {dietLabels.map(label => (
                             <Badge
-                                fontSize={"x-small"}
+                                fontSize={'x-small'}
                                 px={2}
                                 py={1}
-                                fontWeight={'400'}
-                            >
+                                fontWeight={'400'}>
                                 {label}
                             </Badge>
                         ))}
