@@ -56,8 +56,9 @@ export const RecipeCard = ({ label, image, dietLabels, uri }) => {
                         justify={'center'}
                         direction={'row'}
                         display='flex' m={2}>
-                        {dietLabels.map(label => (
+                        {dietLabels.map((label,index) => (
                             <Badge
+                                key={index}
                                 fontSize={'x-small'}
                                 px={2}
                                 py={1}
