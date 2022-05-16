@@ -1,14 +1,13 @@
-# Project 3
+# Food for Thought
 
 -----
 ## Table of Content
 
 - [Description](#description)
 - [Images](#images)
-- [Responsive Layout Image](#responsive-layout-image)
 - [Site URL](#site-url)
 - [GitHub Repository](#github-repository)
-- [Author](#author)
+- [Authors](#authors)
 - [Contributors](#contributors)  
 - [Technologies Used](#technologies-used) 
 - [License](#license)
@@ -38,20 +37,30 @@ Once the user selects the recipe, from the search results, it loads and formats 
 -----
 ## Images:
 
-![Image of TITLE]()
+### Initial Sign-on Page
 
-## Responsive Image:
-
-![Image of TITLE]()
+![Image of Initial Sign-on Page](./client/src/assets/images/page1.jpg)  
+----
+### Recipe Search Results
+![Image of Recipe Search Results](./client/src/assets/images/search-results.jpg)  
+----
+### Individual Recipe
+![Image of Individual Recipe](./client/src/assets/images/indv-recipe.jpg)  
+----
+### Nutrient Information
+![Image of Nutrient Information](./client/src/assets/images/nutrient.jpg)  
+----
+### Profile Page with favorites
+![Image of Profile Page with favorites](./client/src/assets/images/profile-page.jpg)  
 
 -----
 ## Site URL:
 
-- [Deployed TITLE Page]()
+- [Food for Thought]('https://food-for-thought2.herokuapp.com/')
 
 ## GitHub Repository:
 
-- [Github Repository for Project 3: TITLE](https://github.com/ksjefferies/project-3)
+- [Github Repository for Food for Thought](https://github.com/ksjefferies/Food-for-Thought)
 
 ## Authors:
 
