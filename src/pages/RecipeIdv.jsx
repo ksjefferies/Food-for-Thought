@@ -6,10 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
 import { useUser } from '../utils/UserContext'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
-  Container,
   Stack,
   Text,
   Image,
@@ -92,7 +91,7 @@ export function RecipeIdv() {
     queryKey: ['UserData', authUser.user],
     queryFn: getUser,
     enabled: !!authUser.user,
-    onSuccess: (data) => { setIsFavorite(data?.favorites?.some(element => (element == id))) }
+    onSuccess: (data) => { setIsFavorite(data?.favorites?.some(element => (element === id))) }
   })
 
   return (
