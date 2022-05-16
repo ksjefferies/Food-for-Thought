@@ -15,10 +15,11 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
+app.use(routes);
+
 app.get('(/*)?', async (req, res, next) => {
   res.sendFile(path.join(buildPath, 'index.html'));
 });
-app.use(routes);
 
 db.once('open', () => {
   app.listen(PORT, () => console.log(`Now listening on localhost: ${PORT}`));
