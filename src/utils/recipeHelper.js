@@ -1,5 +1,4 @@
 const url = 'https://api.edamam.com/api/recipes/v2';
-const recipeUrl = 'https://recipied.io/api';
 
 const apiParams = {
     app_key: 'cda9a2ddad77ff868cec50dc7286234c',
