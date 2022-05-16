@@ -23,14 +23,14 @@ import {
 } from '@chakra-ui/react';
 
 const SignupPage = (props) => {
-  
+
   const handleChange = (e) => {
     setFormProps(prev => ({
-        ...prev,
-        [e.target.id]: e.target.value
+      ...prev,
+      [e.target.id]: e.target.value
     }))
-}
-  const [ formProps, setFormProps ] = useState({})
+  }
+  const [formProps, setFormProps] = useState({})
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -49,7 +49,7 @@ const SignupPage = (props) => {
     if (result && !result.err && result.data && result.data.token) {
       cookie.set('auth-token', result.data.token, { expires: 3 })
     }
-    window.location.replace('/login')  
+    window.location.replace('/login')
   }
 
   return (
@@ -94,11 +94,11 @@ const SignupPage = (props) => {
                   <Box>
                     <FormControl >
                       <FormLabel>First Name</FormLabel>
-                      <Input 
-                      id='first'
-                      type='text'
-                      onChange={handleChange}
-                      value={formProps?.first || ''} />
+                      <Input
+                        id='first'
+                        type='text'
+                        onChange={handleChange}
+                        value={formProps?.first || ''} />
                     </FormControl>
                   </Box>
 
@@ -106,9 +106,9 @@ const SignupPage = (props) => {
                     <FormControl >
                       <FormLabel>Last Name</FormLabel>
                       <Input type='text'
-                      onChange={handleChange}
-                      value={formProps?.last || ''} 
-                      id='last'/>
+                        onChange={handleChange}
+                        value={formProps?.last || ''}
+                        id='last' />
                     </FormControl>
                   </Box>
                 </HStack>
@@ -116,52 +116,52 @@ const SignupPage = (props) => {
                 <FormControl>
                   <FormLabel>Tell us about yourself</FormLabel>
                   <Textarea
-                   id='description'
+                    id='description'
                     value={formProps?.description || ''}
                     onChange={handleChange}
                     type='text'
                   />
                 </FormControl>
-                
+
                 <FormControl>
-                  <Select placeholder='Skill Level' 
-                  onChange={handleChange}
-                  id='skillLevel'>
+                  <Select placeholder='Skill Level'
+                    onChange={handleChange}
+                    id='skillLevel'>
                     <option>Beginner</option>
                     <option>HomeMaker</option>
                     <option>Gordon Ramsay</option>
                   </Select>
                 </FormControl>
 
-                <FormControl  isRequired>
+                <FormControl isRequired>
                   <FormLabel>Username</FormLabel>
                   <Input
-                  id='username'
+                    id='username'
                     value={formProps?.username || ''}
                     onChange={handleChange}
                     type='username'
                   />
                 </FormControl>
 
-                <FormControl  isRequired>
+                <FormControl isRequired>
                   <FormLabel>Email address</FormLabel>
                   <Input
-                  id='email'
+                    id='email'
                     value={formProps?.email || ''}
                     onChange={handleChange}
                     type='email'
                   />
                 </FormControl>
 
-                <FormControl  isRequired>
+                <FormControl isRequired>
                   <FormLabel>Password</FormLabel>
                   <InputGroup>
-                    <Input 
-                    id='password'
-                      value={formProps?.password || ''} 
+                    <Input
+                      id='password'
+                      value={formProps?.password || ''}
                       onChange={handleChange}
-                      type={showPassword ? 'text' : 'password'} 
-                      />
+                      type={showPassword ? 'text' : 'password'}
+                    />
                     <InputRightElement h={'full'}>
 
                       <Button
