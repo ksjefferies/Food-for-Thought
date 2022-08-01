@@ -17,10 +17,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(routes);
 
-app.get('(/*)?', async (req, res, next) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
-});
-
 db.once('open', () => {
   app.listen(PORT, () => console.log(`Now listening on localhost: ${PORT}`));
 });
