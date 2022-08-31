@@ -56,7 +56,7 @@ Once the user selects the recipe, from the search results, it loads and formats 
 -----
 ## Site URL:
 
-- [Food for Thought](https://food-for-thought2.herokuapp.com/)
+- [Food for Thought](https://food-for-thought.fly.dev/)
 
 ## GitHub Repository:
 
@@ -67,7 +67,6 @@ Once the user selects the recipe, from the search results, it loads and formats 
 - [Kelly Jefferies](https://github.com/ksjefferies)
 - [Victor Kennedy](https://github.com/Victorini1)
 - [Alyssa Rodriguez](https://github.com/AlyssaRodri)
-- [Stephen Elliott](https://github.com/UsernameisStephen)
 
 ## Contributors:
 
@@ -85,7 +84,6 @@ https://recipied.io/
 ![express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)  
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![Font Awesome](https://img.shields.io/badge/Font_Awesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white)
-![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
 ![Chakra](https://img.shields.io/badge/Chakra--UI-319795?style=for-the-badge&logo=chakra-ui&logoColor=white)
 
 ## License:
