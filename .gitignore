@@ -24,3 +24,4 @@ yarn-error.log*
 package-lock.json
 CRA.md
 README-REQ.md
+/server/.env
